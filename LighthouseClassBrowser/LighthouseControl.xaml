@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="LighthouseClassBrowser.LighthouseControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.14.0"
+             Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
+             Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             Name="MyToolWindow">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Margin="10" HorizontalAlignment="Center">Lighthouse</TextBlock>
+            <Button Content="Click me!" Click="button1_Click" Width="120" Height="80" Name="button1"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
