@@ -48,7 +48,11 @@ namespace LighthouseClassBrowser
             Lighthouse.package = package;
         }
 
-        private HashSet<EnvDTE.ProjectItem> Packages { get; set; }
+        private IServiceProvider serviceProvider
+        {
+            get { return Lighthouse.package; }
+        }
 
+        private HashSet<EnvDTE.ProjectItem> Packages { get; set; }
     }
 }
