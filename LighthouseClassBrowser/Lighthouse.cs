@@ -41,14 +41,6 @@ namespace LighthouseClassBrowser
             this.Content = new LighthouseControl();
         }
 
-        private static Lighthouse staticInstance = null;
-
-        public static Lighthouse getLighthouse()
-        {
-            if (staticInstance == null)
-                staticInstance = new Lighthouse();
-
-            return staticInstance;
-        }
+        private HashSet<EnvDTE.ProjectItem> Packages { get; set; }
     }
 }
