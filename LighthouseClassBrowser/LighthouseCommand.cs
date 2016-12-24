@@ -41,10 +41,11 @@ namespace LighthouseClassBrowser
         {
             if (package == null)
             {
-                throw new ArgumentNullException("package");
+                throw new ArgumentNullException("Provided package is null");
             }
 
             this.package = package;
+            Lighthouse.setPackage(package);
 
             OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
@@ -95,6 +96,7 @@ namespace LighthouseClassBrowser
             // is actually the only one.
             // The last flag is set to true so that if the tool window does not exists it will be created.
             ToolWindowPane window = this.package.FindToolWindow(typeof(Lighthouse), 0, true);
+
             if ((null == window) || (null == window.Frame))
             {
                 throw new NotSupportedException("Error: Could not create Lighthouse");

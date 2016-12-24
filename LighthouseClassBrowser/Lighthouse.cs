@@ -31,7 +31,7 @@ namespace LighthouseClassBrowser
         /// <summary>
         /// Initializes a new instance of the <see cref="Lighthouse"/> class.
         /// </summary>
-        private Lighthouse() : base(null)
+        public Lighthouse() : base(null)
         {
             this.Caption = "Lighthouse";
 
@@ -41,6 +41,14 @@ namespace LighthouseClassBrowser
             this.Content = new LighthouseControl();
         }
 
+
+        private static Package package;
+        public static void setPackage(Package package)
+        {
+            Lighthouse.package = package;
+        }
+
         private HashSet<EnvDTE.ProjectItem> Packages { get; set; }
+
     }
 }
