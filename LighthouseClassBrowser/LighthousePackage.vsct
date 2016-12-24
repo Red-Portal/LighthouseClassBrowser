@@ -43,7 +43,7 @@
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidLighthousePackageCmdSet" id="LighthouseCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_EXT_TOOLS"/>
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Lighthouse</ButtonText>
