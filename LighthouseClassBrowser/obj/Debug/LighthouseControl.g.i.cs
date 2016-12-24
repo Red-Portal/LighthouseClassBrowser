@@ -48,14 +48,6 @@ namespace LighthouseClassBrowser {
         #line default
         #line hidden
         
-        
-        #line 15 "..\..\LighthouseControl.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button button1;
-        
-        #line default
-        #line hidden
-        
         private bool _contentLoaded;
         
         /// <summary>
@@ -88,15 +80,6 @@ namespace LighthouseClassBrowser {
             {
             case 1:
             this.MyToolWindow = ((LighthouseClassBrowser.LighthouseControl)(target));
-            return;
-            case 2:
-            this.button1 = ((System.Windows.Controls.Button)(target));
-            
-            #line 15 "..\..\LighthouseControl.xaml"
-            this.button1.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
-            
-            #line default
-            #line hidden
             return;
             }
             this._contentLoaded = true;

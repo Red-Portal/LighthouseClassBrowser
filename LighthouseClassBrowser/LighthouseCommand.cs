@@ -97,7 +97,7 @@ namespace LighthouseClassBrowser
             ToolWindowPane window = this.package.FindToolWindow(typeof(Lighthouse), 0, true);
             if ((null == window) || (null == window.Frame))
             {
-                throw new NotSupportedException("Cannot create tool window");
+                throw new NotSupportedException("Error: Could not create Lighthouse");
             }
 
             IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
