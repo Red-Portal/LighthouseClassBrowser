@@ -4,11 +4,15 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+using System.Runtime.CompilerServices;
+
 namespace LighthouseClassBrowser
 {
     using System;
     using System.Runtime.InteropServices;
     using Microsoft.VisualStudio.Shell;
+    using EnvDTE;
+    using System.Collections.Generic;
 
     /// <summary>
     /// This class implements the tool window exposed by this package and hosts a user control.
@@ -27,7 +31,7 @@ namespace LighthouseClassBrowser
         /// <summary>
         /// Initializes a new instance of the <see cref="Lighthouse"/> class.
         /// </summary>
-        public Lighthouse() : base(null)
+        private Lighthouse() : base(null)
         {
             this.Caption = "Lighthouse";
 
@@ -35,6 +39,16 @@ namespace LighthouseClassBrowser
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by the Content property.
             this.Content = new LighthouseControl();
+        }
+
+        private static Lighthouse staticInstance = null;
+
+        public static Lighthouse getLighthouse()
+        {
+            if (staticInstance == null)
+                staticInstance = new Lighthouse();
+
+            return staticInstance;
         }
     }
 }
