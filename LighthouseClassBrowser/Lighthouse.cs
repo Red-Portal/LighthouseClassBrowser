@@ -4,13 +4,18 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+using System.IO.Packaging;
 using System.Runtime.CompilerServices;
+using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace LighthouseClassBrowser
 {
     using System;
     using System.Runtime.InteropServices;
     using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Text;
+    using  Microsoft.VisualStudio.Editor;
     using EnvDTE;
     using System.Collections.Generic;
 
@@ -26,7 +31,7 @@ namespace LighthouseClassBrowser
     /// </para>
     /// </remarks>
     [Guid("2b98fb5b-0cf9-402a-817a-5dbf39aa3760")]
-    public class Lighthouse : ToolWindowPane
+    class Lighthouse : ToolWindowPane
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Lighthouse"/> class.
@@ -37,22 +42,72 @@ namespace LighthouseClassBrowser
 
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
-            // the object returned by the Content property.
-            this.Content = new LighthouseControl();
+            // the object returned by ent property.
+            this.Content = new LighthouseControl(this);
+             
+            m_EditorViewControl = new EditorViewControl(
+                (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
+                );
         }
 
+        private EditorViewControl m_EditorViewControl;
+        private Project m_CurrentProject;
 
-        private static Package package;
+        internal void eventSelectedVariable()
+        {
+            
+        }
+
+        internal void eventSelectedMethod()
+        {
+            
+        }
+
+        internal void eventSelectedClass()
+        {
+            
+        }
+
+        internal void getProjectItemsRecursive()
+        {
+            var serviceDTE = (DTE) serviceProvider.GetService(typeof(DTE));
+            foreach(Project project in serviceDTE.Solution.Projects)
+            {
+                var ProjectItems = GetProjectItemsRecursively(project.ProjectItems);
+            }
+        }
+
+        private static List<ProjectItem> GetProjectItemsRecursively(ProjectItems items)
+        {
+            var ret = new List<EnvDTE.ProjectItem>();
+            if (items == null) return ret;
+            foreach (ProjectItem item in items)
+            {
+                ret.Add(item);
+                ret.AddRange(GetProjectItemsRecursively(item.ProjectItems));
+            }
+            return ret;
+        }
+
+        /// 
+        private static Package m_Package;
+
+        /// <summary>
+        /// Static method for setting ServiceProvider regardless of whether Lighthouse is instantiated or not.
+        /// </summary>
+        /// <param name="package"></param>
         public static void setPackage(Package package)
         {
-            Lighthouse.package = package;
+            Lighthouse.m_Package = package;
         }
 
-        private IServiceProvider serviceProvider
+        ///
+
+        private IServiceProvider serviceProvider //external initialization of static variable ServiceProvider
         {
-            get { return Lighthouse.package; }
+            get { return Lighthouse.m_Package; }
         }
-
-        private HashSet<EnvDTE.ProjectItem> Packages { get; set; }
+        
+        // a 'Package' is a term meaning the hierarchy just higher than Classes
     }
 }

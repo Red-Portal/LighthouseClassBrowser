@@ -18,10 +18,13 @@ namespace LighthouseClassBrowser
         /// <summary>
         /// Initializes a new instance of the <see cref="LighthouseControl"/> class.
         /// </summary>
-        public LighthouseControl()
+        internal LighthouseControl(Lighthouse lighthouse)
         {
             this.InitializeComponent();
+            m_Lighthouse = lighthouse;
         }
+
+        private Lighthouse m_Lighthouse;
 
         /// <summary>
         /// Handles click on the button by displaying a message box.
