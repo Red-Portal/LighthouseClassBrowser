@@ -72,3 +72,13 @@ d:\documents\visual studio 2015\Projects\LighthouseClassBrowser\LighthouseClassB
 d:\documents\visual studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\obj\Debug\LighthouseClassBrowser.pkgdef
 d:\documents\visual studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\obj\Debug\LighthouseClassBrowser.latest.pkgdef
 d:\documents\visual studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\obj\Debug\extension.vsixmanifest
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Editor.dll
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.Data.dll
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.UI.dll
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.UI.Wpf.dll
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.Logic.dll
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Editor.xml
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.Data.xml
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.UI.xml
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.UI.Wpf.xml
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.Text.Logic.xml

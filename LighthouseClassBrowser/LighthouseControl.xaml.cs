@@ -4,6 +4,9 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using EnvDTE;
+
 namespace LighthouseClassBrowser
 {
     using System.Diagnostics.CodeAnalysis;
@@ -35,7 +38,7 @@ namespace LighthouseClassBrowser
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

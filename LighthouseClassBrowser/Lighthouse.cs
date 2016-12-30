@@ -44,14 +44,21 @@ namespace LighthouseClassBrowser
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by ent property.
             this.Content = new LighthouseControl(this);
+            m_LighthouseControl = (LighthouseControl) this.Content;
              
             m_EditorViewControl = new EditorViewControl(
                 (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
                 );
+
+            var serviceDTE = serviceProvider.GetService(typeof(DTE)) as DTE;
+
+            if (serviceDTE != null)
+                setProjects(serviceDTE.Solution.Projects);
         }
 
+        private LighthouseControl m_LighthouseControl;
+        internal List<HierarchialData.Project> m_projects { get; private set; }
         private EditorViewControl m_EditorViewControl;
-        private Project m_CurrentProject;
 
         internal void eventSelectedVariable()
         {
@@ -68,25 +75,15 @@ namespace LighthouseClassBrowser
             
         }
 
-        internal void getProjectItemsRecursive()
+        private void setProjects(Projects projects)
         {
-            var serviceDTE = (DTE) serviceProvider.GetService(typeof(DTE));
-            foreach(Project project in serviceDTE.Solution.Projects)
-            {
-                var ProjectItems = GetProjectItemsRecursively(project.ProjectItems);
-            }
-        }
+            if (projects == null)
+                return;
 
-        private static List<ProjectItem> GetProjectItemsRecursively(ProjectItems items)
-        {
-            var ret = new List<EnvDTE.ProjectItem>();
-            if (items == null) return ret;
-            foreach (ProjectItem item in items)
+            foreach (Project project in projects)
             {
-                ret.Add(item);
-                ret.AddRange(GetProjectItemsRecursively(item.ProjectItems));
+                m_projects.Add(new HierarchialData.Project(project));
             }
-            return ret;
         }
 
         /// 

@@ -57,6 +57,7 @@
     <Compile Include="LighthouseControl.xaml.cs">
       <DependentUpon>LighthouseControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LighthouseHierarchialData.cs" />
     <Compile Include="LighthousePackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
