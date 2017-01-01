@@ -17,6 +17,7 @@ namespace LighthouseClassBrowser
 
             public Project(EnvDTE.Project project)
             {
+                m_SourceFile = new List<SourceFile>();
                 m_ProjectName = project.FullName;
                 m_Project = project;
                 setProjectItemsRecursive(m_Project.ProjectItems);
@@ -46,25 +47,28 @@ namespace LighthouseClassBrowser
 
             internal SourceFile(EnvDTE.ProjectItem item)
             {
+                m_Classes = new List<Class>();
                 m_ProjectItem = item;
                 m_FileName = item.Name;
-                setClassesRecursive(m_ProjectItem);
+                if (item.FileCodeModel != null && item.FileCodeModel.CodeElements.Count != 0)
+                    setClassesRecursive(item.FileCodeModel.CodeElements);
             }
 
-            public void setClassesRecursive(ProjectItem item)
+            public void setClassesRecursive(CodeElements elements)
             {
-                if (m_ProjectItem.FileCodeModel.CodeElements.Count == 0)
-                    return;
-
-                foreach (CodeElement element in m_ProjectItem.FileCodeModel.CodeElements)
+                foreach (CodeElement subElement in elements)
                 {
-                   if(isClassType(element.Kind))
-                        m_Classes.Add(new Class(element.ProjectItem));
-                   else
-                        setClassesRecursive(element.ProjectItem);
+                    if(isClassType(subElement.Kind))
+                        m_Classes.Add(new Class(subElement));
+                    else if(isNamespaceType(subElement.Kind)) 
+                        setClassesRecursive(subElement.Children);
                 }
             }
 
+            private bool isNamespaceType(vsCMElement kind)
+            {
+                return kind == vsCMElement.vsCMElementNamespace;
+            }
             private bool isClassType(vsCMElement kind)
             {
                 return (kind == vsCMElement.vsCMElementClass || kind == vsCMElement.vsCMElementInterface);
@@ -74,52 +78,57 @@ namespace LighthouseClassBrowser
         public class Class
         {
             public string m_ClassName { get; private set; }
-            public EnvDTE.ProjectItem m_ProjectItem { get; private set; }
+            public EnvDTE.CodeElement m_CodeElement { get; private set; }
             public List<Method> m_Methods { get; private set; }
             public List<Variable> m_Variable { get; private set; }
 
-            internal Class(ProjectItem item)
+            internal Class(CodeElement element)
             {
-                m_ClassName = item.Name;
-                m_ProjectItem = item;
-                setClassComponents(item);
+                m_Methods = new List<Method>();
+                m_Variable = new List<Variable>();
+                m_ClassName = element.Name;
+                m_CodeElement = element;
+                setClassComponents(element);
             }
 
-            public void setClassComponents(ProjectItem item)
+            public void setClassComponents(CodeElement element)
             {
-                if (item.FileCodeModel.CodeElements.Count == 0)
+                if (element  == null)
                     return;
-                foreach (CodeElement element in item.FileCodeModel.CodeElements)
+                if (element.Children.Count == 0)
+                    return;
+
+                foreach (CodeElement subElement in element.Children)
                 {
-                   if(element.Kind == vsCMElement.vsCMElementFunction)
-                        m_Methods.Add(new Method(element.ProjectItem)); 
-                   else if(element.Kind == vsCMElement.vsCMElementVariable)
-                        m_Variable.Add(new Variable(element.ProjectItem));
-                } 
+                    if (subElement.Kind == vsCMElement.vsCMElementFunction)
+                        m_Methods.Add(new Method(subElement));
+                    else if (subElement.Kind == vsCMElement.vsCMElementVariable)
+                        m_Variable.Add(new Variable(subElement));
+                }
             }
         }
 
         public class Method
         {
             public string m_Name { get; private set; }
-            public EnvDTE.ProjectItem m_ProjectItem;
+            public EnvDTE.CodeElement m_CodeElement;
             
-            public Method(ProjectItem item)
+            public Method(CodeElement element)
             {
-                m_Name = item.Name;
-                m_ProjectItem = item;
+                m_Name = element.FullName;
+                m_CodeElement = element;
             }
         }
 
         public class Variable
         {
             public string m_Name { get; private set; }
-            public EnvDTE.ProjectItem m_ProjectItem;
+            public EnvDTE.CodeElement m_CodeElement;
 
-            public Variable(ProjectItem item)
+            public Variable(CodeElement element)
             {
-                m_ProjectItem = item;
-                m_Name = item.Name;
+                m_CodeElement = element;
+                m_Name = element.FullName;
             }
         }
     }

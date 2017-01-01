@@ -49,7 +49,7 @@ namespace LighthouseClassBrowser
             m_EditorViewControl = new EditorViewControl(
                 (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
                 );
-
+            m_projects = new List<HierarchialData.Project>();
             var serviceDTE = serviceProvider.GetService(typeof(DTE)) as DTE;
 
             if (serviceDTE != null)
