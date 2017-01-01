@@ -7,7 +7,104 @@
              Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
              Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
-             Name="MyToolWindow">
+             d:DesignHeight="200" d:DesignWidth="800"
+             Name="Lighthouse">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="4,4,4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox Grid.Column="0" Name="ListBoxProjectBrowser" ItemsSource="{Binding}" 
+                 Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" >
+                <ListBox.ItemTemplate>
+                       <DataTemplate>
+                           <Label Content="{Binding Path=m_Name}"/>
+                       </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox Grid.Column="1" Name="ListBoxClassBrowser" ItemsSource="{Binding}" 
+                 Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Path=m_Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox Grid.Column="2" Name="ListBoxMethodBrowser" ItemsSource="{Binding}" 
+                 Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Path=m_Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox Grid.Column="3" Name="ListBoxVariableBrowser" ItemsSource="{Binding}"
+                 Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Path=m_Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Stretch" Margin="4,0,4,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button Name="ButtonClassExternal" Grid.Column="3" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="External" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonClassInternal" Grid.Column="4" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="Internal" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonClassStatic" Grid.Column="5" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="Static" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonMethodExternal" Grid.Column="6" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="External" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonMethodInternal" Grid.Column="7" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="Internal" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonMehtodStatic" Grid.Column="8" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="Static" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonVariableExternal" Grid.Column="9" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="External" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonVariabledInternal" Grid.Column="10" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="Internal" TextAlignment="Center"/>
+            </Button>
+            <Button Name="ButtonVariableStatic" Grid.Column="11" Grid.Row="0"  HorizontalAlignment="Stretch" >
+                <TextBlock Text="Static" TextAlignment="Center"/>
+            </Button>
+        </Grid>
+    </Grid>
 
 </UserControl>

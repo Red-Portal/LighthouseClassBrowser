@@ -84,6 +84,7 @@ namespace LighthouseClassBrowser
             {
                 m_projects.Add(new HierarchialData.Project(project));
             }
+            m_LighthouseControl.showProjects(m_projects);
         }
 
         /// 
