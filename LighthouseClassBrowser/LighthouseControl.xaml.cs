@@ -171,12 +171,9 @@ namespace LighthouseClassBrowser
                     if (item.GetType() == TypeOfSourceFile)
                         list.Add(item as HierarchialData.SourceFile);
                 }
-                if (list.Count != 0)
-                {
-                    m_SelectedSourceFiles = list;
 
-                    showClasses();
-                }
+                m_SelectedSourceFiles = list;
+                showClasses();
             }
         }
 
