@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EnvDTE;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Text;
@@ -63,6 +64,21 @@ namespace LighthouseClassBrowser
             
         }
 
-        // Need to add a movecursor operation in here
+        public void moveToCodeElement(CodeElement codeElement)
+        {
+            DTE dte = codeElement.DTE;
+
+            Window window;
+
+            if (codeElement.ProjectItem.Document == null)
+                codeElement.ProjectItem.Open("{00000000-0000-0000-0000-000000000000}");
+
+            codeElement.ProjectItem.Document.Activate();
+            window = codeElement.ProjectItem.Document.ActiveWindow;
+
+            TextSelection textSelection = window.Document.Selection as TextSelection;
+
+            textSelection.MoveToPoint(codeElement.StartPoint);
+        }
     }
 }

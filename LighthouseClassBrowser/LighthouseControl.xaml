@@ -27,7 +27,7 @@
                      SelectionChanged="ListBoxProjectBrowser_OnSelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,0"
+                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,-3"
                                Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}" Height="25"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -38,27 +38,29 @@
                  SelectionChanged="ListBoxClassBrowser_OnSelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"
-                                  FontSize="13" />
+                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,-3"
+                               Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}" Height="25"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
             <ListBox Grid.Column="2" Name="ListBoxMethodBrowser" ItemsSource="{Binding}"
                  Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
-                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}"
+                 SelectionChanged="ListBoxMethodBrowser_OnSelectionChanged" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,0"
+                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,-3"
                                Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}" Height="25"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
             <ListBox Grid.Column="3" Name="ListBoxVariableBrowser" ItemsSource="{Binding}"
                  Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
-                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}"
+                 SelectionChanged="ListBoxVariableBrowser_OnSelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,0"
+                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,-3"
                                Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}" Height="25"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

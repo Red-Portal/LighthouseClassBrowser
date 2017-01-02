@@ -6,7 +6,9 @@
 
 using System.IO.Packaging;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using EnvDTE80;
+using LighthouseClassBrowser.HierarchialData;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -48,8 +50,11 @@ namespace LighthouseClassBrowser
             this.Content = new LighthouseControl(this);
             m_LighthouseControl = (LighthouseControl) this.Content;
              
-      
             m_ServiceDTE = serviceProvider.GetService(typeof(DTE)) as DTE;
+            m_EditorViewControl = new EditorViewControl(
+                (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
+            );
+
             
             if (m_ServiceDTE != null)
                 setEvents();
@@ -61,10 +66,16 @@ namespace LighthouseClassBrowser
         private ProjectItemsEvents m_ProjectEvents;
         private SolutionEvents m_SolutionEvents;
         private static Package m_Package;
-        private readonly EnvDTE.DTE m_ServiceDTE;
+        private readonly DTE m_ServiceDTE;
         private LighthouseControl m_LighthouseControl;
         private List<HierarchialData.Project> m_projects { get; set; }
         private EditorViewControl m_EditorViewControl;
+
+        public static readonly Type TypeOfProject = typeof(HierarchialData.Project);
+        public static readonly Type TypeOfClass = typeof(HierarchialData.Class);
+        public static readonly Type TypeOfMethod = typeof(HierarchialData.Method);
+        public static readonly Type TypeOfVariable = typeof(HierarchialData.Variable);
+        public static readonly Type TypeOfSourceFile = typeof(HierarchialData.SourceFile);
 
         /// <summary>
         /// Static method for setting ServiceProvider regardless of whether Lighthouse is instantiated or not.
@@ -108,8 +119,9 @@ namespace LighthouseClassBrowser
         }
         private void eventOnSolutionOpen()
         {
-            m_EditorViewControl = new EditorViewControl(
-                (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
+            if (m_EditorViewControl == null)
+                m_EditorViewControl = new EditorViewControl(
+                    (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
                 );
             setProjects(m_ServiceDTE.Solution.Projects);
         }
@@ -127,19 +139,25 @@ namespace LighthouseClassBrowser
         }
 
 
-        internal void eventSelectedVariable()
+        internal void eventSelectedCodeElement(HierarchialData.Item item)
         {
-            
-        }
-
-        internal void eventSelectedMethod()
-        {
-            
-        }
-
-        internal void eventSelectedClass()
-        {
-            
+            if (item.GetType() == TypeOfClass)
+            {
+                var dataClass = item as HierarchialData.Class;
+                m_EditorViewControl.moveToCodeElement(dataClass.m_CodeElement);
+            }
+            else if (item.GetType() == TypeOfMethod)
+            {
+                var method = item as HierarchialData.Method;
+                if (method != null)
+                    m_EditorViewControl.moveToCodeElement(method.m_CodeElement);
+            }
+            else if (item.GetType() == TypeOfVariable)
+            {
+                var variable = item as HierarchialData.Variable;
+                if (variable != null)
+                    m_EditorViewControl.moveToCodeElement(variable.m_CodeElement);
+            }
         }
 
         private void setProjects(Projects projects)

@@ -13,7 +13,6 @@ namespace LighthouseClassBrowser
 
         public class Project : Item
         {
-            public CollectionViewGroup collectionView { get; set; }
             private readonly EnvDTE.Project m_Project;
             public string m_Name { get; private set; }
             public List<SourceFile> m_SourceFile { get; private set; }
@@ -118,7 +117,7 @@ namespace LighthouseClassBrowser
             
             public Method(CodeElement element)
             {
-                m_Name = element.FullName;
+                m_Name = element.Name;
                 m_CodeElement = element;
             }
         }
@@ -131,7 +130,7 @@ namespace LighthouseClassBrowser
             public Variable(CodeElement element)
             {
                 m_CodeElement = element;
-                m_Name = element.FullName;
+                m_Name = element.Name;
             }
         }
     }

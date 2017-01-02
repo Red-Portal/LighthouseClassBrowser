@@ -39,11 +39,7 @@ namespace LighthouseClassBrowser
         }
 
         private Lighthouse m_Lighthouse;
-        private static readonly Type TypeOfProject = typeof(HierarchialData.Project);
-        private static Type TypeOfClass = typeof(HierarchialData.Class);
-        private static Type TypeOfMethod = typeof(HierarchialData.Method);
-        private static Type TypeOfVariable = typeof(HierarchialData.Variable);
-        private static readonly Type TypeOfSourceFile = typeof(HierarchialData.SourceFile);
+        
 
         private List<HierarchialData.SourceFile> m_SelectedSourceFiles;
 
@@ -61,24 +57,6 @@ namespace LighthouseClassBrowser
             }
             this.ListBoxProjectBrowser.DataContext = items;
         }
-/*
-        internal void showAddClasses(HierarchialData.SourceFile file)
-        {
-            var items = new List<HierarchialData.Item>();
-
-            items.AddRange(file.m_Classes);
-
-            if (ListBoxClassBrowser.DataContext == null)
-                this.ListBoxClassBrowser.DataContext = new List<HierarchialData.Item>(items);
-            else
-                this.ListBoxClassBrowser.Items.Add(items);
-        }
-
-        internal void showRemoveClasses(HierarchialData.SourceFile file)
-        {
-            ListBoxClassBrowser.Items.Remove(file.m_Classes);
-        }
-        */
 
         internal void showClasses()
         {
@@ -130,7 +108,7 @@ namespace LighthouseClassBrowser
                 // unselected at once.
                 foreach (HierarchialData.Item item in e.RemovedItems)
                 {
-                    if (item.GetType() == TypeOfProject)
+                    if (item.GetType() == LighthouseClassBrowser.Lighthouse.TypeOfProject)
                     {
                         var project = item as HierarchialData.Project;
                         if (areAllItemsSelected(item as HierarchialData.Project))
@@ -147,7 +125,7 @@ namespace LighthouseClassBrowser
                 HierarchialData.Item flaggedItem = null;
                 foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
                 {
-                    if (item.GetType() == TypeOfProject)
+                    if (item.GetType() == LighthouseClassBrowser.Lighthouse.TypeOfProject)
                     {
                         if (!areAllItemsSelected(item as HierarchialData.Project))
                         {
@@ -167,7 +145,7 @@ namespace LighthouseClassBrowser
                 // in this case, all the sourcefile corresponding to the project should be selected
                 foreach (HierarchialData.Item item in e.AddedItems)
                 {
-                    if (item.GetType() == TypeOfProject)
+                    if (item.GetType() == LighthouseClassBrowser.Lighthouse.TypeOfProject)
                     {
                         selectPropertiesOfProject(item as HierarchialData.Project, true);
                         wasModified = true;
@@ -180,7 +158,7 @@ namespace LighthouseClassBrowser
                 var list = new List<HierarchialData.SourceFile>();
                 foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
                 {
-                    if (item.GetType() == TypeOfSourceFile)
+                    if (item.GetType() == LighthouseClassBrowser.Lighthouse.TypeOfSourceFile)
                         list.Add(item as HierarchialData.SourceFile);
                 }
 
@@ -221,8 +199,25 @@ namespace LighthouseClassBrowser
         {
             foreach (HierarchialData.Class dataClass in ListBoxClassBrowser.SelectedItems)
             {
+                m_Lighthouse.eventSelectedCodeElement(dataClass);
                 showMethods(dataClass);
                 showVariables(dataClass);
+            }
+        }
+
+        private void ListBoxMethodBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (HierarchialData.Method method in e.AddedItems)
+            {
+                m_Lighthouse.eventSelectedCodeElement(method);
+            }
+        }
+
+        private void ListBoxVariableBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (HierarchialData.Variable variable in e.AddedItems)
+            {
+                m_Lighthouse.eventSelectedCodeElement(variable);
             }
         }
     }
