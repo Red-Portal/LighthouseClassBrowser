@@ -86,6 +86,7 @@ namespace LighthouseClassBrowser
 
             foreach (HierarchialData.SourceFile file in m_SelectedSourceFiles)
                 items.AddRange(file.m_Classes);
+            
 
             ListBoxClassBrowser.DataContext = items;
         }
@@ -104,6 +105,10 @@ namespace LighthouseClassBrowser
 
         private void ListBoxProjectBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            bool wasModified = false; //optimization flag
+
+
+
             // This loop is for checking if a recently removed sourceFile belongs to a already checked Project
             // if It is the case, the checked Project should be unchecked
             if (e.RemovedItems.Count > 0)
@@ -117,7 +122,10 @@ namespace LighthouseClassBrowser
                     {
                         var project = item as HierarchialData.Project;
                         if (areAllItemsSelected(item as HierarchialData.Project))
+                        {
                             selectPropertiesOfProject(item, false);
+                            wasModified = true;
+                        }
                     }
                 }
 
@@ -136,7 +144,10 @@ namespace LighthouseClassBrowser
                     }
                 }
                 if (flaggedItem != null)
+                {
                     ListBoxProjectBrowser.SelectedItems.Remove(flaggedItem);
+                    wasModified = true;
+                }
             }
             else if (e.AddedItems.Count > 0)
             {
@@ -145,22 +156,27 @@ namespace LighthouseClassBrowser
                 foreach (HierarchialData.Item item in e.AddedItems)
                 {
                     if (item.GetType() == TypeOfProject)
+                    {
                         selectPropertiesOfProject(item as HierarchialData.Project, true);
+                        wasModified = true;
+                    }
                 }
             }
 
-            
-            var list = new List<HierarchialData.SourceFile>();
-            foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
+            if (!wasModified)
             {
-                if (item.GetType() == TypeOfSourceFile)
-                    list.Add(item as HierarchialData.SourceFile);
-            }
-            if (list.Count != 0)
-            {
-                m_SelectedSourceFiles = list;
+                var list = new List<HierarchialData.SourceFile>();
+                foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
+                {
+                    if (item.GetType() == TypeOfSourceFile)
+                        list.Add(item as HierarchialData.SourceFile);
+                }
+                if (list.Count != 0)
+                {
+                    m_SelectedSourceFiles = list;
 
-                showClasses();
+                    showClasses();
+                }
             }
         }
 
