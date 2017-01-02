@@ -25,10 +25,10 @@
                  Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" >
                 <ListBox.ItemTemplate>
-                       <DataTemplate>
-                           <Label Content="{Binding Path=m_Name}" Foreground="White" Height="15"
-                                  FontSize="13" />
-                       </DataTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,0"
+                               Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}" Height="25"/>
+                    </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
             <ListBox Grid.Column="1" Name="ListBoxClassBrowser" ItemsSource="{Binding}" 
@@ -36,8 +36,8 @@
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}" Foreground="White" Height="15"
-                               FontSize="13"/>
+                        <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"
+                                  FontSize="13" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -46,8 +46,8 @@
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}" Foreground="White" Height="15"
-                               FontSize="13" />
+                        <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.MenuTextKey}}"
+                                  FontSize="13" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -56,8 +56,8 @@
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}" Foreground="White" Height="15"
-                               FontSize="13" />
+                        <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.MenuTextKey}}"
+                                  FontSize="13" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
