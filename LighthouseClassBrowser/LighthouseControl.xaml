@@ -34,7 +34,8 @@
             </ListBox>
             <ListBox Grid.Column="1" Name="ListBoxClassBrowser" ItemsSource="{Binding}" 
                  Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
-                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}"
+                 SelectionChanged="ListBoxClassBrowser_OnSelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"

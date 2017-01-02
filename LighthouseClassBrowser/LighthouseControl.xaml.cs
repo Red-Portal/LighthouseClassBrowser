@@ -91,16 +91,28 @@ namespace LighthouseClassBrowser
             ListBoxClassBrowser.DataContext = items;
         }
 
-
-
-        internal void showMethods()
+        internal void showMethods(HierarchialData.Class dataClass)
         {
-            
+            var list = new List<HierarchialData.Method>();
+
+            foreach(HierarchialData.Method method in dataClass.m_Methods)
+            {
+                list.Add(method);
+            }
+
+            ListBoxMethodBrowser.DataContext = list;
         }
 
-        internal void getVariables()
+        internal void showVariables(HierarchialData.Class dataClass)
         {
-            
+            var list = new List<HierarchialData.Variable>();
+
+            foreach(HierarchialData.Variable variable in dataClass.m_Variable)
+            {
+                list.Add(variable);
+            }
+
+            ListBoxVariableBrowser.DataContext = list;
         }
 
         private void ListBoxProjectBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -202,6 +214,15 @@ namespace LighthouseClassBrowser
             {
                 foreach (HierarchialData.SourceFile file in project.m_SourceFile)
                     ListBoxProjectBrowser.SelectedItems.Remove(file);
+            }
+        }
+
+        private void ListBoxClassBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (HierarchialData.Class dataClass in ListBoxClassBrowser.SelectedItems)
+            {
+                showMethods(dataClass);
+                showVariables(dataClass);
             }
         }
     }
