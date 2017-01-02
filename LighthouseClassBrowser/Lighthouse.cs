@@ -51,25 +51,19 @@ namespace LighthouseClassBrowser
       
             m_ServiceDTE = serviceProvider.GetService(typeof(DTE)) as DTE;
             
-            if (m_ServiceDTE == null)
-                return;
-
-            m_Events = ((Events2) m_ServiceDTE.Events).SolutionEvents;
-            m_Events.Opened += new _dispSolutionEvents_OpenedEventHandler(eventOnSolutionOpen);
-            m_Events.ProjectRenamed += new _dispSolutionEvents_ProjectRenamedEventHandler(eventOnProjectRename);
-            m_Events.ProjectAdded += new _dispSolutionEvents_ProjectAddedEventHandler(eventOnProjectAdded);
-            m_Events.ProjectRemoved += new _dispSolutionEvents_ProjectRemovedEventHandler(eventOnProjectRemoved);
+            if (m_ServiceDTE != null)
+                setEvents();
 
             if(m_ServiceDTE.Solution.IsOpen)
                 setProjects(m_ServiceDTE.Solution.Projects);
         }
 
-
-        private SolutionEvents m_Events;
+        private ProjectItemsEvents m_ProjectEvents;
+        private SolutionEvents m_SolutionEvents;
         private static Package m_Package;
         private readonly EnvDTE.DTE m_ServiceDTE;
         private LighthouseControl m_LighthouseControl;
-        internal List<HierarchialData.Project> m_projects { get; private set; }
+        private List<HierarchialData.Project> m_projects { get; set; }
         private EditorViewControl m_EditorViewControl;
 
         /// <summary>
@@ -83,11 +77,35 @@ namespace LighthouseClassBrowser
 
         ///
 
+        private void setEvents()
+        {
+            m_SolutionEvents = ((Events2) m_ServiceDTE.Events).SolutionEvents;
+            m_ProjectEvents = ((Events2) m_ServiceDTE.Events).ProjectItemsEvents;
+            m_SolutionEvents.Opened += eventOnSolutionOpen;
+            m_SolutionEvents.ProjectRenamed += eventOnProjectRename;
+            m_SolutionEvents.ProjectAdded += eventOnProjectAdded;
+            m_SolutionEvents.ProjectRemoved += eventOnProjectRemoved;
+            m_ProjectEvents.ItemAdded += eventOnProjectItemAdded;
+            m_ProjectEvents.ItemRemoved += eventOnProjectItemRemoved;
+            m_ProjectEvents.ItemRenamed += eventOnProjectItemRenamed;
+        }
+
         private IServiceProvider serviceProvider //external initialization of static variable ServiceProvider
         {
             get { return Lighthouse.m_Package; }
         }
-       
+        private void eventOnProjectItemAdded(ProjectItem item)
+        {
+            setProjects(m_ServiceDTE.Solution.Projects);
+        }
+        private void eventOnProjectItemRenamed(ProjectItem item, string name)
+        {
+            setProjects(m_ServiceDTE.Solution.Projects);
+        }
+        private void eventOnProjectItemRemoved(ProjectItem item)
+        {
+            setProjects(m_ServiceDTE.Solution.Projects);
+        }
         private void eventOnSolutionOpen()
         {
             m_EditorViewControl = new EditorViewControl(

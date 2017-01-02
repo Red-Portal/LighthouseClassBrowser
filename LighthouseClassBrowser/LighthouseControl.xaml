@@ -23,7 +23,8 @@
             </Grid.ColumnDefinitions>
             <ListBox Grid.Column="0" Name="ListBoxProjectBrowser" ItemsSource="{Binding}" 
                  Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
-                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" >
+                 Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" 
+                     SelectionChanged="ListBoxProjectBrowser_OnSelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,0"

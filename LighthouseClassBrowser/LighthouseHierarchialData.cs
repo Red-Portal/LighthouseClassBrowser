@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Data;
 using EnvDTE;
 
 namespace LighthouseClassBrowser
 {
     namespace HierarchialData
     {
-        public class item
+        public class Item
         {
-            public string m_Name;
         }
-        public class Project : item
+
+        public class Project : Item
         {
+            public CollectionViewGroup collectionView { get; set; }
             private readonly EnvDTE.Project m_Project;
-            public new string m_Name { get; private set; }
+            public string m_Name { get; private set; }
             public List<SourceFile> m_SourceFile { get; private set; }
 
             public Project(EnvDTE.Project project)
@@ -43,10 +42,10 @@ namespace LighthouseClassBrowser
             }
         };
 
-        public class SourceFile : item
+        public class SourceFile : Item
         {
             public EnvDTE.ProjectItem m_ProjectItem { get; private set; }
-            public new string m_Name { get; private set; }
+            public string m_Name { get; private set; }
             public List<Class> m_Classes { get; private set; }
 
             internal SourceFile(EnvDTE.ProjectItem item)
@@ -79,9 +78,9 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Class : item
+        public class Class : Item
         {
-            public new string m_Name { get; private set; }
+            public string m_Name { get; private set; }
             public EnvDTE.CodeElement m_CodeElement { get; private set; }
             public List<Method> m_Methods { get; private set; }
             public List<Variable> m_Variable { get; private set; }
@@ -112,9 +111,9 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Method : item
+        public class Method : Item
         {
-            public new string m_Name { get; private set; }
+            public string m_Name { get; private set; }
             public EnvDTE.CodeElement m_CodeElement;
             
             public Method(CodeElement element)
@@ -124,9 +123,9 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Variable : item
+        public class Variable : Item
         {
-            public new string m_Name { get; private set; }
+            public string m_Name { get; private set; }
             public EnvDTE.CodeElement m_CodeElement;
 
             public Variable(CodeElement element)
