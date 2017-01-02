@@ -85,42 +85,51 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Name="ButtonClassAbstract" Grid.Column="3" Grid.Row="0"  
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            <ToggleButton Name="ButtonClassAbstract" Grid.Column="3" Grid.Row="0"  
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonClassAbstract_OnClick">
                 <TextBlock Text="Abstract" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonClassDerived" Grid.Column="4" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonClassDerived" Grid.Column="4" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonClassDerived_OnClick">
                 <TextBlock Text="Derived" TextAlignment="Center"  Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonClassStatic" Grid.Column="5" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonClassStatic" Grid.Column="5" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonClassStatic_OnClick">
                 <TextBlock Text="Static" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonMethodAbstract" Grid.Column="6" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonMethodAbstract" Grid.Column="6" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonMethodAbstract_OnClick">
                 <TextBlock Text="Abstract" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonMethodDerived" Grid.Column="7" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonMethodDerived" Grid.Column="7" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonMethodDerived_OnClick">
                 <TextBlock Text="Derived" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonMehtodStatic" Grid.Column="8" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonMehtodStatic" Grid.Column="8" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonMehtodStatic_OnClick">
                 <TextBlock Text="Static" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonVariableAbstract" Grid.Column="9" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonVariableAbstract" Grid.Column="9" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonVariableAbstract_OnClick">
                 <TextBlock Text="Abstract" TextAlignment="Center"  Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonVariableDerived" Grid.Column="10" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonVariableDerived" Grid.Column="10" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonVariableDerived_OnClick">
                 <TextBlock Text="Derived" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
-            <Button Name="ButtonVariableStatic" Grid.Column="11" Grid.Row="0"
-                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+            </ToggleButton>
+            <ToggleButton Name="ButtonVariableStatic" Grid.Column="11" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
+                    Click="ButtonVariableStatic_OnClick">
                 <TextBlock Text="Static" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
-            </Button>
+            </ToggleButton>
         </Grid>
     </Grid>
 

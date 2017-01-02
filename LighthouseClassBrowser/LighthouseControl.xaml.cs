@@ -220,5 +220,49 @@ namespace LighthouseClassBrowser
                 m_Lighthouse.eventSelectedCodeElement(variable);
             }
         }
+
+        private void ButtonClassAbstract_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ButtonClassAbstract.IsChecked == true)
+            {
+                
+            }
+            else if (ButtonClassAbstract.IsChecked == false)
+            {
+                
+            }
+        }
+
+        private void ButtonClassDerived_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonClassStatic_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonMethodAbstract_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonMethodDerived_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonMehtodStatic_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonVariableAbstract_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonVariableDerived_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonVariableStatic_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
