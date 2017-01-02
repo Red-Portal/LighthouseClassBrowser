@@ -9,23 +9,27 @@ namespace LighthouseClassBrowser
 {
     namespace HierarchialData
     {
-        public class Project 
+        public class item
         {
-            public string m_ProjectName { get; private set; }
+            public string m_Name;
+        }
+        public class Project : item
+        {
             private readonly EnvDTE.Project m_Project;
+            public new string m_Name { get; private set; }
             public List<SourceFile> m_SourceFile { get; private set; }
 
             public Project(EnvDTE.Project project)
             {
                 m_SourceFile = new List<SourceFile>();
-                m_ProjectName = project.FullName;
+                m_Name = project.Name;
                 m_Project = project;
                 setProjectItemsRecursive(m_Project.ProjectItems);
             }
 
             public void setProjectItemsRecursive(ProjectItems items)
             {
-                if (items.Count == 0)
+                if (items == null  || items.Count == 0)
                     return;
 
                 foreach (EnvDTE.ProjectItem item in items)
@@ -39,17 +43,17 @@ namespace LighthouseClassBrowser
             }
         };
 
-        public class SourceFile
+        public class SourceFile : item
         {
             public EnvDTE.ProjectItem m_ProjectItem { get; private set; }
-            public string m_FileName { get; private set; }
+            public new string m_Name { get; private set; }
             public List<Class> m_Classes { get; private set; }
 
             internal SourceFile(EnvDTE.ProjectItem item)
             {
                 m_Classes = new List<Class>();
                 m_ProjectItem = item;
-                m_FileName = item.Name;
+                m_Name = "   " + item.Name; // the space is added because of the hierarchial presentation in the listbox
                 if (item.FileCodeModel != null && item.FileCodeModel.CodeElements.Count != 0)
                     setClassesRecursive(item.FileCodeModel.CodeElements);
             }
@@ -75,9 +79,9 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Class
+        public class Class : item
         {
-            public string m_ClassName { get; private set; }
+            public new string m_Name { get; private set; }
             public EnvDTE.CodeElement m_CodeElement { get; private set; }
             public List<Method> m_Methods { get; private set; }
             public List<Variable> m_Variable { get; private set; }
@@ -86,7 +90,7 @@ namespace LighthouseClassBrowser
             {
                 m_Methods = new List<Method>();
                 m_Variable = new List<Variable>();
-                m_ClassName = element.Name;
+                m_Name = element.Name;
                 m_CodeElement = element;
                 setClassComponents(element);
             }
@@ -108,9 +112,9 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Method
+        public class Method : item
         {
-            public string m_Name { get; private set; }
+            public new string m_Name { get; private set; }
             public EnvDTE.CodeElement m_CodeElement;
             
             public Method(CodeElement element)
@@ -120,9 +124,9 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Variable
+        public class Variable : item
         {
-            public string m_Name { get; private set; }
+            public new string m_Name { get; private set; }
             public EnvDTE.CodeElement m_CodeElement;
 
             public Variable(CodeElement element)

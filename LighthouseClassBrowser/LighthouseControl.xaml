@@ -26,7 +26,8 @@
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" >
                 <ListBox.ItemTemplate>
                        <DataTemplate>
-                           <Label Content="{Binding Path=m_Name}"/>
+                           <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.MenuTextKey}}"
+                                  FontSize="13" />
                        </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -35,16 +36,18 @@
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}"/>
+                        <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.MenuTextKey}}"
+                               FontSize="13"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <ListBox Grid.Column="2" Name="ListBoxMethodBrowser" ItemsSource="{Binding}" 
+            <ListBox Grid.Column="2" Name="ListBoxMethodBrowser" ItemsSource="{Binding}"
                  Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}"/>
+                        <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.MenuTextKey}}"
+                               FontSize="13" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -53,7 +56,8 @@
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=m_Name}"/>
+                        <Label Content="{Binding Path=m_Name}" Foreground="{DynamicResource {x:Static shell:VsBrushes.MenuTextKey}}"
+                               FontSize="13" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -77,32 +81,41 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Name="ButtonClassExternal" Grid.Column="3" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="External" TextAlignment="Center"/>
+            <Button Name="ButtonClassExternal" Grid.Column="3" Grid.Row="0"  
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="External" TextAlignment="Center" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonClassInternal" Grid.Column="4" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="Internal" TextAlignment="Center"/>
+            <Button Name="ButtonClassInternal" Grid.Column="4" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="Internal" TextAlignment="Center"  Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonClassStatic" Grid.Column="5" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="Static" TextAlignment="Center"/>
+            <Button Name="ButtonClassStatic" Grid.Column="5" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="Static" TextAlignment="Center" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonMethodExternal" Grid.Column="6" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="External" TextAlignment="Center"/>
+            <Button Name="ButtonMethodExternal" Grid.Column="6" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="External" TextAlignment="Center" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonMethodInternal" Grid.Column="7" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="Internal" TextAlignment="Center"/>
+            <Button Name="ButtonMethodInternal" Grid.Column="7" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="Internal" TextAlignment="Center" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonMehtodStatic" Grid.Column="8" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="Static" TextAlignment="Center"/>
+            <Button Name="ButtonMehtodStatic" Grid.Column="8" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="Static" TextAlignment="Center" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonVariableExternal" Grid.Column="9" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="External" TextAlignment="Center"/>
+            <Button Name="ButtonVariableExternal" Grid.Column="9" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="External" TextAlignment="Center"  Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonVariabledInternal" Grid.Column="10" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="Internal" TextAlignment="Center"/>
+            <Button Name="ButtonVariabledInternal" Grid.Column="10" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="Internal" TextAlignment="Center" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
-            <Button Name="ButtonVariableStatic" Grid.Column="11" Grid.Row="0"  HorizontalAlignment="Stretch" >
-                <TextBlock Text="Static" TextAlignment="Center"/>
+            <Button Name="ButtonVariableStatic" Grid.Column="11" Grid.Row="0"
+                    HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}">
+                <TextBlock Text="Static" TextAlignment="Center" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </Button>
         </Grid>
     </Grid>

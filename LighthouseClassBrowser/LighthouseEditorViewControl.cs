@@ -45,6 +45,10 @@ namespace LighthouseClassBrowser
                 view = viewHost.TextView;
             }
             m_View = view;     // Check later if having a seperate view is really necessary
+
+            if (view == null)
+                return;
+
             m_Edit = view.TextBuffer.CreateEdit();
             intializeEvents();
         }

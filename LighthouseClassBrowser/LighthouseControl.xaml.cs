@@ -31,12 +31,16 @@ namespace LighthouseClassBrowser
 
         internal void showProjects(List<HierarchialData.Project> projects)
         {
-            var ProjectList = new List<HierarchialData.Project>();
+            var items = new List<HierarchialData.item>();
             foreach (HierarchialData.Project project in projects)
             {
-                ProjectList.Add(project);
+                items.Add(project);
+                foreach (HierarchialData.SourceFile file in project.m_SourceFile)
+                {
+                    items.Add(file);
+                }
             }
-            this.ListBoxClassBrowser.DataContext = new List<HierarchialData.Project>(ProjectList);
+            this.ListBoxProjectBrowser.DataContext = new List<HierarchialData.item>(items);
         }
 
         internal void showClasses()
