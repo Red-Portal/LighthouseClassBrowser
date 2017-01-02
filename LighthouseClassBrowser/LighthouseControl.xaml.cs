@@ -121,26 +121,22 @@ namespace LighthouseClassBrowser
                     }
                 }
 
-                HierarchialData.Item flag = null;//this flag is not null if the removed item is contained by the previously selected project
+                // If a recently removed item was a property of a previously selected project,
+                // then since not all properties of the project are selected,
+                // the project should be unseleted.
+                HierarchialData.Item flaggedItem = null;
                 foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
                 {
                     if (item.GetType() == TypeOfProject)
                     {
-                        foreach (HierarchialData.Item removedItem in e.RemovedItems)
+                        if (!areAllItemsSelected(item as HierarchialData.Project))
                         {
-                            if (removedItem.GetType() == TypeOfSourceFile)
-                            {
-                                if (((Project) item).m_SourceFile.Contains(removedItem as HierarchialData.SourceFile))
-                                {
-                                    flag = item;
-                                }
-                            }
+                            flaggedItem = item;
                         }
                     }
                 }
-
-                if (flag != null)
-                    ListBoxProjectBrowser.SelectedItems.Remove(flag);
+                if (flaggedItem != null)
+                    ListBoxProjectBrowser.SelectedItems.Remove(flaggedItem);
             }
             else if (e.AddedItems.Count > 0)
             {
@@ -153,8 +149,7 @@ namespace LighthouseClassBrowser
                 }
             }
 
-            e.Handled = true;
-
+            
             var list = new List<HierarchialData.SourceFile>();
             foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
             {
