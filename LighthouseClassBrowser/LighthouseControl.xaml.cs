@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Data;
 using System.Windows.Forms.VisualStyles;
@@ -39,8 +40,6 @@ namespace LighthouseClassBrowser
         }
 
         private Lighthouse m_Lighthouse;
-        
-
         private List<HierarchialData.SourceFile> m_SelectedSourceFiles;
 
         internal void showProjects(List<HierarchialData.Project> projects)
@@ -64,7 +63,7 @@ namespace LighthouseClassBrowser
 
             foreach (HierarchialData.SourceFile file in m_SelectedSourceFiles)
                 items.AddRange(file.m_Classes);
-            
+
 
             ListBoxClassBrowser.DataContext = items;
         }
@@ -73,7 +72,7 @@ namespace LighthouseClassBrowser
         {
             var list = new List<HierarchialData.Method>();
 
-            foreach(HierarchialData.Method method in dataClass.m_Methods)
+            foreach (HierarchialData.Method method in dataClass.m_Methods)
             {
                 list.Add(method);
             }
@@ -85,7 +84,7 @@ namespace LighthouseClassBrowser
         {
             var list = new List<HierarchialData.Variable>();
 
-            foreach(HierarchialData.Variable variable in dataClass.m_Variable)
+            foreach (HierarchialData.Variable variable in dataClass.m_Variable)
             {
                 list.Add(variable);
             }
@@ -200,8 +199,14 @@ namespace LighthouseClassBrowser
             foreach (HierarchialData.Class dataClass in ListBoxClassBrowser.SelectedItems)
             {
                 m_Lighthouse.eventSelectedCodeElement(dataClass);
+
                 showMethods(dataClass);
+                if (ButtonMethodAbstract.IsChecked == true)
+                    eventGernericAbstractBrowser<HierarchialData.Method>(ListBoxMethodBrowser);
+
                 showVariables(dataClass);
+                if (ButtonVariableAbstract.IsChecked == true)
+                    eventGernericAbstractBrowser<HierarchialData.Variable>(ListBoxVariableBrowser);
             }
         }
 
@@ -224,12 +229,10 @@ namespace LighthouseClassBrowser
         private void ButtonClassAbstract_OnClick(object sender, RoutedEventArgs e)
         {
             if (ButtonClassAbstract.IsChecked == true)
+                eventGernericAbstractBrowser<HierarchialData.Class>(ListBoxClassBrowser);
+            else
             {
-                
-            }
-            else if (ButtonClassAbstract.IsChecked == false)
-            {
-                
+                showClasses();
             }
         }
 
@@ -243,6 +246,13 @@ namespace LighthouseClassBrowser
 
         private void ButtonMethodAbstract_OnClick(object sender, RoutedEventArgs e)
         {
+            if (ButtonMethodAbstract.IsChecked == true)
+                eventGernericAbstractBrowser<HierarchialData.Method>(ListBoxMethodBrowser);
+            else
+            {
+                foreach (HierarchialData.Item item in ListBoxClassBrowser.SelectedItems)
+                    showMethods(item as HierarchialData.Class);
+            }
         }
 
         private void ButtonMethodDerived_OnClick(object sender, RoutedEventArgs e)
@@ -255,6 +265,13 @@ namespace LighthouseClassBrowser
 
         private void ButtonVariableAbstract_OnClick(object sender, RoutedEventArgs e)
         {
+            if (ButtonVariableAbstract.IsChecked == true)
+                eventGernericAbstractBrowser<HierarchialData.Variable>(ListBoxVariableBrowser);
+            else
+            {
+                foreach (HierarchialData.Item item in ListBoxClassBrowser.SelectedItems)
+                    showVariables(item as HierarchialData.Class);
+            }
         }
 
         private void ButtonVariableDerived_OnClick(object sender, RoutedEventArgs e)
@@ -263,6 +280,52 @@ namespace LighthouseClassBrowser
 
         private void ButtonVariableStatic_OnClick(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void eventGernericAbstractBrowser<T>(ListBox browser)
+        {
+            var list = new List<T>();
+
+            foreach (HierarchialData.Item item in browser.Items)
+            {
+                HierarchialData.Element element = item as HierarchialData.Element;
+
+                if (isAbstract(element.m_CodeElement))
+                    list.Add((T) Convert.ChangeType(element, typeof(T)));
+            }
+            browser.DataContext = list;
+        }
+
+        private bool isAbstract(CodeElement element)
+        {
+            if (element.Kind == vsCMElement.vsCMElementClass)
+            {
+                vsCMAccess accessElement = (element as CodeClass).Access;
+                return isAccessable(accessElement);
+            }
+            else if (element.Kind == vsCMElement.vsCMElementFunction)
+            {
+                vsCMAccess accessElement = (element as CodeFunction).Access;
+                return isAccessable(accessElement);
+            }
+            else if (element.Kind == vsCMElement.vsCMElementVariable)
+            {
+                vsCMAccess accessElement = (element as CodeVariable).Access;
+                return isAccessable(accessElement);
+            }
+            else if(element.Kind == vsCMElement.vsCMElementProperty)
+            {
+                vsCMAccess accessElement = (element as CodeProperty).Access;
+                return isAccessable(accessElement);
+            }
+
+            return false;
+        }
+
+        private bool isAccessable(vsCMAccess accessLevel)
+        {
+            return accessLevel == vsCMAccess.vsCMAccessPublic
+                   || accessLevel == vsCMAccess.vsCMAccessDefault;
         }
     }
 }

@@ -37,7 +37,6 @@ namespace LighthouseClassBrowser
                         m_SourceFile.Add(new SourceFile(item));
                     else
                         setProjectItemsRecursive(item.ProjectItems);
-
                 }
             }
         };
@@ -78,10 +77,15 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Class : Item
+        public class Element : Item
+        {
+            public virtual EnvDTE.CodeElement m_CodeElement { get; protected set; }
+        }
+
+        public class Class : Element
         {
             public string m_Name { get; private set; }
-            public EnvDTE.CodeElement m_CodeElement { get; private set; }
+            public override EnvDTE.CodeElement m_CodeElement { get; protected set; }
             public List<Method> m_Methods { get; private set; }
             public List<Variable> m_Variable { get; private set; }
 
@@ -111,10 +115,10 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Method : Item
+        public class Method : Element 
         {
             public string m_Name { get; private set; }
-            public EnvDTE.CodeElement m_CodeElement;
+            public override EnvDTE.CodeElement m_CodeElement { get; protected set; }
             
             public Method(CodeElement element)
             {
@@ -123,10 +127,10 @@ namespace LighthouseClassBrowser
             }
         }
 
-        public class Variable : Item
+        public class Variable : Element
         {
             public string m_Name { get; private set; }
-            public EnvDTE.CodeElement m_CodeElement;
+            public override EnvDTE.CodeElement m_CodeElement { get; protected set; }
 
             public Variable(CodeElement element)
             {
