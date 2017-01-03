@@ -6,13 +6,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Windows.Data;
-using System.Windows.Forms.VisualStyles;
 using EnvDTE;
-using LighthouseClassBrowser.HierarchialData;
-using Microsoft.Internal.VisualStudio.Shell;
+using EnvDTE80;
 using Project = LighthouseClassBrowser.HierarchialData.Project;
 
 namespace LighthouseClassBrowser
@@ -290,39 +285,74 @@ namespace LighthouseClassBrowser
             {
                 HierarchialData.Element element = item as HierarchialData.Element;
 
-                if (isAbstract(element.m_CodeElement))
+                if (isAbstract(getClassTwoType<vsCMAccess>(element.m_CodeElement))) 
                     list.Add((T) Convert.ChangeType(element, typeof(T)));
             }
             browser.DataContext = list;
         }
 
-        private bool isAbstract(CodeElement element)
+        private T getClassTwoType<T>(CodeElement element)
         {
             if (element.Kind == vsCMElement.vsCMElementClass)
             {
-                vsCMAccess accessElement = (element as CodeClass).Access;
-                return isAccessable(accessElement);
+                var codeTwoType = element as EnvDTE80.CodeClass2;
+
+                if (typeof(T) == typeof(vsCMAccess))
+                    return (T)Convert.ChangeType(codeTwoType.Access, typeof(T));
             }
             else if (element.Kind == vsCMElement.vsCMElementFunction)
             {
-                vsCMAccess accessElement = (element as CodeFunction).Access;
-                return isAccessable(accessElement);
+                var codeTwoType = element as EnvDTE80.CodeFunction2;
+
+                if (typeof(T) == typeof(vsCMAccess))
+                    return (T) Convert.ChangeType(codeTwoType.Access, typeof(T));
             }
             else if (element.Kind == vsCMElement.vsCMElementVariable)
             {
-                vsCMAccess accessElement = (element as CodeVariable).Access;
-                return isAccessable(accessElement);
-            }
-            else if(element.Kind == vsCMElement.vsCMElementProperty)
-            {
-                vsCMAccess accessElement = (element as CodeProperty).Access;
-                return isAccessable(accessElement);
-            }
+                var codeTwoType = element as EnvDTE80.CodeVariable2;
 
-            return false;
+                if (typeof(T) == typeof(vsCMAccess))
+                    return (T) Convert.ChangeType(codeTwoType.Access, typeof(T));
+            }
+            else if (element.Kind == vsCMElement.vsCMElementProperty)
+            {
+                var codeTwoType = element as EnvDTE80.CodeProperty2;
+
+                if (typeof(T) == typeof(vsCMAccess))
+                    return (T) Convert.ChangeType(codeTwoType.Access, typeof(T));
+            }
+            return (T) Convert.ChangeType(null, typeof(T));
         }
 
-        private bool isAccessable(vsCMAccess accessLevel)
+/*
+                private bool isAbstract(CodeElement element)
+                {
+                    if (element.Kind == vsCMElement.vsCMElementClass)
+                    {
+                        vsCMAccess accessElement = (element as CodeClass2).Access;
+                        return isAccessable(accessElement);
+                    }
+                    else if (element.Kind == vsCMElement.vsCMElementFunction)
+                    {
+                        vsCMAccess accessElement = (element as CodeFunction2).Access;
+                        return isAccessable(accessElement);
+                    }
+                    else if (element.Kind == vsCMElement.vsCMElementVariable)
+                    {
+                        vsCMAccess accessElement = (element as CodeVariable2).Access;
+                        return isAccessable(accessElement);
+                    }
+                    else if(element.Kind == vsCMElement.vsCMElementProperty)
+                    {
+                        vsCMAccess accessElement = (element as CodeProperty2).Access;
+                        return isAccessable(accessElement);
+                    }
+        
+                    return false;
+                }
+                */
+
+        private bool isAbstract(vsCMAccess accessLevel)
         {
             return accessLevel == vsCMAccess.vsCMAccessPublic
                    || accessLevel == vsCMAccess.vsCMAccessDefault;
