@@ -110,9 +110,9 @@
                     Click="ButtonMethodDerived_OnClick">
                 <TextBlock Text="Derived" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </ToggleButton>
-            <ToggleButton Name="ButtonMehtodStatic" Grid.Column="8" Grid.Row="0"
+            <ToggleButton Name="ButtonMethodStatic" Grid.Column="8" Grid.Row="0"
                     HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static shell:VsBrushes.ButtonHighlightKey}}"
-                    Click="ButtonMehtodStatic_OnClick">
+                    Click="ButtonMethodStatic_OnClick">
                 <TextBlock Text="Static" TextAlignment="Center" Foreground="{DynamicResource {x:Static shell:VsBrushes.ButtonTextKey}}"/>
             </ToggleButton>
             <ToggleButton Name="ButtonVariableAbstract" Grid.Column="9" Grid.Row="0"

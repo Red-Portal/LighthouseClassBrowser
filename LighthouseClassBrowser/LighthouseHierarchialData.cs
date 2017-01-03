@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Data;
 using EnvDTE;
+using Microsoft.VisualStudio.Shell.Events;
 
 namespace LighthouseClassBrowser
 {
@@ -14,7 +15,7 @@ namespace LighthouseClassBrowser
 
         public class Project : Item
         {
-            private readonly EnvDTE.Project m_Project;
+            public readonly EnvDTE.Project m_Project;
             public string m_Name { get; private set; }
             public List<SourceFile> m_SourceFile { get; private set; }
 
@@ -56,15 +57,20 @@ namespace LighthouseClassBrowser
                     setClassesRecursive(item.FileCodeModel.CodeElements);
             }
 
-            public void setClassesRecursive(CodeElements elements)
+            public void setClassesRecursive(CodeElements elements, List<HierarchialData.Class> list = null)
             {
+                if (list == null)
+                    list = new List<HierarchialData.Class>();
+
                 foreach (CodeElement subElement in elements)
                 {
-                    if(isClassType(subElement.Kind))
-                        m_Classes.Add(new Class(subElement));
-                    else if(isNamespaceType(subElement.Kind)) 
-                        setClassesRecursive(subElement.Children);
+                    if (isClassType(subElement.Kind))
+                        list.Add(new Class(subElement, this));
+                    else if (isNamespaceType(subElement.Kind))
+                        setClassesRecursive(subElement.Children, list);
                 }
+
+                m_Classes = list;
             }
 
             private bool isNamespaceType(vsCMElement kind)
@@ -88,30 +94,36 @@ namespace LighthouseClassBrowser
             public override EnvDTE.CodeElement m_CodeElement { get; protected set; }
             public List<Method> m_Methods { get; private set; }
             public List<Variable> m_Variable { get; private set; }
+            public readonly HierarchialData.SourceFile m_parent;
 
-            internal Class(CodeElement element)
+            internal Class(CodeElement element, HierarchialData.SourceFile parent)
             {
                 m_Methods = new List<Method>();
                 m_Variable = new List<Variable>();
                 m_Name = element.Name;
                 m_CodeElement = element;
                 setClassComponents(element);
+                m_parent = parent;
             }
 
             public void setClassComponents(CodeElement element)
             {
                 if (element  == null)
                     return;
-                if (element.Children.Count == 0)
-                    return;
+
+                var methods = new List<Method>();
+                var variables = new List<Variable>();
 
                 foreach (CodeElement subElement in element.Children)
                 {
                     if (subElement.Kind == vsCMElement.vsCMElementFunction)
-                        m_Methods.Add(new Method(subElement));
+                       methods.Add(new Method(subElement, this));
                     else if (subElement.Kind == vsCMElement.vsCMElementVariable)
-                        m_Variable.Add(new Variable(subElement));
+                        variables.Add(new Variable(subElement, this));
                 }
+
+                m_Methods = methods;
+                m_Variable = variables;
             }
         }
 
@@ -119,11 +131,13 @@ namespace LighthouseClassBrowser
         {
             public string m_Name { get; private set; }
             public override EnvDTE.CodeElement m_CodeElement { get; protected set; }
+            public readonly HierarchialData.Class m_Parent;
             
-            public Method(CodeElement element)
+            public Method(CodeElement element, HierarchialData.Class parent)
             {
                 m_Name = element.Name;
                 m_CodeElement = element;
+                m_Parent = parent;
             }
         }
 
@@ -131,11 +145,13 @@ namespace LighthouseClassBrowser
         {
             public string m_Name { get; private set; }
             public override EnvDTE.CodeElement m_CodeElement { get; protected set; }
+            public readonly HierarchialData.Class m_Parent;
 
-            public Variable(CodeElement element)
+            public Variable(CodeElement element, HierarchialData.Class parent)
             {
                 m_CodeElement = element;
                 m_Name = element.Name;
+                m_Parent = parent;
             }
         }
     }

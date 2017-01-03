@@ -52,10 +52,9 @@ namespace LighthouseClassBrowser
              
             m_ServiceDTE = serviceProvider.GetService(typeof(DTE)) as DTE;
             m_EditorViewControl = new EditorViewControl(
-                (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
+                (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), m_LighthouseControl, this
             );
 
-            
             if (m_ServiceDTE != null)
                 setEvents();
 
@@ -65,6 +64,7 @@ namespace LighthouseClassBrowser
 
         private ProjectItemsEvents m_ProjectEvents;
         private SolutionEvents m_SolutionEvents;
+        private WindowEvents m_WindowEvents;
         private static Package m_Package;
         private readonly DTE m_ServiceDTE;
         private LighthouseControl m_LighthouseControl;
@@ -92,6 +92,7 @@ namespace LighthouseClassBrowser
         {
             m_SolutionEvents = ((Events2) m_ServiceDTE.Events).SolutionEvents;
             m_ProjectEvents = ((Events2) m_ServiceDTE.Events).ProjectItemsEvents;
+            m_WindowEvents = ((Events2) m_ServiceDTE.Events).WindowEvents;
             m_SolutionEvents.Opened += eventOnSolutionOpen;
             m_SolutionEvents.ProjectRenamed += eventOnProjectRename;
             m_SolutionEvents.ProjectAdded += eventOnProjectAdded;
@@ -105,6 +106,7 @@ namespace LighthouseClassBrowser
         {
             get { return Lighthouse.m_Package; }
         }
+
         private void eventOnProjectItemAdded(ProjectItem item)
         {
             setProjects(m_ServiceDTE.Solution.Projects);
@@ -121,7 +123,7 @@ namespace LighthouseClassBrowser
         {
             if (m_EditorViewControl == null)
                 m_EditorViewControl = new EditorViewControl(
-                    (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), this.Content
+                    (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), m_LighthouseControl, this
                 );
             setProjects(m_ServiceDTE.Solution.Projects);
         }
@@ -137,7 +139,6 @@ namespace LighthouseClassBrowser
         {
             setProjects(m_ServiceDTE.Solution.Projects);
         }
-
 
         internal void eventSelectedCodeElement(HierarchialData.Item item)
         {

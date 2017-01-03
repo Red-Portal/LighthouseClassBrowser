@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Windows.Media;
 using EnvDTE;
 using EnvDTE80;
 using Project = LighthouseClassBrowser.HierarchialData.Project;
@@ -91,8 +92,6 @@ namespace LighthouseClassBrowser
         {
             bool wasModified = false; //optimization flag
 
-
-
             // This loop is for checking if a recently removed sourceFile belongs to a already checked Project
             // if It is the case, the checked Project should be unchecked
             if (e.RemovedItems.Count > 0)
@@ -153,7 +152,11 @@ namespace LighthouseClassBrowser
                 foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
                 {
                     if (item.GetType() == LighthouseClassBrowser.Lighthouse.TypeOfSourceFile)
-                        list.Add(item as HierarchialData.SourceFile);
+                    {
+                        var sourceFile = item as HierarchialData.SourceFile;
+                        sourceFile.setClassesRecursive(sourceFile.m_ProjectItem.FileCodeModel.CodeElements);
+                        list.Add(sourceFile);
+                    }
                 }
 
                 m_SelectedSourceFiles = list;
@@ -193,56 +196,82 @@ namespace LighthouseClassBrowser
         {
             foreach (HierarchialData.Class dataClass in ListBoxClassBrowser.SelectedItems)
             {
+                dataClass.setClassComponents(dataClass.m_CodeElement);
+
                 m_Lighthouse.eventSelectedCodeElement(dataClass);
 
                 showMethods(dataClass);
                 if (ButtonMethodAbstract.IsChecked == true)
-                    eventGernericAbstractBrowser<HierarchialData.Method>(ListBoxMethodBrowser);
+                    eventGenericAbstractBrowser<HierarchialData.Method>(ListBoxMethodBrowser);
+                if(ButtonMethodStatic.IsChecked == true)
+                    eventGenericIsStatic(ListBoxMethodBrowser);
 
                 showVariables(dataClass);
                 if (ButtonVariableAbstract.IsChecked == true)
-                    eventGernericAbstractBrowser<HierarchialData.Variable>(ListBoxVariableBrowser);
+                    eventGenericAbstractBrowser<HierarchialData.Variable>(ListBoxVariableBrowser);
+                if(ButtonVariableStatic.IsChecked == true)
+                    eventGenericIsStatic(ListBoxVariableBrowser);
             }
         }
 
         private void ListBoxMethodBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (HierarchialData.Method method in e.AddedItems)
-            {
                 m_Lighthouse.eventSelectedCodeElement(method);
-            }
         }
 
         private void ListBoxVariableBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (HierarchialData.Variable variable in e.AddedItems)
-            {
                 m_Lighthouse.eventSelectedCodeElement(variable);
-            }
         }
 
         private void ButtonClassAbstract_OnClick(object sender, RoutedEventArgs e)
         {
             if (ButtonClassAbstract.IsChecked == true)
-                eventGernericAbstractBrowser<HierarchialData.Class>(ListBoxClassBrowser);
+                eventGenericAbstractBrowser<HierarchialData.Class>(ListBoxClassBrowser);
             else
-            {
                 showClasses();
-            }
+
+            if (ButtonClassStatic.IsChecked == true)
+                eventGenericIsStatic(ListBoxClassBrowser);
         }
 
         private void ButtonClassDerived_OnClick(object sender, RoutedEventArgs e)
         {
+            
         }
 
         private void ButtonClassStatic_OnClick(object sender, RoutedEventArgs e)
         {
+            if (ButtonClassStatic.IsChecked == true)
+                eventGenericIsStatic(ListBoxClassBrowser);
+            else
+                showClasses();
         }
 
         private void ButtonMethodAbstract_OnClick(object sender, RoutedEventArgs e)
         {
             if (ButtonMethodAbstract.IsChecked == true)
-                eventGernericAbstractBrowser<HierarchialData.Method>(ListBoxMethodBrowser);
+                eventGenericAbstractBrowser<HierarchialData.Method>(ListBoxMethodBrowser);
+            else
+            {
+                foreach (HierarchialData.Item item in ListBoxClassBrowser.SelectedItems)
+                    showMethods(item as HierarchialData.Class);
+            }
+
+            if(ButtonMethodStatic.IsChecked == true)
+                eventGenericIsStatic(ListBoxMethodBrowser);
+        }
+
+        private void ButtonMethodDerived_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonMethodStatic_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ButtonMethodStatic.IsChecked == true)
+                eventGenericIsStatic(ListBoxMethodBrowser);
             else
             {
                 foreach (HierarchialData.Item item in ListBoxClassBrowser.SelectedItems)
@@ -250,23 +279,18 @@ namespace LighthouseClassBrowser
             }
         }
 
-        private void ButtonMethodDerived_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void ButtonMehtodStatic_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void ButtonVariableAbstract_OnClick(object sender, RoutedEventArgs e)
         {
             if (ButtonVariableAbstract.IsChecked == true)
-                eventGernericAbstractBrowser<HierarchialData.Variable>(ListBoxVariableBrowser);
+                eventGenericAbstractBrowser<HierarchialData.Variable>(ListBoxVariableBrowser);
             else
             {
                 foreach (HierarchialData.Item item in ListBoxClassBrowser.SelectedItems)
                     showVariables(item as HierarchialData.Class);
             }
+
+            if(ButtonVariableStatic.IsChecked == true)
+                eventGenericIsStatic(ListBoxVariableBrowser);
         }
 
         private void ButtonVariableDerived_OnClick(object sender, RoutedEventArgs e)
@@ -275,9 +299,29 @@ namespace LighthouseClassBrowser
 
         private void ButtonVariableStatic_OnClick(object sender, RoutedEventArgs e)
         {
+            if (ButtonVariableStatic.IsChecked == true)
+                eventGenericIsStatic(ListBoxVariableBrowser);
+            else
+            {
+                foreach (HierarchialData.Item item in ListBoxClassBrowser.SelectedItems)
+                    showVariables(item as HierarchialData.Class);
+            }
         }
 
-        private void eventGernericAbstractBrowser<T>(ListBox browser)
+        private void eventGenericIsStatic(ListBox browser)
+        {
+            foreach (HierarchialData.Element element in browser.Items)
+            {
+                if (getClassTwoProperties<bool>(element.m_CodeElement))
+                {
+                    browser.UpdateLayout();
+                    var item = browser.ItemContainerGenerator.ContainerFromItem((object)element) as ListBoxItem;
+                    item.Background = new SolidColorBrush(Colors.LightBlue);
+                }
+            }
+        }
+
+        private void eventGenericAbstractBrowser<T>(ListBox browser)
         {
             var list = new List<T>();
 
@@ -285,13 +329,13 @@ namespace LighthouseClassBrowser
             {
                 HierarchialData.Element element = item as HierarchialData.Element;
 
-                if (isAbstract(getClassTwoType<vsCMAccess>(element.m_CodeElement))) 
+                if (isAbstract(getClassTwoProperties<vsCMAccess>(element.m_CodeElement))) 
                     list.Add((T) Convert.ChangeType(element, typeof(T)));
             }
             browser.DataContext = list;
         }
 
-        private T getClassTwoType<T>(CodeElement element)
+        private T getClassTwoProperties<T>(CodeElement element)
         {
             if (element.Kind == vsCMElement.vsCMElementClass)
             {
@@ -299,6 +343,8 @@ namespace LighthouseClassBrowser
 
                 if (typeof(T) == typeof(vsCMAccess))
                     return (T)Convert.ChangeType(codeTwoType.Access, typeof(T));
+                else if (typeof(T) == typeof(bool))
+                    return (T)Convert.ChangeType(codeTwoType.IsShared, typeof(T));
             }
             else if (element.Kind == vsCMElement.vsCMElementFunction)
             {
@@ -306,6 +352,8 @@ namespace LighthouseClassBrowser
 
                 if (typeof(T) == typeof(vsCMAccess))
                     return (T) Convert.ChangeType(codeTwoType.Access, typeof(T));
+                else if (typeof(T) == typeof(bool))
+                    return (T) Convert.ChangeType(codeTwoType.IsShared, typeof(T));
             }
             else if (element.Kind == vsCMElement.vsCMElementVariable)
             {
@@ -313,6 +361,8 @@ namespace LighthouseClassBrowser
 
                 if (typeof(T) == typeof(vsCMAccess))
                     return (T) Convert.ChangeType(codeTwoType.Access, typeof(T));
+                else if (typeof(T) == typeof(bool))
+                    return (T) Convert.ChangeType(codeTwoType.IsShared, typeof(T));
             }
             else if (element.Kind == vsCMElement.vsCMElementProperty)
             {
@@ -320,37 +370,11 @@ namespace LighthouseClassBrowser
 
                 if (typeof(T) == typeof(vsCMAccess))
                     return (T) Convert.ChangeType(codeTwoType.Access, typeof(T));
+                else if (typeof(T) == typeof(bool))
+                    return (T) Convert.ChangeType(codeTwoType.IsShared, typeof(T));
             }
             return (T) Convert.ChangeType(null, typeof(T));
         }
-
-/*
-                private bool isAbstract(CodeElement element)
-                {
-                    if (element.Kind == vsCMElement.vsCMElementClass)
-                    {
-                        vsCMAccess accessElement = (element as CodeClass2).Access;
-                        return isAccessable(accessElement);
-                    }
-                    else if (element.Kind == vsCMElement.vsCMElementFunction)
-                    {
-                        vsCMAccess accessElement = (element as CodeFunction2).Access;
-                        return isAccessable(accessElement);
-                    }
-                    else if (element.Kind == vsCMElement.vsCMElementVariable)
-                    {
-                        vsCMAccess accessElement = (element as CodeVariable2).Access;
-                        return isAccessable(accessElement);
-                    }
-                    else if(element.Kind == vsCMElement.vsCMElementProperty)
-                    {
-                        vsCMAccess accessElement = (element as CodeProperty2).Access;
-                        return isAccessable(accessElement);
-                    }
-        
-                    return false;
-                }
-                */
 
         private bool isAbstract(vsCMAccess accessLevel)
         {

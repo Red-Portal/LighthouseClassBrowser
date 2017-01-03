@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Forms.VisualStyles;
 using EnvDTE;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.PlatformUI;
@@ -19,11 +21,14 @@ namespace LighthouseClassBrowser
     {
         private readonly IVsTextManager m_TextManager;
         private IWpfTextView m_View;
-        private object m_WindowControl;
+        private Lighthouse m_Lighthouse;
+        private LighthouseControl m_WindowControl;
         private ITextEdit m_Edit;
+        private Timer m_delay;
 
-        internal EditorViewControl(IVsTextManager textManager, object windowControl)
+        internal EditorViewControl(IVsTextManager textManager, LighthouseControl windowControl, Lighthouse lighthouse)
         {
+            m_Lighthouse = lighthouse;
             m_TextManager = textManager;
             m_WindowControl = windowControl;
             initializeView();
@@ -49,32 +54,22 @@ namespace LighthouseClassBrowser
 
             if (view == null)
                 return;
-
-            m_Edit = view.TextBuffer.CreateEdit();
             intializeEvents();
         }
 
         private void intializeEvents()
         {
-            m_View.TextBuffer.Changed += new EventHandler<TextContentChangedEventArgs>(eventTextBufferChange);
-        }
-
-        private void eventTextBufferChange(object sender, TextContentChangedEventArgs e)
-        {
-            
         }
 
         public void moveToCodeElement(CodeElement codeElement)
         {
             DTE dte = codeElement.DTE;
 
-            Window window;
-
             if (codeElement.ProjectItem.Document == null)
                 codeElement.ProjectItem.Open("{00000000-0000-0000-0000-000000000000}");
 
             codeElement.ProjectItem.Document.Activate();
-            window = codeElement.ProjectItem.Document.ActiveWindow;
+            Window window = codeElement.ProjectItem.Document.ActiveWindow;
 
             TextSelection textSelection = window.Document.Selection as TextSelection;
 
