@@ -1,4 +1,4 @@
-package myplugin;
+package lighthouse;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;

@@ -1,13 +1,8 @@
-package myplugin;
+package lighthouse;
 
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiModifierList;
 import com.intellij.psi.PsiModifierListOwner;
-import com.intellij.psi.PsiTarget;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 /**
  * Created by 노성훈 on 2017-01-04.

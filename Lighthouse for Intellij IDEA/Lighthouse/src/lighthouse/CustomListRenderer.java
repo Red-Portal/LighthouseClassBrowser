@@ -1,10 +1,4 @@
-package myplugin;
-
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiExpression;
-import com.intellij.psi.PsiPackage;
-import com.intellij.psi.util.PsiUtil;
+package lighthouse;
 
 import javax.swing.*;
 import java.awt.*;

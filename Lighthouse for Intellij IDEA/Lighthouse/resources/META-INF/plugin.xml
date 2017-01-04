@@ -27,7 +27,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <toolWindow id="Sample plugin" secondary="true" icon="/myToolWindow/plus.png" anchor="top"
 
-                factoryClass="myplugin.mypluginform"/>
+                factoryClass="lighthouse.mypluginform"/>
   </extensions>
 
   <actions>

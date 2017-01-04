@@ -1,6 +1,4 @@
-package myplugin;
-
-import com.intellij.psi.PsiModifierList;
+package lighthouse;
 
 import javax.swing.*;
 

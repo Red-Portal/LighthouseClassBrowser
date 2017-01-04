@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/myplugin.iml" filepath="$PROJECT_DIR$/myplugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lighthouse.iml" filepath="$PROJECT_DIR$/Lighthouse.iml" />
     </modules>
   </component>
 </project>

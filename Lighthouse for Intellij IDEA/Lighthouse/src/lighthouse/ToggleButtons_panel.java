@@ -1,10 +1,6 @@
-package myplugin;
-
-import org.apache.batik.util.gui.resource.JToolbarButton;
+package lighthouse;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 /**
  * Created by 노성훈 on 2017-01-04.
