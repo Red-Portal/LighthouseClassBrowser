@@ -10,8 +10,10 @@ A [Pharo Smalltalk] (http://pharo.org/) Nautilus System Browser style class brow
 		- [Hide Abstract Elements](#hide-abstract-elements)
 		- [Show Parent of Derived Class](#show-parent-of-derived-class)
         - [Mark Static Elements](#mark-static-elements)
-	- [Opening Lighthouse in Microsoft Visual Studio](#opening-lighthouse-in-microsoft-visual-studio)
+	- [Using Lighthouse in Microsoft Visual Studio](#using-lighthouse-in-microsoft-visual-studio)
         - [Installation](#installation)
+	- [Using Lighthouse in Jetbrains IntelliJ IDEA](#using-lighthouse-in-jetbrains-intellij-idea)
+		- [Installation](#installation)
     - [Version Info](#version-info)
     - [Upcoming Features](#upcoming-features)
 
@@ -53,14 +55,20 @@ Pressing the `Derived` button shows the parent class of the currently selected c
 
 The `Static` button marks static elements with a different color so you can identify them easily.
 
-## Opening Lighthouse in Microsoft Visual Studio
+## Using Lighthouse in Microsoft Visual Studio
 ### Installation
 
 1. Build the VSIX project in Visual Studio
 2. Install Visual Studio Extension by executing "Project Folder"\bin\"Debug or Release"\LighthouseClassBrowser.vsix
 3. Open Lighthouse in Visual Studio -> Tools -> Lighthouse
 
-![OpeningExample](https://github.com/Red-Portal/LighthouseClassBrowser/blob/master/ExampleOpening.gif)
+![UsingExample](https://github.com/Red-Portal/LighthouseClassBrowser/blob/master/ExampleOpening.gif)
+
+
+## Using Lighthouse in Jetbrains IntelliJ IDEA 
+### Installation
+
+![UsingIntelliJExample](https://github.com/Red-Portal/LighthouseClassBrowser/blob/master/ExampleOpeningIntelliJ.gif)
 
 ## Current Version Info
 * The `Derived` feature for the variables, method browser is yet to be implemented
