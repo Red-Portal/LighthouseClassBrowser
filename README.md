@@ -7,3 +7,4 @@ A [Pharo Smalltalk] (http://pharo.org/) Nautilus System Browser style class brow
 * `Visual Studio 2015`
 * `IntelliJ IDEA`
 
+![OpeningExample](https://github.com/Red-Portal/LighthouseClassBrowser/blob/master/ExampleOpening.gif)
