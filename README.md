@@ -2,11 +2,14 @@
 
 A [Pharo Smalltalk] (http://pharo.org/) Nautilus System Browser style class browser for various IDEs.
 
-- [Currently Supported IDE List](#Currently Supported IDE List)
-- [Features](#Features)
-    - [Solution Navigation](#Solution Navigation)
-    - [Hide Encapsulated Members](#Hide Abstract Members)
-    - [Show Parent of Derived Class](#Show Parent of Derived Class)
+
+- [Lighthouse Class Browser](#)
+	- [Currently Supported IDE List](#)
+	- [Features](#)
+		- [Code Navigation](#)
+		- [Hide Abstract Members](#)
+		- [Show Parent of Derived Class](#)
+	- [Opening Lighthouse in Microsoft Visual Studio](#)
 
 
 ## Currently Supported IDE List
