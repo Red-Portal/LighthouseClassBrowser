@@ -71,7 +71,7 @@ namespace LighthouseClassBrowser
                 list.Add(method);
             }
 
-            ListBoxMethodBrowser.DataContext = list;
+            ListBoxMethodBrowser.DataContext = new List<HierarchialData.Item>(list);
         }
 
         internal void showVariables(HierarchialData.Class dataClass)
@@ -83,7 +83,7 @@ namespace LighthouseClassBrowser
                 list.Add(variable);
             }
 
-            ListBoxVariableBrowser.DataContext = list;
+            ListBoxVariableBrowser.DataContext = new List<HierarchialData.Item>(list);
         }
 
         private void ListBoxProjectBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -194,6 +194,8 @@ namespace LighthouseClassBrowser
 
         private void ListBoxClassBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ButtonClassDerived.IsChecked = false;
+
             foreach (HierarchialData.Class dataClass in ListBoxClassBrowser.SelectedItems)
             {
                 dataClass.setClassComponents(dataClass.m_CodeElement);
