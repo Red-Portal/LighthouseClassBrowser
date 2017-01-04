@@ -56,6 +56,9 @@ The `Static` button marks static elements with a different color so you can iden
 ## Opening Lighthouse in Microsoft Visual Studio
 ### Installation
 
+1. Build the VSIX project in Visual Studio
+2. Install Visual Studio Extension by executing "Project Folder"\bin\"Debug or Release"\LighthouseClassBrowser.vsix
+3. Open Lighthouse in Visual Studio -> Tools -> Lighthouse
 
 ![OpeningExample](https://github.com/Red-Portal/LighthouseClassBrowser/blob/master/ExampleOpening.gif)
 
