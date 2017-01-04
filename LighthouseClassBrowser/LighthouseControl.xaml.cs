@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using EnvDTE;
 using EnvDTE80;
-using Project = LighthouseClassBrowser.HierarchialData.Project;
 
 namespace LighthouseClassBrowser
 {
@@ -60,7 +59,6 @@ namespace LighthouseClassBrowser
             foreach (HierarchialData.SourceFile file in m_SelectedSourceFiles)
                 items.AddRange(file.m_Classes);
 
-
             ListBoxClassBrowser.DataContext = items;
         }
 
@@ -91,6 +89,8 @@ namespace LighthouseClassBrowser
         private void ListBoxProjectBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             bool wasModified = false; //optimization flag
+
+            ButtonClassDerived.IsChecked = false;
 
             // This loop is for checking if a recently removed sourceFile belongs to a already checked Project
             // if It is the case, the checked Project should be unchecked
@@ -239,7 +239,46 @@ namespace LighthouseClassBrowser
 
         private void ButtonClassDerived_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            if (ButtonClassDerived.IsChecked == true)
+            {
+                var list = ListBoxClassBrowser.DataContext as List<HierarchialData.Item>;
+                var collection = new List<HierarchialData.Class>();
+                foreach (HierarchialData.Class selectedClass in ListBoxClassBrowser.SelectedItems)
+                {
+                    var index = list.IndexOf(selectedClass);
+
+                    if (selectedClass.m_CodeElement.Kind == vsCMElement.vsCMElementClass)
+                    {
+                        foreach (CodeElement baseElement in (selectedClass.m_CodeElement as EnvDTE80.CodeClass2).Bases)
+                        {
+                            if (baseElement.FullName == "System.Object")
+                                return;
+
+                            var newElement = new HierarchialData.Class(baseElement);
+                            list.Insert(index, newElement);
+                            collection.Add(newElement);
+                        }
+                    }
+                    else if (selectedClass.m_CodeElement.Kind == vsCMElement.vsCMElementInterface)
+                    {
+                        foreach (
+                            CodeElement baseElement in (selectedClass.m_CodeElement as EnvDTE80.CodeInterface2).Bases)
+                        {
+                            if (baseElement.FullName == "System.Object")
+                                return;
+
+                            var newElement = new HierarchialData.Class(baseElement);
+                            list.Insert(index, newElement);
+                            collection.Add(newElement);
+                        }
+                    }
+                }
+                ListBoxClassBrowser.DataContext = new List<HierarchialData.Item>(list);
+                ListBoxProjectBrowser.UpdateLayout();
+                changeListBoxItemColorGeneric(ListBoxClassBrowser, collection);
+            }
+            else
+                showClasses();
         }
 
         private void ButtonClassStatic_OnClick(object sender, RoutedEventArgs e)
@@ -266,6 +305,7 @@ namespace LighthouseClassBrowser
 
         private void ButtonMethodDerived_OnClick(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void ButtonMethodStatic_OnClick(object sender, RoutedEventArgs e)
@@ -321,6 +361,17 @@ namespace LighthouseClassBrowser
             }
         }
 
+        private void changeListBoxItemColorGeneric<T>(ListBox browser, List<T> elements)
+        {
+            foreach (T element in elements)
+            {
+                browser.UpdateLayout();
+                browser.ScrollIntoView((object)element);
+                var item = browser.ItemContainerGenerator.ContainerFromItem((object) element) as ListBoxItem;
+                item.Background = new SolidColorBrush(Colors.Tomato);
+            }
+        }
+
         private void eventGenericAbstractBrowser<T>(ListBox browser)
         {
             var list = new List<T>();
@@ -345,6 +396,15 @@ namespace LighthouseClassBrowser
                     return (T)Convert.ChangeType(codeTwoType.Access, typeof(T));
                 else if (typeof(T) == typeof(bool))
                     return (T)Convert.ChangeType(codeTwoType.IsShared, typeof(T));
+            }
+            if (element.Kind == vsCMElement.vsCMElementInterface)
+            {
+                var codeTwoType = element as EnvDTE80.CodeInterface2;
+
+                if (typeof(T) == typeof(vsCMAccess))
+                    return (T) Convert.ChangeType(codeTwoType, typeof(T));
+                else if (typeof(T) == typeof(bool))
+                    return (T) Convert.ChangeType(codeTwoType, typeof(T));
             }
             else if (element.Kind == vsCMElement.vsCMElementFunction)
             {

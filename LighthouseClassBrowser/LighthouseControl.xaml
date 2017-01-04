@@ -46,7 +46,7 @@
             <ListBox Grid.Column="2" Name="ListBoxMethodBrowser" ItemsSource="{Binding}"
                  Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
                  Foreground="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}"
-                 SelectionChanged="ListBoxMethodBrowser_OnSelectionChanged" >
+                 SelectionChanged="ListBoxMethodBrowser_OnSelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Path=m_Name}" FontSize="13" Margin="0,-3,0,-3"
