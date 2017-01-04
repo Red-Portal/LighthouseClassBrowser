@@ -51,7 +51,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LighthouseEditorViewControl.cs" />
     <Compile Include="Lighthouse.cs" />
     <Compile Include="LighthouseCommand.cs" />
     <Compile Include="LighthouseControl.xaml.cs">

@@ -51,9 +51,6 @@ namespace LighthouseClassBrowser
             m_LighthouseControl = (LighthouseControl) this.Content;
              
             m_ServiceDTE = serviceProvider.GetService(typeof(DTE)) as DTE;
-            m_EditorViewControl = new EditorViewControl(
-                (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), m_LighthouseControl, this
-            );
 
             if (m_ServiceDTE != null)
                 setEvents();
@@ -69,7 +66,6 @@ namespace LighthouseClassBrowser
         private readonly DTE m_ServiceDTE;
         private LighthouseControl m_LighthouseControl;
         private List<HierarchialData.Project> m_projects { get; set; }
-        private EditorViewControl m_EditorViewControl;
 
         public static readonly Type TypeOfProject = typeof(HierarchialData.Project);
         public static readonly Type TypeOfClass = typeof(HierarchialData.Class);
@@ -121,10 +117,6 @@ namespace LighthouseClassBrowser
         }
         private void eventOnSolutionOpen()
         {
-            if (m_EditorViewControl == null)
-                m_EditorViewControl = new EditorViewControl(
-                    (IVsTextManager) serviceProvider.GetService(typeof(SVsTextManager)), m_LighthouseControl, this
-                );
             setProjects(m_ServiceDTE.Solution.Projects);
         }
         private void eventOnProjectRename(Project project, string name)
@@ -145,20 +137,33 @@ namespace LighthouseClassBrowser
             if (item.GetType() == TypeOfClass)
             {
                 var dataClass = item as HierarchialData.Class;
-                m_EditorViewControl.moveToCodeElement(dataClass.m_CodeElement);
+                moveToCodeElement(dataClass.m_CodeElement);
             }
             else if (item.GetType() == TypeOfMethod)
             {
                 var method = item as HierarchialData.Method;
                 if (method != null)
-                    m_EditorViewControl.moveToCodeElement(method.m_CodeElement);
+                    moveToCodeElement(method.m_CodeElement);
             }
             else if (item.GetType() == TypeOfVariable)
             {
                 var variable = item as HierarchialData.Variable;
                 if (variable != null)
-                    m_EditorViewControl.moveToCodeElement(variable.m_CodeElement);
+                    moveToCodeElement(variable.m_CodeElement);
             }
+        }
+
+        public void moveToCodeElement(CodeElement codeElement)
+        {
+            if (codeElement.ProjectItem.Document == null)
+                codeElement.ProjectItem.Open("{00000000-0000-0000-0000-000000000000}");
+
+            codeElement.ProjectItem.Document.Activate();
+            Window window = codeElement.ProjectItem.Document.ActiveWindow;
+
+            TextSelection textSelection = window.Document.Selection as TextSelection;
+
+            textSelection.MoveToPoint(codeElement.StartPoint);
         }
 
         private void setProjects(Projects projects)
