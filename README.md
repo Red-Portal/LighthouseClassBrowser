@@ -21,7 +21,7 @@ A [Pharo Smalltalk] (http://pharo.org/) Nautilus System Browser style class brow
 ## Currently Supported IDE List
 
 * `Visual Studio 2015`
-* `IntelliJ IDEA`
+* `IntelliJ IDEA (ver 2016.2.5)`
 
 ## Features
 
