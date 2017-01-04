@@ -24,17 +24,26 @@ namespace LighthouseClassBrowser
         /// <summary>
         /// Initializes a new instance of the <see cref="LighthouseControl"/> class.
         /// </summary>
-        internal LighthouseControl(Lighthouse lighthouse)
+        internal LighthouseControl()
         {
             this.InitializeComponent();
-            m_Lighthouse = lighthouse;
             ListBoxProjectBrowser.SelectionMode = SelectionMode.Multiple;
             ListBoxClassBrowser.SelectionMode = SelectionMode.Single;
             ListBoxMethodBrowser.SelectionMode = SelectionMode.Single;
             ListBoxVariableBrowser.SelectionMode = SelectionMode.Single;
+
+            m_VariableBrowserModel = new VariableBrowserModel(this);
+            m_MethodBrowserModel = new MethodBrowserModel(this);
+            m_ClassBrowserModel = new ClassBrowserModel(this, m_MethodBrowserModel, m_VariableBrowserModel);
+            m_ProjectBrowserModel = new ProjectBrowserModel(this, m_ClassBrowserModel);
         }
 
-        private Lighthouse m_Lighthouse;
+        private ClassBrowserModel m_ClassBrowserModel;
+        private ProjectBrowserModel m_ProjectBrowserModel;
+        private MethodBrowserModel m_MethodBrowserModel;
+        private VariableBrowserModel m_VariableBrowserModel;
+
+
         private List<HierarchialData.SourceFile> m_SelectedSourceFiles;
 
         internal void showProjects(List<HierarchialData.Project> projects)
