@@ -53,10 +53,11 @@
   <ItemGroup>
     <Compile Include="Lighthouse.cs" />
     <Compile Include="LighthouseCommand.cs" />
-    <Compile Include="LighthouseControl.xaml.cs">
-      <DependentUpon>LighthouseControl.xaml</DependentUpon>
+    <Compile Include="LighthouseViewControl.xaml.cs">
+      <DependentUpon>LighthouseViewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="LighthouseHierarchialData.cs" />
+    <Compile Include="LighthouseModels.cs" />
     <Compile Include="LighthousePackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,7 +69,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="LighthouseControl.xaml">
+    <Page Include="LighthouseViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
