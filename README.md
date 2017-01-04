@@ -68,6 +68,16 @@ The `Static` button marks static elements with a different color so you can iden
 ## Using Lighthouse in Jetbrains IntelliJ IDEA 
 ### Installation
 
+1. `Make` or `build` the project
+2.  In the main menu, select `Build (Prepare) Plugin Module for Deployment`.
+3. A `.jar` or `.zip` file will be created
+4. copy the file to `.IntelliJIDEAx0\config\plugins` folder. Restart the IDE
+5. In the main menu, select `File | Setting` to open `Settings` dialog box.
+6. In the `Settings` dialog box, Under `IDE Settings` click `Plugin`.
+7. In plugins area open the `Installed` tab, and then and then select the check-box next to the plugin name.
+8. click OK and restart the IDE.
+9. Open Lighthouse in, View ->  Tool Window -> Lighthouse.
+
 ![UsingIntelliJExample](https://github.com/Red-Portal/LighthouseClassBrowser/blob/master/ExampleOpeningIntelliJ.gif)
 
 ## Current Version Info
