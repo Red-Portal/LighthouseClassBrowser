@@ -15,6 +15,12 @@ namespace LighthouseClassBrowser
             m_ListBoxProject = lighthouseControl.ListBoxProjectBrowser;
             m_ClassBrowserModel = classBrowserModel;
         }
+
+        internal void updateView(HierarchialData.Project projects)
+        {
+            
+        }
+
         private ListBox m_ListBoxProject;
         private ClassBrowserModel m_ClassBrowserModel;
     }
