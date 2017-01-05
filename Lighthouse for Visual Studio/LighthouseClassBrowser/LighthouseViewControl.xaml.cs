@@ -48,51 +48,7 @@ namespace LighthouseClassBrowser
 
         internal void showProjects(List<HierarchialData.Project> projects)
         {
-            var items = new List<HierarchialData.Item>();
-            foreach (HierarchialData.Project project in projects)
-            {
-                items.Add(project);
-
-                foreach (HierarchialData.SourceFile file in project.m_SourceFile)
-                {
-                    items.Add(file);
-                }
-            }
-            this.ListBoxProjectBrowser.DataContext = items;
-        }
-
-        internal void showClasses()
-        {
-            var items = new List<HierarchialData.Item>();
-
-            foreach (HierarchialData.SourceFile file in m_SelectedSourceFiles)
-                items.AddRange(file.m_Classes);
-
-            ListBoxClassBrowser.DataContext = items;
-        }
-
-        internal void showMethods(HierarchialData.Class dataClass)
-        {
-            var list = new List<HierarchialData.Method>();
-
-            foreach (HierarchialData.Method method in dataClass.m_Methods)
-            {
-                list.Add(method);
-            }
-
-            ListBoxMethodBrowser.DataContext = new List<HierarchialData.Item>(list);
-        }
-
-        internal void showVariables(HierarchialData.Class dataClass)
-        {
-            var list = new List<HierarchialData.Variable>();
-
-            foreach (HierarchialData.Variable variable in dataClass.m_Variable)
-            {
-                list.Add(variable);
-            }
-
-            ListBoxVariableBrowser.DataContext = new List<HierarchialData.Item>(list);
+            m_ProjectBrowserModel.eventProjectChanged(projects);
         }
 
         private void ListBoxProjectBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -156,21 +112,7 @@ namespace LighthouseClassBrowser
             }
 
             if (!wasModified)
-            {
-                var list = new List<HierarchialData.SourceFile>();
-                foreach (HierarchialData.Item item in ListBoxProjectBrowser.SelectedItems)
-                {
-                    if (item.GetType() == LighthouseClassBrowser.Lighthouse.TypeOfSourceFile)
-                    {
-                        var sourceFile = item as HierarchialData.SourceFile;
-                        sourceFile.setClassesRecursive(sourceFile.m_ProjectItem.FileCodeModel.CodeElements);
-                        list.Add(sourceFile);
-                    }
-                }
-
-                m_SelectedSourceFiles = list;
-                showClasses();
-            }
+                m_ProjectBrowserModel.eventSelectionChanged(ListBoxProjectBrowser.SelectedItems as List<HierarchialData.Item>);
         }
 
         private bool areAllItemsSelected(HierarchialData.Project project)
@@ -203,26 +145,7 @@ namespace LighthouseClassBrowser
 
         private void ListBoxClassBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ButtonClassDerived.IsChecked = false;
-
-            foreach (HierarchialData.Class dataClass in ListBoxClassBrowser.SelectedItems)
-            {
-                dataClass.setClassComponents(dataClass.m_CodeElement);
-
-                m_Lighthouse.eventSelectedCodeElement(dataClass);
-
-                showMethods(dataClass);
-                if (ButtonMethodAbstract.IsChecked == true)
-                    eventGenericAbstractBrowser<HierarchialData.Method>(ListBoxMethodBrowser);
-                if(ButtonMethodStatic.IsChecked == true)
-                    eventGenericIsStatic(ListBoxMethodBrowser);
-
-                showVariables(dataClass);
-                if (ButtonVariableAbstract.IsChecked == true)
-                    eventGenericAbstractBrowser<HierarchialData.Variable>(ListBoxVariableBrowser);
-                if(ButtonVariableStatic.IsChecked == true)
-                    eventGenericIsStatic(ListBoxVariableBrowser);
-            }
+            m_ClassBrowserModel.eventClassSelectionChanged(ListBoxClassBrowser.SelectedItems as List<HierarchialData.Item>);
         }
 
         private void ListBoxMethodBrowser_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

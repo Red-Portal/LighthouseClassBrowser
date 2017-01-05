@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using EnvDTE;
+using Microsoft.VisualStudio.PlatformUI;
 
 namespace LighthouseClassBrowser
 {
@@ -12,16 +14,55 @@ namespace LighthouseClassBrowser
     {
         internal ProjectBrowserModel(LighthouseControl lighthouseControl, ClassBrowserModel classBrowserModel)
         {
-            m_ListBoxProject = lighthouseControl.ListBoxProjectBrowser;
+            m_ListBoxProjectView = lighthouseControl.ListBoxProjectBrowser;
             m_ClassBrowserModel = classBrowserModel;
         }
 
-        internal void updateView(HierarchialData.Project projects)
+        internal void eventProjectChanged(List<HierarchialData.Project> projects)
         {
-            
+            foreach(HierarchialData.Project project in projects)
+                project.setProjectItemsRecursive(project.m_Project.ProjectItems);
+
+            updateView(projects);
+        }
+        internal void eventSelectionChanged(List<HierarchialData.Item> selectedItems)
+        {
+            var sourceFiles = new List<HierarchialData.Item>();
+
+            foreach (HierarchialData.Item item in selectedItems)
+            {
+                if (item.GetType() == typeof(HierarchialData.SourceFile))
+                {
+                    var sourceFile = item as HierarchialData.SourceFile;
+
+                    sourceFile.setClassesRecursive(sourceFile.m_ProjectItem.FileCodeModel.CodeElements);
+                    sourceFiles.Add(item);
+                }
+            }
+            m_ClassBrowserModel.eventProjectSelectionChanged(sourceFiles);
+            updateView(sourceFiles);
         }
 
-        private ListBox m_ListBoxProject;
+        private void updateView(List<HierarchialData.Item> items)
+        {
+            m_ListBoxProjectView.DataContext = new List<HierarchialData.Item>(items); 
+        }
+        private void updateView<T>(List<T> items) where T : HierarchialData.Project //pure
+        {
+            var itemList = new List<HierarchialData.Item>();
+
+            foreach (T project in items)
+            {
+                itemList.Add(project);
+
+                foreach (HierarchialData.SourceFile file in project.m_SourceFile)
+                    itemList.Add(file);
+            }
+            m_ListBoxProjectView.DataContext = new List<HierarchialData.Item>(items);
+        }
+
+        private List<HierarchialData.SourceFile> selectedSourceFiles;
+        private ListBox m_ListBoxProjectView;
         private ClassBrowserModel m_ClassBrowserModel;
     }
 
@@ -37,6 +78,31 @@ namespace LighthouseClassBrowser
 
             m_MethodBrowserModel = methodBrowserModel;
             m_VariableBrowserModel = variableBrowserModel;
+        }
+
+        internal void eventProjectSelectionChanged(List<HierarchialData.Item> selectedSourceFiles)
+        {
+            var list = new List<HierarchialData.Item>();
+            foreach (HierarchialData.Item sourceFile in selectedSourceFiles)
+            {
+                var classItems = (sourceFile as HierarchialData.SourceFile).m_Classes;
+                list.AddRange(classItems);
+            }
+
+            updateView(list);
+        }
+
+        internal void eventClassSelectionChanged(List<HierarchialData.Item> selectedClasses)
+        {
+            foreach (HierarchialData.Item item in selectedClasses)
+            {
+                
+            }
+        }
+
+        private void updateView(List<HierarchialData.Item> items)
+        {
+            m_ClassListBox.DataContext = new List<HierarchialData.Item>(items);
         }
 
         private ListBox m_ClassListBox;
