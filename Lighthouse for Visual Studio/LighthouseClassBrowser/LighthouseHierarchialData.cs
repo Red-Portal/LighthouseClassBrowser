@@ -9,9 +9,7 @@ namespace LighthouseClassBrowser
 {
     namespace HierarchialData
     {
-        public class Item
-        {
-        }
+        public class Item {}
 
         public class Project : Item
         {
@@ -27,18 +25,23 @@ namespace LighthouseClassBrowser
                 setProjectItemsRecursive(m_Project.ProjectItems);
             }
 
-            public void setProjectItemsRecursive(ProjectItems items)
+            public void setProjectItemsRecursive(ProjectItems items, List<SourceFile> list = null)
             {
                 if (items == null  || items.Count == 0)
                     return;
 
+                if(list == null)
+                    list = new List<SourceFile>();
+
                 foreach (EnvDTE.ProjectItem item in items)
                 {
                     if (item.Name.Contains(".cs"))
-                        m_SourceFile.Add(new SourceFile(item));
+                        list.Add(new SourceFile(item));
                     else
-                        setProjectItemsRecursive(item.ProjectItems);
+                        setProjectItemsRecursive(item.ProjectItems, list);
                 }
+
+                m_SourceFile = list;
             }
         };
 

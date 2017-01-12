@@ -150,8 +150,6 @@ D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for V
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\bin\Debug\Microsoft.VisualStudio.ImageCatalog.xml
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\bin\Debug\ko\Microsoft.VisualStudio.GraphModel.resources.dll
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseClassBrowser.csprojResolveAssemblyReference.cache
-D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseControl.baml
-D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseControl.g.cs
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseClassBrowser_MarkupCompile.cache
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseClassBrowser.g.resources
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\VSPackage.resources
@@ -166,3 +164,5 @@ D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for V
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseClassBrowser.pkgdef
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseClassBrowser.latest.pkgdef
 D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\extension.vsixmanifest
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseViewControl.baml
+D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse for Visual Studio\LighthouseClassBrowser\obj\Debug\LighthouseViewControl.g.cs

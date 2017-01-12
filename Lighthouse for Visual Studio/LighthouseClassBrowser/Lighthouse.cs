@@ -90,6 +90,7 @@ namespace LighthouseClassBrowser
             m_ProjectEvents = ((Events2) m_ServiceDTE.Events).ProjectItemsEvents;
             m_WindowEvents = ((Events2) m_ServiceDTE.Events).WindowEvents;
             m_SolutionEvents.Opened += eventOnSolutionOpen;
+            m_SolutionEvents.AfterClosing += eventOnSolutionClosed;
             m_SolutionEvents.ProjectRenamed += eventOnProjectRename;
             m_SolutionEvents.ProjectAdded += eventOnProjectAdded;
             m_SolutionEvents.ProjectRemoved += eventOnProjectRemoved;
@@ -131,8 +132,12 @@ namespace LighthouseClassBrowser
         {
             setProjects(m_ServiceDTE.Solution.Projects);
         }
+        private void eventOnSolutionClosed()
+        {
+            setProjects(m_ServiceDTE.Solution.Projects);
+        }
 
-        internal void eventSelectedCodeElement(HierarchialData.Item item)
+        internal static void eventSelectedCodeElement(HierarchialData.Item item)
         {
             if (item.GetType() == TypeOfClass)
             {

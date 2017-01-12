@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using EnvDTE;
+using EnvDTE80;
 using Microsoft.VisualStudio.PlatformUI;
 
 namespace LighthouseClassBrowser
@@ -20,14 +21,18 @@ namespace LighthouseClassBrowser
 
         internal void eventProjectChanged(List<HierarchialData.Project> projects)
         {
-            foreach(HierarchialData.Project project in projects)
-                project.setProjectItemsRecursive(project.m_Project.ProjectItems);
+            var list = new List<HierarchialData.Item>();
+            foreach (HierarchialData.Project project in projects)
+                list.Add((HierarchialData.Item) project);
 
-            updateView(projects);
+            setProjects(list);
+            updateView();
         }
+
         internal void eventSelectionChanged(List<HierarchialData.Item> selectedItems)
         {
             var sourceFiles = new List<HierarchialData.Item>();
+            var selectedFiles = new List<HierarchialData.Item>();
 
             foreach (HierarchialData.Item item in selectedItems)
             {
@@ -37,33 +42,47 @@ namespace LighthouseClassBrowser
 
                     sourceFile.setClassesRecursive(sourceFile.m_ProjectItem.FileCodeModel.CodeElements);
                     sourceFiles.Add(item);
+                    selectedFiles.Add(item);
                 }
             }
+
+            m_SelectedItems = selectedFiles;
+
             m_ClassBrowserModel.eventProjectSelectionChanged(sourceFiles);
-            updateView(sourceFiles);
+            updateView();
         }
 
-        private void updateView(List<HierarchialData.Item> items)
+        private void setProjects(List<HierarchialData.Item> items)
         {
-            m_ListBoxProjectView.DataContext = new List<HierarchialData.Item>(items); 
-        }
-        private void updateView<T>(List<T> items) where T : HierarchialData.Project //pure
-        {
-            var itemList = new List<HierarchialData.Item>();
-
-            foreach (T project in items)
+            foreach (HierarchialData.Item item in items)
             {
-                itemList.Add(project);
-
-                foreach (HierarchialData.SourceFile file in project.m_SourceFile)
-                    itemList.Add(file);
+                var project = item as HierarchialData.Project;
+                project.setProjectItemsRecursive(project.m_Project.ProjectItems);
             }
-            m_ListBoxProjectView.DataContext = new List<HierarchialData.Item>(items);
+
+            m_OpenProjects = items;
         }
 
-        private List<HierarchialData.SourceFile> selectedSourceFiles;
-        private ListBox m_ListBoxProjectView;
-        private ClassBrowserModel m_ClassBrowserModel;
+        private void updateView()
+        {
+            var list = new List<HierarchialData.Item>();
+            foreach (HierarchialData.Item item in m_OpenProjects)
+            {
+                list.Add(item);
+                if (item.GetType() == Lighthouse.TypeOfProject)
+                {
+                    var project = item as HierarchialData.Project;
+                    list.AddRange(project.m_SourceFile);
+                }
+            }
+
+            m_ListBoxProjectView.DataContext = new List<HierarchialData.Item>(list); 
+        }
+
+        private List<HierarchialData.Item> m_OpenProjects;
+        public List<HierarchialData.Item> m_SelectedItems { get; private set; }
+        private readonly ListBox m_ListBoxProjectView;
+        private readonly ClassBrowserModel m_ClassBrowserModel;
     }
 
     internal class ClassBrowserModel
@@ -92,17 +111,69 @@ namespace LighthouseClassBrowser
             updateView(list);
         }
 
+        internal void eventButtonAbstractPressed()
+        {
+            updateView();
+        }
+
         internal void eventClassSelectionChanged(List<HierarchialData.Item> selectedClasses)
+        {
+            setClassesRecursive(selectedClasses);
+
+            m_MethodBrowserModel.eventClassSelectionChanged(selectedClasses);
+            m_VariableBrowserModel.eventClassSelectionChanged(selectedClasses);
+        }
+
+        private void setClassesRecursive(List<HierarchialData.Item> selectedClasses)
         {
             foreach (HierarchialData.Item item in selectedClasses)
             {
-                
+                var classItem = item as HierarchialData.Class;
+                classItem.setClassComponents(classItem.m_CodeElement);
             }
         }
 
         private void updateView(List<HierarchialData.Item> items)
         {
-            m_ClassListBox.DataContext = new List<HierarchialData.Item>(items);
+            m_ClassListBox.DataContext = new List<HierarchialData.Item>(
+                ButtonsStateHandler(items)
+                );
+        }
+
+        private List<HierarchialData.Item> ButtonsStateHandler(List<HierarchialData.Item> items)
+        {
+            if (m_ButtonAbstract.IsChecked == true)
+            {
+                return hideAbstract(items);
+            }
+            if (m_ButtonDerived.IsChecked == true)
+            {
+                
+            }
+            if (m_ButtonStatic.IsChecked == true)
+            {
+                
+            }
+            return items;
+        }
+
+        private List<HierarchialData.Item> hideAbstract(List<HierarchialData.Item> items)
+        {
+            var list = new List<HierarchialData.Item>();
+            foreach (HierarchialData.Item item in items)
+            {
+                if(!isAbstract(((item as HierarchialData.Class).m_CodeElement as CodeClass2).Access))
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
+        }
+
+        private bool isAbstract(vsCMAccess accessLevel)
+        {
+            return accessLevel == vsCMAccess.vsCMAccessPublic
+                   || accessLevel == vsCMAccess.vsCMAccessDefault;
         }
 
         private ListBox m_ClassListBox;
@@ -123,6 +194,26 @@ namespace LighthouseClassBrowser
             m_ButtonStatic = lighthouseControl.ButtonClassStatic;
         }
 
+        internal void eventClassSelectionChanged(List<HierarchialData.Item> selectedClasses)
+        {
+            var list = new List<HierarchialData.Item>();
+            
+            foreach (HierarchialData.Class classItem in selectedClasses)
+                list.AddRange(classItem.m_Methods);
+
+            updateView(list);
+        }
+
+        private void updateView(List<HierarchialData.Item> variables)
+        {
+            m_MethodListBox.DataContext = new List<HierarchialData.Item>(variables);
+        }
+
+        internal void eventButtonAbstractPressed()
+        {
+            
+        }
+
         private ListBox m_MethodListBox;
         private ToggleButton m_ButtonAbstract;
         private ToggleButton m_ButtonDerived;
@@ -137,6 +228,26 @@ namespace LighthouseClassBrowser
             m_ButtonAbstract = lighthouseControl.ButtonVariableAbstract;
             m_ButtonDerived = lighthouseControl.ButtonVariableDerived;
             m_ButtonStatic = lighthouseControl.ButtonVariableStatic;
+        }
+
+        internal void eventClassSelectionChanged(List<HierarchialData.Item> selectedClasses)
+        {
+            var list = new List<HierarchialData.Item>();
+            
+            foreach (HierarchialData.Class classItem in selectedClasses)
+                list.AddRange(classItem.m_Variable);
+
+            updateView(list);
+        }
+
+        private void updateView(List<HierarchialData.Item> variables)
+        {
+            m_VariableListBox.DataContext = new List<HierarchialData.Item>(variables);
+        }
+
+        internal void eventButtonAbstractPressed()
+        {
+            
         }
 
         private ToggleButton m_ButtonAbstract;
