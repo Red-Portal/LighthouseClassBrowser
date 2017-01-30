@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "LighthouseCodeElement.proto";
+package Lighthouse.State;
+
+message State
+{
+	message Browser
+	{
+		repeated Lighthouse.CodeElement.CodeElement _listElement = 1;
+		bool _buttonFirstState = 2;
+		bool _buttonSecondState = 3;
+		bool _buttonThirdState = 4;
+	}
+	
+	Browser _first = 1;
+	Browser _second = 2;
+	Browser _third = 3;
+	Browser _fourth = 4;
+}

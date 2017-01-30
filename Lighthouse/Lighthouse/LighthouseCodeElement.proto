@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package Lighthouse.CodeElement;
+
+message CodeElement
+{
+	enum ElementType
+	{
+		TOP = 0;
+		//TOP types are the hierarchy element right above source files
+		//such as packages for Java, projects for C#
+		SOURCEFILE = 1;
+		NAMESPACE = 2;
+		CLASS = 3;
+		//interface or abstract classes are all considered as classes
+		MEMBER = 4;
+		METHOD = 5;
+	}
+	
+	string _name = 1;
+	bytes _byteData = 2;
+	ElementType _Type = 3;
+	bool _isSelected = 4;
+	
+	repeated CodeElement _child = 5; //code element's members
+}
