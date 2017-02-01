@@ -1,25 +1,36 @@
 #include "LighthouseInterface.h"
 
-void LighthouseInterface::setInitialState(std::string initialStateData)
+void LighthouseInterface::firstBrowserDataPush(std::string)
 {
-	Lighthouse::State::State initialState;
-	initialState.ParseFromString(initialStateData);
-	_mainModule = LighthouseMain(std::move(initialState));
+	
 }
-void LighthouseInterface::eventDataPush(std::string serialData)
+std::string LighthouseInterface::firstBrowserDataPull()
 {
-	Lighthouse::State::State newEventState;
-	newEventState.ParseFromString(serialData);
-	auto result = _mainModule.processEvent(std::move(newEventState));
+	
+}
 
-	_updatePosition = std::get<0>(result);
-	_newStateData = std::get<1>(result);
-}
-int LighthouseInterface::getUpdatePosition()
+void LighthouseInterface::secondBrowserDataPush(std::string)
 {
-	return _updatePosition;
+	
 }
-std::string LighthouseInterface::eventDataPull()
+std::string LighthouseInterface::secondBrowserDataPull_first()
 {
-	return _newStateData;
+	
+}
+std::string LighthouseInterface::secondBrowserDataPull_second()
+{
+	
+}
+std::string LighthouseInterface::secondBrowserMovePositionPull()
+{
+	
+}
+
+void LighthouseInterface::thirdBrowserDataPush(std::string)
+{
+	
+}
+std::string LighthouseInterface::thirdBrowserMovePositionPull()
+{
+	
 }

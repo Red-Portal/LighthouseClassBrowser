@@ -26,7 +26,7 @@ public:
 
 	void secondBrowserDataPush(std::string);
 	std::string secondBrowserDataPull_first();
-	std::string secondBrowserDataPUll_second();
+	std::string secondBrowserDataPull_second();
 	std::string secondBrowserMovePositionPull();
 
 	void thirdBrowserDataPush(std::string);
