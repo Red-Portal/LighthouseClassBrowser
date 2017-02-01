@@ -1,4 +1,5 @@
 #include "LighthouseMain.h"
+#include <functional>
 
 LighthouseMain::LighthouseMain(Lighthouse::State::State&& initialState)
 	: _previousState{std::move(initialState)}
@@ -15,7 +16,7 @@ inline int LighthouseMain::findSelected(Lighthouse::State::State::Browser const&
 
 	return -1;
 }
-inline bool LighthouseMain::isEqual(Lighthouse::State::State::Browser const& current,
+inline bool LighthouseMain::isStateUnchanged(Lighthouse::State::State::Browser const& current,
 	Lighthouse::State::State::Browser const& previous, int index) const
 {
 	bool currentState = current._listelement(index)._isselected();
@@ -30,7 +31,16 @@ auto LighthouseMain::processEvent(Lighthouse::State::State&& eventState)
 	int indexThird = findSelected(eventState._third());
 	int indexFourth = findSelected(eventState._fourth());
 
-	if
+	if (indexSecond > 0)
+		if (!isStateUnchanged(eventState._second(), _previousState._second(), indexSecond))
+
+	if(indexSecond > 0)
+		if(!isStateUnchanged(eventState._third(), _previousState._third(), indexThird))
+	
+	if(indexFourth > 0)
+		if(!isStateUnchanged(eventState._fourth(), _previousState._fourth(), indexFourth))
+
+
 
 	return std::make_tuple(int{}, std::string(""));
 }

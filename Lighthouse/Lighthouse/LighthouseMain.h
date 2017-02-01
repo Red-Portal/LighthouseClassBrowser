@@ -11,7 +11,7 @@ private:
 	LighthouseTree _sourceTree;
 	
 	inline int findSelected(Lighthouse::State::State::Browser const&) const; //this returns the index of a 'isSelected -> true'
-	inline bool isEqual(Lighthouse::State::State::Browser const&, Lighthouse::State::State::Browser const&, int) const; //which screen received an update
+	inline bool isStateUnchanged(Lighthouse::State::State::Browser const&, Lighthouse::State::State::Browser const&, int) const; // is the selected item a 'newly selected item'?
 public:
 	explicit LighthouseMain(Lighthouse::State::State&&); //should be initialized with 'initialState' message
 	explicit LighthouseMain() = default;
