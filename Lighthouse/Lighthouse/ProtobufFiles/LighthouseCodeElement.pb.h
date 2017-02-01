@@ -42,11 +42,10 @@ class CodeElement;
 
 enum CodeElement_ElementType {
   CodeElement_ElementType_TOP = 0,
-  CodeElement_ElementType_SOURCEFILE = 1,
-  CodeElement_ElementType_NAMESPACE = 2,
-  CodeElement_ElementType_CLASS = 3,
-  CodeElement_ElementType_MEMBER = 4,
-  CodeElement_ElementType_METHOD = 5,
+  CodeElement_ElementType_NAMESPACE = 1,
+  CodeElement_ElementType_CLASS = 2,
+  CodeElement_ElementType_MEMBER = 3,
+  CodeElement_ElementType_METHOD = 4,
   CodeElement_ElementType_CodeElement_ElementType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   CodeElement_ElementType_CodeElement_ElementType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
@@ -128,8 +127,6 @@ class CodeElement : public ::google::protobuf::Message /* @@protoc_insertion_poi
   typedef CodeElement_ElementType ElementType;
   static const ElementType TOP =
     CodeElement_ElementType_TOP;
-  static const ElementType SOURCEFILE =
-    CodeElement_ElementType_SOURCEFILE;
   static const ElementType NAMESPACE =
     CodeElement_ElementType_NAMESPACE;
   static const ElementType CLASS =
@@ -172,33 +169,56 @@ class CodeElement : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::std::string* release__name();
   void set_allocated__name(::std::string* _name);
 
-  // optional bytes _byteData = 2;
-  void clear__bytedata();
-  static const int kByteDataFieldNumber = 2;
-  const ::std::string& _bytedata() const;
-  void set__bytedata(const ::std::string& value);
-  void set__bytedata(const char* value);
-  void set__bytedata(const void* value, size_t size);
-  ::std::string* mutable__bytedata();
-  ::std::string* release__bytedata();
-  void set_allocated__bytedata(::std::string* _bytedata);
+  // optional bytes _data1 = 2;
+  void clear__data1();
+  static const int kData1FieldNumber = 2;
+  const ::std::string& _data1() const;
+  void set__data1(const ::std::string& value);
+  void set__data1(const char* value);
+  void set__data1(const void* value, size_t size);
+  ::std::string* mutable__data1();
+  ::std::string* release__data1();
+  void set_allocated__data1(::std::string* _data1);
 
-  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 3;
+  // optional bytes _data2 = 3;
+  void clear__data2();
+  static const int kData2FieldNumber = 3;
+  const ::std::string& _data2() const;
+  void set__data2(const ::std::string& value);
+  void set__data2(const char* value);
+  void set__data2(const void* value, size_t size);
+  ::std::string* mutable__data2();
+  ::std::string* release__data2();
+  void set_allocated__data2(::std::string* _data2);
+
+  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 4;
   void clear__type();
-  static const int kTypeFieldNumber = 3;
+  static const int kTypeFieldNumber = 4;
   ::Lighthouse::CodeElement::CodeElement_ElementType _type() const;
   void set__type(::Lighthouse::CodeElement::CodeElement_ElementType value);
 
-  // optional bool _isSelected = 4;
+  // optional bool _isSelected = 5;
   void clear__isselected();
-  static const int kIsSelectedFieldNumber = 4;
+  static const int kIsSelectedFieldNumber = 5;
   bool _isselected() const;
   void set__isselected(bool value);
 
-  // repeated .Lighthouse.CodeElement.CodeElement _child = 5;
+  // optional bool _isAbstract = 6;
+  void clear__isabstract();
+  static const int kIsAbstractFieldNumber = 6;
+  bool _isabstract() const;
+  void set__isabstract(bool value);
+
+  // optional bool _isStatic = 7;
+  void clear__isstatic();
+  static const int kIsStaticFieldNumber = 7;
+  bool _isstatic() const;
+  void set__isstatic(bool value);
+
+  // repeated .Lighthouse.CodeElement.CodeElement _child = 8;
   int _child_size() const;
   void clear__child();
-  static const int kChildFieldNumber = 5;
+  static const int kChildFieldNumber = 8;
   const ::Lighthouse::CodeElement::CodeElement& _child(int index) const;
   ::Lighthouse::CodeElement::CodeElement* mutable__child(int index);
   ::Lighthouse::CodeElement::CodeElement* add__child();
@@ -213,9 +233,12 @@ class CodeElement : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr _name_;
-  ::google::protobuf::internal::ArenaStringPtr _bytedata_;
+  ::google::protobuf::internal::ArenaStringPtr _data1_;
+  ::google::protobuf::internal::ArenaStringPtr _data2_;
   int _type_;
   bool _isselected_;
+  bool _isabstract_;
+  bool _isstatic_;
   ::google::protobuf::RepeatedPtrField< ::Lighthouse::CodeElement::CodeElement > _child_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_LighthouseCodeElement_2eproto();
@@ -277,51 +300,95 @@ inline void CodeElement::set_allocated__name(::std::string* _name) {
   // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._name)
 }
 
-// optional bytes _byteData = 2;
-inline void CodeElement::clear__bytedata() {
-  _bytedata_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// optional bytes _data1 = 2;
+inline void CodeElement::clear__data1() {
+  _data1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& CodeElement::_bytedata() const {
-  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._byteData)
-  return _bytedata_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline const ::std::string& CodeElement::_data1() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._data1)
+  return _data1_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void CodeElement::set__bytedata(const ::std::string& value) {
+inline void CodeElement::set__data1(const ::std::string& value) {
   
-  _bytedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._byteData)
+  _data1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._data1)
 }
-inline void CodeElement::set__bytedata(const char* value) {
+inline void CodeElement::set__data1(const char* value) {
   
-  _bytedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Lighthouse.CodeElement.CodeElement._byteData)
+  _data1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Lighthouse.CodeElement.CodeElement._data1)
 }
-inline void CodeElement::set__bytedata(const void* value, size_t size) {
+inline void CodeElement::set__data1(const void* value, size_t size) {
   
-  _bytedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  _data1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Lighthouse.CodeElement.CodeElement._byteData)
+  // @@protoc_insertion_point(field_set_pointer:Lighthouse.CodeElement.CodeElement._data1)
 }
-inline ::std::string* CodeElement::mutable__bytedata() {
+inline ::std::string* CodeElement::mutable__data1() {
   
-  // @@protoc_insertion_point(field_mutable:Lighthouse.CodeElement.CodeElement._byteData)
-  return _bytedata_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_mutable:Lighthouse.CodeElement.CodeElement._data1)
+  return _data1_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* CodeElement::release__bytedata() {
-  // @@protoc_insertion_point(field_release:Lighthouse.CodeElement.CodeElement._byteData)
+inline ::std::string* CodeElement::release__data1() {
+  // @@protoc_insertion_point(field_release:Lighthouse.CodeElement.CodeElement._data1)
   
-  return _bytedata_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return _data1_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void CodeElement::set_allocated__bytedata(::std::string* _bytedata) {
-  if (_bytedata != NULL) {
+inline void CodeElement::set_allocated__data1(::std::string* _data1) {
+  if (_data1 != NULL) {
     
   } else {
     
   }
-  _bytedata_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), _bytedata);
-  // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._byteData)
+  _data1_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), _data1);
+  // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._data1)
 }
 
-// optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 3;
+// optional bytes _data2 = 3;
+inline void CodeElement::clear__data2() {
+  _data2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& CodeElement::_data2() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._data2)
+  return _data2_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CodeElement::set__data2(const ::std::string& value) {
+  
+  _data2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._data2)
+}
+inline void CodeElement::set__data2(const char* value) {
+  
+  _data2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Lighthouse.CodeElement.CodeElement._data2)
+}
+inline void CodeElement::set__data2(const void* value, size_t size) {
+  
+  _data2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Lighthouse.CodeElement.CodeElement._data2)
+}
+inline ::std::string* CodeElement::mutable__data2() {
+  
+  // @@protoc_insertion_point(field_mutable:Lighthouse.CodeElement.CodeElement._data2)
+  return _data2_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CodeElement::release__data2() {
+  // @@protoc_insertion_point(field_release:Lighthouse.CodeElement.CodeElement._data2)
+  
+  return _data2_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CodeElement::set_allocated__data2(::std::string* _data2) {
+  if (_data2 != NULL) {
+    
+  } else {
+    
+  }
+  _data2_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), _data2);
+  // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._data2)
+}
+
+// optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 4;
 inline void CodeElement::clear__type() {
   _type_ = 0;
 }
@@ -335,7 +402,7 @@ inline void CodeElement::set__type(::Lighthouse::CodeElement::CodeElement_Elemen
   // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._Type)
 }
 
-// optional bool _isSelected = 4;
+// optional bool _isSelected = 5;
 inline void CodeElement::clear__isselected() {
   _isselected_ = false;
 }
@@ -349,7 +416,35 @@ inline void CodeElement::set__isselected(bool value) {
   // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isSelected)
 }
 
-// repeated .Lighthouse.CodeElement.CodeElement _child = 5;
+// optional bool _isAbstract = 6;
+inline void CodeElement::clear__isabstract() {
+  _isabstract_ = false;
+}
+inline bool CodeElement::_isabstract() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._isAbstract)
+  return _isabstract_;
+}
+inline void CodeElement::set__isabstract(bool value) {
+  
+  _isabstract_ = value;
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isAbstract)
+}
+
+// optional bool _isStatic = 7;
+inline void CodeElement::clear__isstatic() {
+  _isstatic_ = false;
+}
+inline bool CodeElement::_isstatic() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._isStatic)
+  return _isstatic_;
+}
+inline void CodeElement::set__isstatic(bool value) {
+  
+  _isstatic_ = value;
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isStatic)
+}
+
+// repeated .Lighthouse.CodeElement.CodeElement _child = 8;
 inline int CodeElement::_child_size() const {
   return _child_.size();
 }

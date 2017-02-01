@@ -1,30 +1,25 @@
 #include "LighthouseInterface.h"
 
-LighthouseInterface::LighthouseInterface()
+void LighthouseInterface::setInitialState(std::string initialStateData)
 {
-	
+	Lighthouse::State::State initialState;
+	initialState.ParseFromString(initialStateData);
+	_mainModule = LighthouseMain(std::move(initialState));
 }
-std::string LighthouseInterface::eventDataPull()
+void LighthouseInterface::eventDataPush(std::string serialData)
 {
-	return std::string("");
-}
-void LighthouseInterface::eventDataPush(std::string)
-{
-	
-}
-std::string LighthouseInterface::getPointPosition()
-{
-	return std::string("");
+	Lighthouse::State::State newEventState;
+	newEventState.ParseFromString(serialData);
+	auto result = _mainModule.processEvent(std::move(newEventState));
+
+	_updatePosition = std::get<0>(result);
+	_newStateData = std::get<1>(result);
 }
 int LighthouseInterface::getUpdatePosition()
 {
-	
+	return _updatePosition;
 }
-void LighthouseInterface::setInitialState(std::string)
+std::string LighthouseInterface::eventDataPull()
 {
-	
-}
-bool LighthouseInterface::shouldMoveToPoint()
-{
-	return false;
+	return _newStateData;
 }

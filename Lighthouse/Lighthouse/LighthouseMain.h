@@ -9,11 +9,14 @@ class LighthouseMain
 private:
 	Lighthouse::State::State _previousState;
 	LighthouseTree _sourceTree;
-
-	bool compareStates();
+	
+	inline int findSelected(Lighthouse::State::State::Browser const&) const; //this returns the index of a 'isSelected -> true'
+	inline bool isEqual(Lighthouse::State::State::Browser const&, Lighthouse::State::State::Browser const&, int) const; //which screen received an update
 public:
-	explicit LighthouseMain(); //should be initialized with 'initialState' message
+	explicit LighthouseMain(Lighthouse::State::State&&); //should be initialized with 'initialState' message
+	explicit LighthouseMain() = default;
 
-	void processEvents();
+	auto processEvent(Lighthouse::State::State&&)->std::tuple<int, std::string>;
+	std::string getMovePosition();
 };
 #endif

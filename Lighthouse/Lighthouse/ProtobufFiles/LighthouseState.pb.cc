@@ -58,11 +58,8 @@ void protobuf_AssignDesc_LighthouseState_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(State, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(State, _is_default_instance_));
   State_Browser_descriptor_ = State_descriptor_->nested_type(0);
-  static const int State_Browser_offsets_[4] = {
+  static const int State_Browser_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(State_Browser, _listelement_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(State_Browser, _buttonfirststate_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(State_Browser, _buttonsecondstate_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(State_Browser, _buttonthirdstate_),
   };
   State_Browser_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -113,16 +110,14 @@ void protobuf_AddDesc_LighthouseState_2eproto() {
   ::Lighthouse::CodeElement::protobuf_AddDesc_LighthouseCodeElement_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\025LighthouseState.proto\022\020Lighthouse.Stat"
-    "e\032\033LighthouseCodeElement.proto\"\346\002\n\005State"
+    "e\032\033LighthouseCodeElement.proto\"\223\002\n\005State"
     "\022/\n\006_first\030\001 \001(\0132\037.Lighthouse.State.Stat"
     "e.Browser\0220\n\007_second\030\002 \001(\0132\037.Lighthouse."
     "State.State.Browser\022/\n\006_third\030\003 \001(\0132\037.Li"
     "ghthouse.State.State.Browser\0220\n\007_fourth\030"
-    "\004 \001(\0132\037.Lighthouse.State.State.Browser\032\226"
-    "\001\n\007Browser\0229\n\014_listElement\030\001 \003(\0132#.Light"
-    "house.CodeElement.CodeElement\022\031\n\021_button"
-    "FirstState\030\002 \001(\010\022\032\n\022_buttonSecondState\030\003"
-    " \001(\010\022\031\n\021_buttonThirdState\030\004 \001(\010b\006proto3", 439);
+    "\004 \001(\0132\037.Lighthouse.State.State.Browser\032D"
+    "\n\007Browser\0229\n\014_listElement\030\001 \003(\0132#.Lighth"
+    "ouse.CodeElement.CodeElementb\006proto3", 356);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "LighthouseState.proto", &protobuf_RegisterTypes);
   State::default_instance_ = new State();
@@ -143,9 +138,6 @@ struct StaticDescriptorInitializer_LighthouseState_2eproto {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int State_Browser::kListElementFieldNumber;
-const int State_Browser::kButtonFirstStateFieldNumber;
-const int State_Browser::kButtonSecondStateFieldNumber;
-const int State_Browser::kButtonThirdStateFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 State_Browser::State_Browser()
@@ -169,9 +161,6 @@ State_Browser::State_Browser(const State_Browser& from)
 void State_Browser::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
-  _buttonfirststate_ = false;
-  _buttonsecondstate_ = false;
-  _buttonthirdstate_ = false;
 }
 
 State_Browser::~State_Browser() {
@@ -211,27 +200,6 @@ State_Browser* State_Browser::New(::google::protobuf::Arena* arena) const {
 
 void State_Browser::Clear() {
 // @@protoc_insertion_point(message_clear_start:Lighthouse.State.State.Browser)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(State_Browser, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<State_Browser*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(_buttonfirststate_, _buttonthirdstate_);
-
-#undef ZR_HELPER_
-#undef ZR_
-
   _listelement_.Clear();
 }
 
@@ -257,51 +225,6 @@ bool State_Browser::MergePartialFromCodedStream(
         }
         if (input->ExpectTag(10)) goto parse_loop__listElement;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectTag(16)) goto parse__buttonFirstState;
-        break;
-      }
-
-      // optional bool _buttonFirstState = 2;
-      case 2: {
-        if (tag == 16) {
-         parse__buttonFirstState:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &_buttonfirststate_)));
-
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse__buttonSecondState;
-        break;
-      }
-
-      // optional bool _buttonSecondState = 3;
-      case 3: {
-        if (tag == 24) {
-         parse__buttonSecondState:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &_buttonsecondstate_)));
-
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse__buttonThirdState;
-        break;
-      }
-
-      // optional bool _buttonThirdState = 4;
-      case 4: {
-        if (tag == 32) {
-         parse__buttonThirdState:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &_buttonthirdstate_)));
-
-        } else {
-          goto handle_unusual;
-        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -336,21 +259,6 @@ void State_Browser::SerializeWithCachedSizes(
       1, this->_listelement(i), output);
   }
 
-  // optional bool _buttonFirstState = 2;
-  if (this->_buttonfirststate() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->_buttonfirststate(), output);
-  }
-
-  // optional bool _buttonSecondState = 3;
-  if (this->_buttonsecondstate() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->_buttonsecondstate(), output);
-  }
-
-  // optional bool _buttonThirdState = 4;
-  if (this->_buttonthirdstate() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->_buttonthirdstate(), output);
-  }
-
   // @@protoc_insertion_point(serialize_end:Lighthouse.State.State.Browser)
 }
 
@@ -364,21 +272,6 @@ void State_Browser::SerializeWithCachedSizes(
         1, this->_listelement(i), false, target);
   }
 
-  // optional bool _buttonFirstState = 2;
-  if (this->_buttonfirststate() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->_buttonfirststate(), target);
-  }
-
-  // optional bool _buttonSecondState = 3;
-  if (this->_buttonsecondstate() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->_buttonsecondstate(), target);
-  }
-
-  // optional bool _buttonThirdState = 4;
-  if (this->_buttonthirdstate() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->_buttonthirdstate(), target);
-  }
-
   // @@protoc_insertion_point(serialize_to_array_end:Lighthouse.State.State.Browser)
   return target;
 }
@@ -386,21 +279,6 @@ void State_Browser::SerializeWithCachedSizes(
 int State_Browser::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:Lighthouse.State.State.Browser)
   int total_size = 0;
-
-  // optional bool _buttonFirstState = 2;
-  if (this->_buttonfirststate() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional bool _buttonSecondState = 3;
-  if (this->_buttonsecondstate() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional bool _buttonThirdState = 4;
-  if (this->_buttonthirdstate() != 0) {
-    total_size += 1 + 1;
-  }
 
   // repeated .Lighthouse.CodeElement.CodeElement _listElement = 1;
   total_size += 1 * this->_listelement_size();
@@ -439,15 +317,6 @@ void State_Browser::MergeFrom(const State_Browser& from) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
   _listelement_.MergeFrom(from._listelement_);
-  if (from._buttonfirststate() != 0) {
-    set__buttonfirststate(from._buttonfirststate());
-  }
-  if (from._buttonsecondstate() != 0) {
-    set__buttonsecondstate(from._buttonsecondstate());
-  }
-  if (from._buttonthirdstate() != 0) {
-    set__buttonthirdstate(from._buttonthirdstate());
-  }
 }
 
 void State_Browser::CopyFrom(const ::google::protobuf::Message& from) {
@@ -475,9 +344,6 @@ void State_Browser::Swap(State_Browser* other) {
 }
 void State_Browser::InternalSwap(State_Browser* other) {
   _listelement_.UnsafeArenaSwap(&other->_listelement_);
-  std::swap(_buttonfirststate_, other->_buttonfirststate_);
-  std::swap(_buttonsecondstate_, other->_buttonsecondstate_);
-  std::swap(_buttonthirdstate_, other->_buttonthirdstate_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -874,48 +740,6 @@ const ::google::protobuf::RepeatedPtrField< ::Lighthouse::CodeElement::CodeEleme
 State_Browser::_listelement() const {
   // @@protoc_insertion_point(field_list:Lighthouse.State.State.Browser._listElement)
   return _listelement_;
-}
-
-// optional bool _buttonFirstState = 2;
-void State_Browser::clear__buttonfirststate() {
-  _buttonfirststate_ = false;
-}
- bool State_Browser::_buttonfirststate() const {
-  // @@protoc_insertion_point(field_get:Lighthouse.State.State.Browser._buttonFirstState)
-  return _buttonfirststate_;
-}
- void State_Browser::set__buttonfirststate(bool value) {
-  
-  _buttonfirststate_ = value;
-  // @@protoc_insertion_point(field_set:Lighthouse.State.State.Browser._buttonFirstState)
-}
-
-// optional bool _buttonSecondState = 3;
-void State_Browser::clear__buttonsecondstate() {
-  _buttonsecondstate_ = false;
-}
- bool State_Browser::_buttonsecondstate() const {
-  // @@protoc_insertion_point(field_get:Lighthouse.State.State.Browser._buttonSecondState)
-  return _buttonsecondstate_;
-}
- void State_Browser::set__buttonsecondstate(bool value) {
-  
-  _buttonsecondstate_ = value;
-  // @@protoc_insertion_point(field_set:Lighthouse.State.State.Browser._buttonSecondState)
-}
-
-// optional bool _buttonThirdState = 4;
-void State_Browser::clear__buttonthirdstate() {
-  _buttonthirdstate_ = false;
-}
- bool State_Browser::_buttonthirdstate() const {
-  // @@protoc_insertion_point(field_get:Lighthouse.State.State.Browser._buttonThirdState)
-  return _buttonthirdstate_;
-}
- void State_Browser::set__buttonthirdstate(bool value) {
-  
-  _buttonthirdstate_ = value;
-  // @@protoc_insertion_point(field_set:Lighthouse.State.State.Browser._buttonThirdState)
 }
 
 // -------------------------------------------------------------------

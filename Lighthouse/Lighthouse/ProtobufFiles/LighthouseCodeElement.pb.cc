@@ -38,11 +38,14 @@ void protobuf_AssignDesc_LighthouseCodeElement_2eproto() {
       "LighthouseCodeElement.proto");
   GOOGLE_CHECK(file != NULL);
   CodeElement_descriptor_ = file->message_type(0);
-  static const int CodeElement_offsets_[5] = {
+  static const int CodeElement_offsets_[8] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _name_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _bytedata_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _data1_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _data2_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _isselected_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _isabstract_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _isstatic_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _child_),
   };
   CodeElement_reflection_ =
@@ -90,14 +93,15 @@ void protobuf_AddDesc_LighthouseCodeElement_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\033LighthouseCodeElement.proto\022\026Lighthous"
-    "e.CodeElement\"\223\002\n\013CodeElement\022\r\n\005_name\030\001"
-    " \001(\t\022\021\n\t_byteData\030\002 \001(\014\022>\n\005_Type\030\003 \001(\0162/"
-    ".Lighthouse.CodeElement.CodeElement.Elem"
-    "entType\022\023\n\013_isSelected\030\004 \001(\010\0223\n\006_child\030\005"
-    " \003(\0132#.Lighthouse.CodeElement.CodeElemen"
-    "t\"X\n\013ElementType\022\007\n\003TOP\020\000\022\016\n\nSOURCEFILE\020"
-    "\001\022\r\n\tNAMESPACE\020\002\022\t\n\005CLASS\020\003\022\n\n\006MEMBER\020\004\022"
-    "\n\n\006METHOD\020\005b\006proto3", 339);
+    "e.CodeElement\"\270\002\n\013CodeElement\022\r\n\005_name\030\001"
+    " \001(\t\022\016\n\006_data1\030\002 \001(\014\022\016\n\006_data2\030\003 \001(\014\022>\n\005"
+    "_Type\030\004 \001(\0162/.Lighthouse.CodeElement.Cod"
+    "eElement.ElementType\022\023\n\013_isSelected\030\005 \001("
+    "\010\022\023\n\013_isAbstract\030\006 \001(\010\022\021\n\t_isStatic\030\007 \001("
+    "\010\0223\n\006_child\030\010 \003(\0132#.Lighthouse.CodeEleme"
+    "nt.CodeElement\"H\n\013ElementType\022\007\n\003TOP\020\000\022\r"
+    "\n\tNAMESPACE\020\001\022\t\n\005CLASS\020\002\022\n\n\006MEMBER\020\003\022\n\n\006"
+    "METHOD\020\004b\006proto3", 376);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "LighthouseCodeElement.proto", &protobuf_RegisterTypes);
   CodeElement::default_instance_ = new CodeElement();
@@ -125,7 +129,6 @@ bool CodeElement_ElementType_IsValid(int value) {
     case 2:
     case 3:
     case 4:
-    case 5:
       return true;
     default:
       return false;
@@ -134,7 +137,6 @@ bool CodeElement_ElementType_IsValid(int value) {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const CodeElement_ElementType CodeElement::TOP;
-const CodeElement_ElementType CodeElement::SOURCEFILE;
 const CodeElement_ElementType CodeElement::NAMESPACE;
 const CodeElement_ElementType CodeElement::CLASS;
 const CodeElement_ElementType CodeElement::MEMBER;
@@ -145,9 +147,12 @@ const int CodeElement::ElementType_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int CodeElement::kNameFieldNumber;
-const int CodeElement::kByteDataFieldNumber;
+const int CodeElement::kData1FieldNumber;
+const int CodeElement::kData2FieldNumber;
 const int CodeElement::kTypeFieldNumber;
 const int CodeElement::kIsSelectedFieldNumber;
+const int CodeElement::kIsAbstractFieldNumber;
+const int CodeElement::kIsStaticFieldNumber;
 const int CodeElement::kChildFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -174,9 +179,12 @@ void CodeElement::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   _name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _bytedata_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _data1_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _data2_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _type_ = 0;
   _isselected_ = false;
+  _isabstract_ = false;
+  _isstatic_ = false;
 }
 
 CodeElement::~CodeElement() {
@@ -186,7 +194,8 @@ CodeElement::~CodeElement() {
 
 void CodeElement::SharedDtor() {
   _name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _bytedata_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _data1_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _data2_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -234,9 +243,10 @@ void CodeElement::Clear() {
            ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
 } while (0)
 
-  ZR_(_type_, _isselected_);
+  ZR_(_type_, _isstatic_);
   _name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _bytedata_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _data1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _data2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 
 #undef ZR_HELPER_
 #undef ZR_
@@ -266,26 +276,39 @@ bool CodeElement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse__byteData;
+        if (input->ExpectTag(18)) goto parse__data1;
         break;
       }
 
-      // optional bytes _byteData = 2;
+      // optional bytes _data1 = 2;
       case 2: {
         if (tag == 18) {
-         parse__byteData:
+         parse__data1:
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable__bytedata()));
+                input, this->mutable__data1()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse__Type;
+        if (input->ExpectTag(26)) goto parse__data2;
         break;
       }
 
-      // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 3;
+      // optional bytes _data2 = 3;
       case 3: {
-        if (tag == 24) {
+        if (tag == 26) {
+         parse__data2:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
+                input, this->mutable__data2()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(32)) goto parse__Type;
+        break;
+      }
+
+      // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 4;
+      case 4: {
+        if (tag == 32) {
          parse__Type:
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
@@ -295,13 +318,13 @@ bool CodeElement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse__isSelected;
+        if (input->ExpectTag(40)) goto parse__isSelected;
         break;
       }
 
-      // optional bool _isSelected = 4;
-      case 4: {
-        if (tag == 32) {
+      // optional bool _isSelected = 5;
+      case 5: {
+        if (tag == 40) {
          parse__isSelected:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -310,13 +333,43 @@ bool CodeElement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse__child;
+        if (input->ExpectTag(48)) goto parse__isAbstract;
         break;
       }
 
-      // repeated .Lighthouse.CodeElement.CodeElement _child = 5;
-      case 5: {
-        if (tag == 42) {
+      // optional bool _isAbstract = 6;
+      case 6: {
+        if (tag == 48) {
+         parse__isAbstract:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &_isabstract_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(56)) goto parse__isStatic;
+        break;
+      }
+
+      // optional bool _isStatic = 7;
+      case 7: {
+        if (tag == 56) {
+         parse__isStatic:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &_isstatic_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(66)) goto parse__child;
+        break;
+      }
+
+      // repeated .Lighthouse.CodeElement.CodeElement _child = 8;
+      case 8: {
+        if (tag == 66) {
          parse__child:
           DO_(input->IncrementRecursionDepth());
          parse_loop__child:
@@ -325,7 +378,7 @@ bool CodeElement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_loop__child;
+        if (input->ExpectTag(66)) goto parse_loop__child;
         input->UnsafeDecrementRecursionDepth();
         if (input->ExpectAtEnd()) goto success;
         break;
@@ -365,27 +418,43 @@ void CodeElement::SerializeWithCachedSizes(
       1, this->_name(), output);
   }
 
-  // optional bytes _byteData = 2;
-  if (this->_bytedata().size() > 0) {
+  // optional bytes _data1 = 2;
+  if (this->_data1().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      2, this->_bytedata(), output);
+      2, this->_data1(), output);
   }
 
-  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 3;
+  // optional bytes _data2 = 3;
+  if (this->_data2().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
+      3, this->_data2(), output);
+  }
+
+  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 4;
   if (this->_type() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      3, this->_type(), output);
+      4, this->_type(), output);
   }
 
-  // optional bool _isSelected = 4;
+  // optional bool _isSelected = 5;
   if (this->_isselected() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->_isselected(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(5, this->_isselected(), output);
   }
 
-  // repeated .Lighthouse.CodeElement.CodeElement _child = 5;
+  // optional bool _isAbstract = 6;
+  if (this->_isabstract() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(6, this->_isabstract(), output);
+  }
+
+  // optional bool _isStatic = 7;
+  if (this->_isstatic() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(7, this->_isstatic(), output);
+  }
+
+  // repeated .Lighthouse.CodeElement.CodeElement _child = 8;
   for (unsigned int i = 0, n = this->_child_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5, this->_child(i), output);
+      8, this->_child(i), output);
   }
 
   // @@protoc_insertion_point(serialize_end:Lighthouse.CodeElement.CodeElement)
@@ -405,29 +474,46 @@ void CodeElement::SerializeWithCachedSizes(
         1, this->_name(), target);
   }
 
-  // optional bytes _byteData = 2;
-  if (this->_bytedata().size() > 0) {
+  // optional bytes _data1 = 2;
+  if (this->_data1().size() > 0) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->_bytedata(), target);
+        2, this->_data1(), target);
   }
 
-  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 3;
+  // optional bytes _data2 = 3;
+  if (this->_data2().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        3, this->_data2(), target);
+  }
+
+  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 4;
   if (this->_type() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      3, this->_type(), target);
+      4, this->_type(), target);
   }
 
-  // optional bool _isSelected = 4;
+  // optional bool _isSelected = 5;
   if (this->_isselected() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->_isselected(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(5, this->_isselected(), target);
   }
 
-  // repeated .Lighthouse.CodeElement.CodeElement _child = 5;
+  // optional bool _isAbstract = 6;
+  if (this->_isabstract() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(6, this->_isabstract(), target);
+  }
+
+  // optional bool _isStatic = 7;
+  if (this->_isstatic() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(7, this->_isstatic(), target);
+  }
+
+  // repeated .Lighthouse.CodeElement.CodeElement _child = 8;
   for (unsigned int i = 0, n = this->_child_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        5, this->_child(i), false, target);
+        8, this->_child(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:Lighthouse.CodeElement.CodeElement)
@@ -445,25 +531,42 @@ int CodeElement::ByteSize() const {
         this->_name());
   }
 
-  // optional bytes _byteData = 2;
-  if (this->_bytedata().size() > 0) {
+  // optional bytes _data1 = 2;
+  if (this->_data1().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->_bytedata());
+        this->_data1());
   }
 
-  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 3;
+  // optional bytes _data2 = 3;
+  if (this->_data2().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::BytesSize(
+        this->_data2());
+  }
+
+  // optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 4;
   if (this->_type() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->_type());
   }
 
-  // optional bool _isSelected = 4;
+  // optional bool _isSelected = 5;
   if (this->_isselected() != 0) {
     total_size += 1 + 1;
   }
 
-  // repeated .Lighthouse.CodeElement.CodeElement _child = 5;
+  // optional bool _isAbstract = 6;
+  if (this->_isabstract() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // optional bool _isStatic = 7;
+  if (this->_isstatic() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // repeated .Lighthouse.CodeElement.CodeElement _child = 8;
   total_size += 1 * this->_child_size();
   for (int i = 0; i < this->_child_size(); i++) {
     total_size +=
@@ -504,15 +607,25 @@ void CodeElement::MergeFrom(const CodeElement& from) {
 
     _name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from._name_);
   }
-  if (from._bytedata().size() > 0) {
+  if (from._data1().size() > 0) {
 
-    _bytedata_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from._bytedata_);
+    _data1_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from._data1_);
+  }
+  if (from._data2().size() > 0) {
+
+    _data2_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from._data2_);
   }
   if (from._type() != 0) {
     set__type(from._type());
   }
   if (from._isselected() != 0) {
     set__isselected(from._isselected());
+  }
+  if (from._isabstract() != 0) {
+    set__isabstract(from._isabstract());
+  }
+  if (from._isstatic() != 0) {
+    set__isstatic(from._isstatic());
   }
 }
 
@@ -541,9 +654,12 @@ void CodeElement::Swap(CodeElement* other) {
 }
 void CodeElement::InternalSwap(CodeElement* other) {
   _name_.Swap(&other->_name_);
-  _bytedata_.Swap(&other->_bytedata_);
+  _data1_.Swap(&other->_data1_);
+  _data2_.Swap(&other->_data2_);
   std::swap(_type_, other->_type_);
   std::swap(_isselected_, other->_isselected_);
+  std::swap(_isabstract_, other->_isabstract_);
+  std::swap(_isstatic_, other->_isstatic_);
   _child_.UnsafeArenaSwap(&other->_child_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -604,51 +720,95 @@ void CodeElement::clear__name() {
   // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._name)
 }
 
-// optional bytes _byteData = 2;
-void CodeElement::clear__bytedata() {
-  _bytedata_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// optional bytes _data1 = 2;
+void CodeElement::clear__data1() {
+  _data1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& CodeElement::_bytedata() const {
-  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._byteData)
-  return _bytedata_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+ const ::std::string& CodeElement::_data1() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._data1)
+  return _data1_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void CodeElement::set__bytedata(const ::std::string& value) {
+ void CodeElement::set__data1(const ::std::string& value) {
   
-  _bytedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._byteData)
+  _data1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._data1)
 }
- void CodeElement::set__bytedata(const char* value) {
+ void CodeElement::set__data1(const char* value) {
   
-  _bytedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Lighthouse.CodeElement.CodeElement._byteData)
+  _data1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Lighthouse.CodeElement.CodeElement._data1)
 }
- void CodeElement::set__bytedata(const void* value, size_t size) {
+ void CodeElement::set__data1(const void* value, size_t size) {
   
-  _bytedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  _data1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Lighthouse.CodeElement.CodeElement._byteData)
+  // @@protoc_insertion_point(field_set_pointer:Lighthouse.CodeElement.CodeElement._data1)
 }
- ::std::string* CodeElement::mutable__bytedata() {
+ ::std::string* CodeElement::mutable__data1() {
   
-  // @@protoc_insertion_point(field_mutable:Lighthouse.CodeElement.CodeElement._byteData)
-  return _bytedata_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_mutable:Lighthouse.CodeElement.CodeElement._data1)
+  return _data1_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* CodeElement::release__bytedata() {
-  // @@protoc_insertion_point(field_release:Lighthouse.CodeElement.CodeElement._byteData)
+ ::std::string* CodeElement::release__data1() {
+  // @@protoc_insertion_point(field_release:Lighthouse.CodeElement.CodeElement._data1)
   
-  return _bytedata_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return _data1_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void CodeElement::set_allocated__bytedata(::std::string* _bytedata) {
-  if (_bytedata != NULL) {
+ void CodeElement::set_allocated__data1(::std::string* _data1) {
+  if (_data1 != NULL) {
     
   } else {
     
   }
-  _bytedata_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), _bytedata);
-  // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._byteData)
+  _data1_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), _data1);
+  // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._data1)
 }
 
-// optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 3;
+// optional bytes _data2 = 3;
+void CodeElement::clear__data2() {
+  _data2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& CodeElement::_data2() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._data2)
+  return _data2_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void CodeElement::set__data2(const ::std::string& value) {
+  
+  _data2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._data2)
+}
+ void CodeElement::set__data2(const char* value) {
+  
+  _data2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Lighthouse.CodeElement.CodeElement._data2)
+}
+ void CodeElement::set__data2(const void* value, size_t size) {
+  
+  _data2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Lighthouse.CodeElement.CodeElement._data2)
+}
+ ::std::string* CodeElement::mutable__data2() {
+  
+  // @@protoc_insertion_point(field_mutable:Lighthouse.CodeElement.CodeElement._data2)
+  return _data2_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* CodeElement::release__data2() {
+  // @@protoc_insertion_point(field_release:Lighthouse.CodeElement.CodeElement._data2)
+  
+  return _data2_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void CodeElement::set_allocated__data2(::std::string* _data2) {
+  if (_data2 != NULL) {
+    
+  } else {
+    
+  }
+  _data2_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), _data2);
+  // @@protoc_insertion_point(field_set_allocated:Lighthouse.CodeElement.CodeElement._data2)
+}
+
+// optional .Lighthouse.CodeElement.CodeElement.ElementType _Type = 4;
 void CodeElement::clear__type() {
   _type_ = 0;
 }
@@ -662,7 +822,7 @@ void CodeElement::clear__type() {
   // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._Type)
 }
 
-// optional bool _isSelected = 4;
+// optional bool _isSelected = 5;
 void CodeElement::clear__isselected() {
   _isselected_ = false;
 }
@@ -676,7 +836,35 @@ void CodeElement::clear__isselected() {
   // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isSelected)
 }
 
-// repeated .Lighthouse.CodeElement.CodeElement _child = 5;
+// optional bool _isAbstract = 6;
+void CodeElement::clear__isabstract() {
+  _isabstract_ = false;
+}
+ bool CodeElement::_isabstract() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._isAbstract)
+  return _isabstract_;
+}
+ void CodeElement::set__isabstract(bool value) {
+  
+  _isabstract_ = value;
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isAbstract)
+}
+
+// optional bool _isStatic = 7;
+void CodeElement::clear__isstatic() {
+  _isstatic_ = false;
+}
+ bool CodeElement::_isstatic() const {
+  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._isStatic)
+  return _isstatic_;
+}
+ void CodeElement::set__isstatic(bool value) {
+  
+  _isstatic_ = value;
+  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isStatic)
+}
+
+// repeated .Lighthouse.CodeElement.CodeElement _child = 8;
 int CodeElement::_child_size() const {
   return _child_.size();
 }

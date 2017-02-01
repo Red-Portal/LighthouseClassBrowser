@@ -62,30 +62,6 @@ TEST_F(LighthouseInterfaceTest, stateInitialization)
 	EXPECT_EQ(initialState.SerializeAsString(), result.SerializeAsString());
 }
 
-TEST_F(LighthouseInterfaceTest, moveToPointFlag)
-{
-	auto emptyTestState = Lighthouse::State::State();
-	auto initialState = TestMessageInitializer::initState(std::move(emptyTestState));
-
-	_interface->setInitialState(initialState.SerializeAsString());
-
-	auto emptyTestStateTwo = Lighthouse::State::State();
-	auto initializedState = TestMessageInitializer::initState(std::move(emptyTestState));
-
-	auto list = initializedState.mutable__first()->mutable__listelement();
-
-	for (auto it = list->begin(); it != list->end(); ++it)
-	{
-		it->set__isselected(true);
-		_interface->eventDataPush(initializedState.SerializeAsString());
-
-		EXPECT_TRUE(_interface->shouldMoveToPoint());
-
-		it->set__isselected(false);
-	}
-
-}
-
 TEST_F(LighthouseInterfaceTest, positionNeedingUpdate)
 {
 	auto emptyTestState = Lighthouse::State::State();
@@ -99,7 +75,8 @@ TEST_F(LighthouseInterfaceTest, positionNeedingUpdate)
 	it->set__isselected(true);
 
 	_interface->eventDataPush(initializedState.SerializeAsString());
+	auto pos = _interface->getUpdatePosition();
 
-	EXPECT_TRUE(_interface->getUpdatePosition, 2);
+	EXPECT_EQ(2, pos);
 }
 #endif

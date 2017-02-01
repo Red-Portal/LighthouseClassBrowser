@@ -8,9 +8,6 @@ message State
 	message Browser
 	{
 		repeated Lighthouse.CodeElement.CodeElement _listElement = 1;
-		bool _buttonFirstState = 2;
-		bool _buttonSecondState = 3;
-		bool _buttonThirdState = 4;
 	}
 	
 	Browser _first = 1;
