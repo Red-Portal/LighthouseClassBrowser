@@ -1,1 +1,4 @@
-**/Lighthouse/.vs
+Lighthouse/.vs/
+Lighthouse for Intellij IDEA/previous version
+Lighthouse for Visual Studio/previous version
+.gitignore

@@ -94,8 +94,9 @@ The `Static` button marks static elements with a different color so you can iden
 * [Protobuf](https://github.com/google/protobuf), custom license
 
 
-  LighthouseClassBrowser, a smalltalk Class Browser style plugin module
+	LighthouseClassBrowser, a smalltalk Class Browser style plugin module
     Copyright (C) 2017  Red-Portal, jzi040941
+
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
