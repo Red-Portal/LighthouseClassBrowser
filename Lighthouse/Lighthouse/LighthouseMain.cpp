@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "LighthouseMain.h"
 
-auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&& element)
 ->std::tuple<Lighthouse::CodeElement::CodeElement>
 {
 	Lighthouse::CodeElement::CodeElement collection;
@@ -43,7 +43,7 @@ auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeEleme
 
 	return std::make_tuple(collection);
 }
-auto LighthouseMain::secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+auto LighthouseMain::secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&& element)
 ->std::tuple<Lighthouse::CodeElement::CodeElement, Lighthouse::CodeElement::CodeElement>
 {
 	Lighthouse::CodeElement::CodeElement methodCollection;

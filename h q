@@ -1,0 +1,525 @@
+[33mcommit e4829db467cc2f8a6fd3900b56d8090d53008c21[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 8 21:07:26 2017 +0900
+
+    version 2.0.3
+    
+    updated all boilerplate license notice
+
+[33mcommit 590c7212d998ee86402dffe8c4580d8093b54c48[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 8 18:05:52 2017 +0900
+
+    version 2.0.2 update readme, license
+
+[33mcommit 6a7f53f7ee7b9bc699a2183890f2f3d1f39ebbb5[m
+Merge: fc6f18a 18ad438
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 8 17:10:20 2017 +0900
+
+    resolving git conflict
+
+[33mcommit fc6f18a2b74ffbcf52a8d1423b9a7b3367d14244[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 8 16:37:45 2017 +0900
+
+    version 2.0.1 updated git ignore
+
+[33mcommit 9096883d7f400fefb56ffeb9944db8d0c11138c0[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 8 16:30:43 2017 +0900
+
+    Studio/LighthouseClassBrowser/bin/Debug/Microsoft.VisualStudio.VSHelp.dll
+    -> Lighthouse for Visual Studio/previous
+    version/LighthouseClassBrowser/bin/Debug/Microsoft.VisualStudio.VSHelp.d
+    
+    version 2.0.1 pre-release
+    
+    1. stashed previous implementation into 'previous version' directory
+    2. changed licence to apache 2.0
+    3. added boilerplate license to all sourcefiles
+    4. added a modified beerware license
+
+[33mcommit 2935d090abb8fa822dc51790f36f1ed6983c614d[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 8 16:18:25 2017 +0900
+
+    Finished implementing event processing in both 'LighthouseInterface',
+    'LighthouseMain' class
+    Lighthouse interface will be the interface, serialization, parsing
+    layer.
+    and LighthouseMain is the main processing module
+    
+    TODO:
+    implement sync tree generation
+
+[33mcommit cf7aac8299a9f8ea4a7f2ba92ad7a246eaa8e03f[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 1 17:24:14 2017 +0900
+
+    changed the source file of LighthouseInterface class according to revised module interface
+
+[33mcommit 8d6d49ed9acac06ba4551c862b29c976d213d3b7[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 1 17:24:00 2017 +0900
+
+    changed the source file of LighthouseInterface class according to revised module interface
+
+[33mcommit adf4a4673d853b21e454dd5e15c379bc3e9ea371[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 1 17:16:59 2017 +0900
+
+    Revised class main module class interface
+
+[33mcommit 7358c757093cbbcf73f107002351dff50250df12[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 1 17:12:25 2017 +0900
+
+    commited mistakenly uncommited changes
+
+[33mcommit cf740b2857c5b9e3d7b4b1a6cb60ee3d10028f31[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Feb 1 16:04:47 2017 +0900
+
+    finished main module class interface
+
+[33mcommit 1d7b231db3da8bdc8c2e393ffb502854324c5850[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 30 22:54:10 2017 +0900
+
+    implemented 3 unit tests for main module interface
+
+[33mcommit bee7c05e41f687c907e37affa8b288ba98621e86[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sun Jan 29 23:51:48 2017 +0900
+
+    implementing interface
+
+[33mcommit 99f26f9bc8092fdc7a63dfd39994ef5c4096a3da[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sun Jan 29 21:34:38 2017 +0900
+
+    initial commit for lighthouse main C++ module experiment
+
+[33mcommit d2c89b5d94f92412b72f2eb95711a777805a75f0[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Fri Jan 13 16:37:10 2017 +0900
+
+    added GPL license
+
+[33mcommit 18ad438e7fcb54f989627cccbd7c690d521ec3e4[m
+Author: Ray Kim <msca8h@naver.com>
+Date:   Fri Jan 13 16:35:02 2017 +0900
+
+    Create LICENSE
+
+[33mcommit 7aad1b15c146a13989e22b802cb1748a0c6e3a0b[m
+Author: Ray Kim <msca8h@naver.com>
+Date:   Fri Jan 13 16:34:12 2017 +0900
+
+    Delete LICENSE
+
+[33mcommit 90c5a9944767a99c92a329babfa9bc060069e19d[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Fri Jan 13 16:28:37 2017 +0900
+
+    changed license file name
+
+[33mcommit e9ef09d27ea022eb3bbdc00b4e1480bba6f648e7[m
+Author: Ray Kim <msca8h@naver.com>
+Date:   Fri Jan 13 16:28:03 2017 +0900
+
+    added license
+    
+    added license
+
+[33mcommit 3b9ca8811803720125c6c2b8a322032abb3e7fe2[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Fri Jan 13 16:16:32 2017 +0900
+
+    revised beerware license
+
+[33mcommit 67880504828a4846a9335f3e6a392bf341dafacd[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Fri Jan 13 16:10:44 2017 +0900
+
+    added license
+
+[33mcommit 3ece47af0df767a8461a2ba4d91183766280bc63[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Thu Jan 12 22:54:03 2017 +0900
+
+    finished implementing listbox logic. Impelementing Buttons
+
+[33mcommit c32e8bd55691f66de83d1656c887fe588fc7fcbe[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Thu Jan 12 15:32:28 2017 +0900
+
+    deleted pics
+
+[33mcommit 888abdad94a873d8dcf0dc154227affcef8bdac6[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Thu Jan 12 15:29:42 2017 +0900
+
+    put example pics in a folder
+
+[33mcommit 64c3139b536e533ebd922a6916015c6a2084cdc7[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Thu Jan 5 18:19:50 2017 +0900
+
+    implementing class browser
+
+[33mcommit b48c3bfae1c5456e78a1d74d90ed888a98cab0b6[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Thu Jan 5 15:52:35 2017 +0900
+
+    initial state before moving implementation to models
+
+[33mcommit b9756fc7d82ff69f7db2c2b129168a5963e6426f[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Thu Jan 5 00:24:31 2017 +0900
+
+    finished framework for MVC pattern implementation
+
+[33mcommit 083b952782114c44b358c02f5fa0402e1abcd786[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 23:46:09 2017 +0900
+
+    implementing MVC pattern to unfold this pile of spaghetti
+
+[33mcommit 21fcc36b04139e95898b409f40033f78bcd7c6d6[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 23:21:18 2017 +0900
+
+    Because the refreshing system was revised from using ITextBuffer to
+    using GUI events, the gains from using a seperate object diminished.
+    Thus decided to ditch EditorViewControl type class. The
+    moveToCodeElement method which is the only useful thing it used to do
+    was moved to the main module
+
+[33mcommit 80b85ed05f3e397e66939750b46181eb234ccecf[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 19:49:34 2017 +0900
+
+    deleted unused file
+
+[33mcommit 45aea68a708f07a24d633e70778d88077c9a8b9b[m
+Merge: d2fed59 8343142
+Author: jzi040941 <jzi040941@naver.com>
+Date:   Wed Jan 4 19:35:45 2017 +0900
+
+    Merge branch 'master' of https://github.com/Red-Portal/LighthouseClassBrowser
+
+[33mcommit d2fed59fbfdf37b836acac614ce6881b9aab7c60[m
+Author: jzi040941 <jzi040941@naver.com>
+Date:   Wed Jan 4 19:35:20 2017 +0900
+
+    remove myplugin
+
+[33mcommit 83431420e4302ac0e8f6d7b9170ee0518c484ff7[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 19:30:07 2017 +0900
+
+    finished documentation
+
+[33mcommit 23fb08bfa638888c665a711265ad43673e2bcbbb[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 19:15:30 2017 +0900
+
+    intelliJ version
+
+[33mcommit 53dced86bcef686f725e848640b5c86d1d06fdcf[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 19:13:41 2017 +0900
+
+    documentation for IntelliJ IDEA
+
+[33mcommit eb61ebcb550fd64d2ee5619e5d4c9ac72f782c52[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 18:58:57 2017 +0900
+
+    changed name
+
+[33mcommit 0ee72eacb87441780bed4f3aa1e4bb414373db30[m
+Merge: 2598ce7 2adae5f
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 18:51:30 2017 +0900
+
+    Merge branch 'master' of https://github.com/Red-Portal/LighthouseClassBrowser
+
+[33mcommit 2598ce79a65dc8bf3aaab6acb0c07e7f4577ceaf[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 18:50:26 2017 +0900
+
+    almost finished documentation
+
+[33mcommit 2adae5fb9992a96f752b34fcb148c43051bcb11b[m
+Merge: 2db61de b616f93
+Author: jzi040941 <jzi040941@naver.com>
+Date:   Wed Jan 4 18:49:54 2017 +0900
+
+    Merge branch 'master' of https://github.com/Red-Portal/LighthouseClassBrowser
+
+[33mcommit 2db61de589f64dad245652efbc148a83b18ac64f[m
+Author: jzi040941 <jzi040941@naver.com>
+Date:   Wed Jan 4 18:48:43 2017 +0900
+
+    Lighthouse for intellij IDEA
+
+[33mcommit b616f939a8a500ecdb7371c3a6b341d25dcd4fb5[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 18:43:37 2017 +0900
+
+    almost finished documentation
+
+[33mcommit bbb39d7da4288b86e3fa16179d69e3d5ba7ce3b3[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 18:15:10 2017 +0900
+
+    renamed image
+
+[33mcommit 121c42118a078b3f30c59bf37401474d585d661f[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 18:11:28 2017 +0900
+
+    Sample Image
+
+[33mcommit a95fd1277cf04fac6102adfc393223b6aafafa96[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 17:29:15 2017 +0900
+
+    testing list of content2
+
+[33mcommit e7feb8fc44afbf950ab931e590661fe50389eae0[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 17:23:21 2017 +0900
+
+    testing list of content
+
+[33mcommit 021d6f0536a4fae3c495c3ae5a8e97255a738c40[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 17:12:46 2017 +0900
+
+    writing readme
+
+[33mcommit a2da8626c6ad09601e604d02b5b9a285973857b7[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 16:55:56 2017 +0900
+
+    image markdown example
+
+[33mcommit 282533064c0bef408a346ed5432a11bb75404950[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 16:49:41 2017 +0900
+
+    example images
+
+[33mcommit dc595e0fdd228843d4a8ae7dcca81c0f09373839[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 16:10:57 2017 +0900
+
+    readme initial commit
+
+[33mcommit 1d491170e99025d1b25d011112f9ed83bf54b68e[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 15:15:44 2017 +0900
+
+    changed repository layout
+
+[33mcommit 235d477e700c1348003c072ff6868103bc33006a[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 15:07:56 2017 +0900
+
+    implemented class derived button
+
+[33mcommit 179d837bc631296b30f62e116b69fe167ede7f54[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Jan 4 02:05:06 2017 +0900
+
+    finished refresing logic. Suggest refactoring GUI interaction module by spliting each ListBox containing button events as classes
+
+[33mcommit a1155cacc4eb8286fd34da0c9afcaeb1da971865[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 18:33:43 2017 +0900
+
+    implemented generic reuse of code for the GUI event handling methods. This stuff is really dirty but seems like it works
+
+[33mcommit 9d423835a2bea42612d722e887766e70f1db8ad9[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 16:59:50 2017 +0900
+
+    1. Finished Abstraction Buttons logic
+    2. Changed HierarchyData Structures. Added a Middle layer between the
+    CodeElement Types and Type 'Item'.
+    The added layer is type called 'Element' and is used for polymorphism
+    over CodeElement Types
+
+[33mcommit f4b7ca8f60b735578d221e5b073eee9c23d3c1f5[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 04:46:04 2017 +0900
+
+    added eventMethods for the buttons
+
+[33mcommit 1f82f73af685a28db20943c1e0ff507b268b369f[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 04:07:52 2017 +0900
+
+    finished code navigation logic
+
+[33mcommit 108009c601c1bf45c432e4eba4ef25de24e31d0c[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 02:12:45 2017 +0900
+
+    finished Class, Method, Variable Browser
+
+[33mcommit 9db62a4ca519f7977aa2e594d121ad3130697a9f[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 01:21:50 2017 +0900
+
+    finished ProjectBrowser
+
+[33mcommit 9d068bb3c91e7584fa25401b44a8536686e4d071[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 01:03:00 2017 +0900
+
+    not perfect but bearable. Will refactor later. And added a small optimization flag
+
+[33mcommit 84523fe4dc83f68cf440b59e26e4cc2c4e15dd3a[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 00:37:09 2017 +0900
+
+    still doesn't work but having some? progress
+
+[33mcommit b65f9e3ce65010ee9e36e63c05bcae6cd539b6c8[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Tue Jan 3 00:17:18 2017 +0900
+
+    diversion point
+
+[33mcommit 97d95986e43497efae1c1f57bf6527bab639ca51[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 2 23:34:02 2017 +0900
+
+    almost finished project browser frontend login
+
+[33mcommit a895885b6b3d3978e7b065c5f30c785f796d1201[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 2 19:48:59 2017 +0900
+
+    finished GUI appearance
+
+[33mcommit f7f521969f9eff2c784df065a54a7102e8fe1bc1[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 2 18:27:03 2017 +0900
+
+    settled GUI design
+
+[33mcommit 4ce681171e3284b4b62a4984beb0dcfad10aadc2[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 2 17:19:06 2017 +0900
+
+    The font problem is not because of vsBrushes
+
+[33mcommit ff0968194b286144f6b851f35e9f3859a342b412[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 2 17:15:31 2017 +0900
+
+    added height
+
+[33mcommit ea9ca6867bf831c7592cfa64182d66910eff36d8[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 2 17:13:00 2017 +0900
+
+    removed dynamic resources
+
+[33mcommit 7849470e54f6291a4d006d7d3468d918c7eb5f7d[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Jan 2 17:11:45 2017 +0900
+
+    diversion point
+
+[33mcommit a0b8eb1a46dc530c73857826cd090abaea461668[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sun Jan 1 17:39:01 2017 +0900
+
+    finished visuasl
+
+[33mcommit d80f51ce1fc22314f8945aeb8967afa5abfc90e9[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sun Jan 1 14:54:46 2017 +0900
+
+    finished Hierarchial Data Structures
+
+[33mcommit 7125af152f1419e80f26a7f36d7d2187f0a34105[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Fri Dec 30 14:45:35 2016 +0900
+
+    finished hierchial data structures
+
+[33mcommit a42f810d828ce6617b16120f8f353bffeb86e93d[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Wed Dec 28 21:36:38 2016 +0900
+
+    finishing initial main module work
+
+[33mcommit 1c6db8cae3c3bffedfa748ee7c23efb84fccc610[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Mon Dec 26 15:44:59 2016 +0900
+
+    diverged to textview control
+
+[33mcommit 9ab160fdc6558aa8d11e2ffc58209de5b6b67877[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sat Dec 24 20:53:31 2016 +0900
+
+    completed service provider logic
+
+[33mcommit c867086d59b20ec4884e6d1b8f6f3cde2e50d8c2[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sat Dec 24 19:19:10 2016 +0900
+
+    implemented initialization of Lighthouse's service provider member
+
+[33mcommit c685e6333bd7a5d892f328c59cb4f6c32012e6db[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sat Dec 24 18:06:05 2016 +0900
+
+    created ProjectHierarchy class to effectively store datas of the project
+
+[33mcommit 599b5daa0d642d9154fdc9f6165291e32a95e2e8[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sat Dec 24 17:52:31 2016 +0900
+
+    Reverted all singleton implementations.
+    Toolwindows must be aloud to be created multiple times.
+    Thus singleton implementations can bring confusion to the system.
+    
+    Did consider allowing only one instance of the tool window by
+    implementation,
+    However that seemed against the system policy.
+    Thus creating multiple instances should be aloud.
+    And further development should be done following this policy.
+
+[33mcommit 8890efb531a9e7a797d5a4c2eb035fcacc45f442[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sat Dec 24 17:47:41 2016 +0900
+
+    implementing singleton
+
+[33mcommit de625b40acda7c2b362f45d41a45f9ddb535abc8[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sat Dec 24 17:15:45 2016 +0900
+
+    deleted unused default codes and minor additional changes. Default state
+
+[33mcommit daea5548270f0fa622a12fa74166caf1646ae74a[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Sat Dec 24 17:13:46 2016 +0900
+
+    changed parent menu to the 'tools' menu
+
+[33mcommit 5f6634e1cd13bf20a4d3574e56e678da08cd22c8[m
+Author: RedPortal <msca8h@naver.com>
+Date:   Fri Dec 23 16:39:25 2016 +0900
+
+    initial commit, blank template state

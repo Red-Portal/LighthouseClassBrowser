@@ -27,6 +27,7 @@ class LighthouseInterface
 {
 private:
 	LighthouseMain _mainModule;
+	LighthouseDictionary _dictionary;
 
 	std::string _firstBrowserResult;
 	
@@ -39,12 +40,12 @@ private:
 	std::string _fourthBrowserMovePosition;*/
 
 public:
-	LighthouseInterface() = default;
+	void updateElement_mtx(std::string const& );
 
-	bool firstBrowserDataPush(std::string); //push the new app state, pull the changed data state
+	bool firstBrowserDataPush(std::string const& ); //push the new app state, pull the changed data state
 	std::string firstBrowserDataPull();
 
-	bool secondBrowserDataPush(std::string);
+	bool secondBrowserDataPush(std::string const& );
 	std::string secondBrowserDataPull_first();
 	std::string secondBrowserDataPull_second();
 	std::string secondBrowserMovePositionPull();

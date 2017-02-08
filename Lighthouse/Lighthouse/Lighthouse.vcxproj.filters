@@ -36,11 +36,11 @@
     <ClCompile Include="ProtobufFiles\LighthouseState.pb.cc">
       <Filter>Protobuf Files</Filter>
     </ClCompile>
+    <ClCompile Include="LighthouseDictionary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LighthouseTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LighthouseInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -55,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="ProtobufFiles\LighthouseCodeElement.pb.h">
       <Filter>Protobuf Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LighthouseDictionary.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

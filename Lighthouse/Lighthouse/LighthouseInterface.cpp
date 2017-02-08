@@ -20,12 +20,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "LighthouseInterface.h"
 
-bool LighthouseInterface::firstBrowserDataPush(std::string data)
+void LighthouseInterface::updateElement_mtx(std::string const& update)
+{
+	Lighthouse::CodeElement::CodeElement element;
+	element.ParseFromString(update);
+	
+	_dictionary.setElement(std::move(element));
+}
+
+bool LighthouseInterface::firstBrowserDataPush(std::string const& data)
 {
 	Lighthouse::CodeElement::CodeElement element;
 	element.ParseFromString(data);
 
-	auto result = _mainModule.firstBrowserProcessEvent(element);
+	auto result = _mainModule.firstBrowserProcessEvent(std::move(element));
 	auto collection = std::get<0>(result);
 
 	if (collection._type() == Lighthouse::CodeElement::CodeElement_ElementType_EXCEPTION)
@@ -40,7 +48,7 @@ std::string LighthouseInterface::firstBrowserDataPull()
 {
 	return _firstBrowserResult;
 }
-bool LighthouseInterface::secondBrowserDataPush(std::string data)
+bool LighthouseInterface::secondBrowserDataPush(std::string const& data)
 {
 	Lighthouse::CodeElement::CodeElement element;
 	element.ParseFromString(data);

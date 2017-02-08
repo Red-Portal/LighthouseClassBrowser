@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LighthouseDictionary.cpp" />
     <ClCompile Include="LighthouseInterface.cpp" />
     <ClCompile Include="LighthouseMain.cpp" />
     <ClCompile Include="ProtobufFiles\LighthouseCodeElement.pb.cc" />
@@ -130,7 +131,7 @@
   <ItemGroup>
     <ClInclude Include="LighthouseInterface.h" />
     <ClInclude Include="LighthouseMain.h" />
-    <ClInclude Include="LighthouseTree.h" />
+    <ClInclude Include="LighthouseDictionary.h" />
     <ClInclude Include="ProtobufFiles\LighthouseCodeElement.pb.h" />
     <ClInclude Include="ProtobufFiles\LighthouseState.pb.h" />
     <ClInclude Include="TestHeader.h" />
