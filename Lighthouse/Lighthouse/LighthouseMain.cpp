@@ -1,46 +1,73 @@
 #include "LighthouseMain.h"
-#include <functional>
 
-LighthouseMain::LighthouseMain(Lighthouse::State::State&& initialState)
-	: _previousState{std::move(initialState)}
-{}
-inline int LighthouseMain::findSelected(Lighthouse::State::State::Browser const& browser) const
+auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+->std::tuple<Lighthouse::CodeElement::CodeElement>
 {
-	int index = 0;
-	for(auto it : browser._listelement())
+	Lighthouse::CodeElement::CodeElement collection;
+	collection.set__type(Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION);
+	
+	if (element._type() != Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION)
+		return std::make_tuple(exceptionHandler("Wrong input Type"));
+
+	for (auto&& i : element._child()) // the input is a collection of sourcefiles
 	{
-		++index;
-		if (it._isselected())
-			return index;
+		if (i._type() != Lighthouse::CodeElement::CodeElement_ElementType_TOP)
+			return std::make_tuple(exceptionHandler("Wrong Child Element Type: should be a sourcefile/package"));
+
+		for (auto&& j : i._child())
+		{
+			auto ptr = collection.add__child();
+			*ptr = j;
+		}
 	}
 
-	return -1;
+	return std::make_tuple(collection);
 }
-inline bool LighthouseMain::isStateUnchanged(Lighthouse::State::State::Browser const& current,
-	Lighthouse::State::State::Browser const& previous, int index) const
+auto LighthouseMain::secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+->std::tuple<Lighthouse::CodeElement::CodeElement, Lighthouse::CodeElement::CodeElement>
 {
-	bool currentState = current._listelement(index)._isselected();
-	bool previousState = previous._listelement(index)._isselected();
-	
-	return currentState == previousState;
+	Lighthouse::CodeElement::CodeElement methodCollection;
+	Lighthouse::CodeElement::CodeElement memberCollection;
+	methodCollection.set__type(Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION);
+	memberCollection.set__type(Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION);
+
+	if (element._type() != Lighthouse::CodeElement::CodeElement_ElementType_CLASS)
+		return std::make_tuple(exceptionHandler("Wrong input Type"), Lighthouse::CodeElement::CodeElement{});
+
+	for (auto&& i : element._child()) // the input is a collection of sourcefiles
+	{
+		if (i._type() == Lighthouse::CodeElement::CodeElement_ElementType_METHOD)
+		{
+			auto ptr = methodCollection.add__child();
+			*ptr = i;
+		}
+		else if (i._type() == Lighthouse::CodeElement::CodeElement_ElementType_MEMBER)
+		{
+			auto ptr = memberCollection.add__child();
+			*ptr = i;
+		}
+		else
+			return std::make_tuple(exceptionHandler("Wrong Child Element Type: should be a method or a member"), Lighthouse::CodeElement::CodeElement{});
+	}
+
+	return std::make_tuple(methodCollection, memberCollection);
 }
-auto LighthouseMain::processEvent(Lighthouse::State::State&& eventState) 
--> std::tuple<int, std::string>		
-{ 
-	int indexSecond = findSelected(eventState._second());
-	int indexThird = findSelected(eventState._third());
-	int indexFourth = findSelected(eventState._fourth());
+//auto LighthouseMain::thirdBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+//{
+//	return	
+//}
+//auto LighthouseMain::fourthBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+//{
+//	return 	
+//}
 
-	if (indexSecond > 0)
-		if (!isStateUnchanged(eventState._second(), _previousState._second(), indexSecond))
+auto LighthouseMain::exceptionHandler(std::string exceptionMessage)
+->Lighthouse::CodeElement::CodeElement
+{
+	Lighthouse::CodeElement::CodeElement exception;
 
-	if(indexSecond > 0)
-		if(!isStateUnchanged(eventState._third(), _previousState._third(), indexThird))
-	
-	if(indexFourth > 0)
-		if(!isStateUnchanged(eventState._fourth(), _previousState._fourth(), indexFourth))
+	exception.set__type(Lighthouse::CodeElement::CodeElement_ElementType_EXCEPTION);
+	exception.set__name(exceptionMessage);
 
-
-
-	return std::make_tuple(int{}, std::string(""));
+	return exception;
 }

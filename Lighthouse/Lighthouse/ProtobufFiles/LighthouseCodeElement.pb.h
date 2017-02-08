@@ -46,12 +46,14 @@ enum CodeElement_ElementType {
   CodeElement_ElementType_CLASS = 2,
   CodeElement_ElementType_MEMBER = 3,
   CodeElement_ElementType_METHOD = 4,
+  CodeElement_ElementType_COLLECTION = 5,
+  CodeElement_ElementType_EXCEPTION = 6,
   CodeElement_ElementType_CodeElement_ElementType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   CodeElement_ElementType_CodeElement_ElementType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool CodeElement_ElementType_IsValid(int value);
 const CodeElement_ElementType CodeElement_ElementType_ElementType_MIN = CodeElement_ElementType_TOP;
-const CodeElement_ElementType CodeElement_ElementType_ElementType_MAX = CodeElement_ElementType_METHOD;
+const CodeElement_ElementType CodeElement_ElementType_ElementType_MAX = CodeElement_ElementType_EXCEPTION;
 const int CodeElement_ElementType_ElementType_ARRAYSIZE = CodeElement_ElementType_ElementType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* CodeElement_ElementType_descriptor();
@@ -135,6 +137,10 @@ class CodeElement : public ::google::protobuf::Message /* @@protoc_insertion_poi
     CodeElement_ElementType_MEMBER;
   static const ElementType METHOD =
     CodeElement_ElementType_METHOD;
+  static const ElementType COLLECTION =
+    CodeElement_ElementType_COLLECTION;
+  static const ElementType EXCEPTION =
+    CodeElement_ElementType_EXCEPTION;
   static inline bool ElementType_IsValid(int value) {
     return CodeElement_ElementType_IsValid(value);
   }
@@ -197,12 +203,6 @@ class CodeElement : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::Lighthouse::CodeElement::CodeElement_ElementType _type() const;
   void set__type(::Lighthouse::CodeElement::CodeElement_ElementType value);
 
-  // optional bool _isSelected = 5;
-  void clear__isselected();
-  static const int kIsSelectedFieldNumber = 5;
-  bool _isselected() const;
-  void set__isselected(bool value);
-
   // optional bool _isAbstract = 6;
   void clear__isabstract();
   static const int kIsAbstractFieldNumber = 6;
@@ -236,7 +236,6 @@ class CodeElement : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::ArenaStringPtr _data1_;
   ::google::protobuf::internal::ArenaStringPtr _data2_;
   int _type_;
-  bool _isselected_;
   bool _isabstract_;
   bool _isstatic_;
   ::google::protobuf::RepeatedPtrField< ::Lighthouse::CodeElement::CodeElement > _child_;
@@ -400,20 +399,6 @@ inline void CodeElement::set__type(::Lighthouse::CodeElement::CodeElement_Elemen
   
   _type_ = value;
   // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._Type)
-}
-
-// optional bool _isSelected = 5;
-inline void CodeElement::clear__isselected() {
-  _isselected_ = false;
-}
-inline bool CodeElement::_isselected() const {
-  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._isSelected)
-  return _isselected_;
-}
-inline void CodeElement::set__isselected(bool value) {
-  
-  _isselected_ = value;
-  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isSelected)
 }
 
 // optional bool _isAbstract = 6;

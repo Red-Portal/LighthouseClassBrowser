@@ -14,13 +14,14 @@ message CodeElement
 		//interface or abstract classes are all considered as classes
 		MEMBER = 3;
 		METHOD = 4;
+		COLLECTION = 5;
+		EXCEPTION = 6;
 	}
 	
 	string _name = 1;
 	bytes _data1 = 2;
 	bytes _data2 = 3;
 	ElementType _Type = 4;
-	bool _isSelected = 5;
 	bool _isAbstract = 6;
 	bool _isStatic = 7;
 	

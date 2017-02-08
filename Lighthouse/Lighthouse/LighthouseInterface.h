@@ -14,25 +14,25 @@ private:
 	std::string _secondBrowserResult_second;
 	std::string _secondBrowserMovePostion;
 
-	std::string _thirdBrowserMovePosition;
+	/*std::string _thirdBrowserMovePosition;
 
-	std::string _fourthBrowserMovePosition;
+	std::string _fourthBrowserMovePosition;*/
 
 public:
 	LighthouseInterface() = default;
 
-	void firstBrowserDataPush(std::string); //push the new app state, pull the changed data state
+	bool firstBrowserDataPush(std::string); //push the new app state, pull the changed data state
 	std::string firstBrowserDataPull();
 
-	void secondBrowserDataPush(std::string);
+	bool secondBrowserDataPush(std::string);
 	std::string secondBrowserDataPull_first();
 	std::string secondBrowserDataPull_second();
 	std::string secondBrowserMovePositionPull();
 
-	void thirdBrowserDataPush(std::string);
-	std::string thirdBrowserMovePositionPull();
-	
-	void fourthBrowserDataPush(std::string);
-	std::string fourthBrowserMovePositionPull();
+	//bool thirdBrowserDataPush(std::string);
+	//std::string thirdBrowserMovePositionPull();
+	//
+	//bool fourthBrowserDataPush(std::string);
+	//std::string fourthBrowserMovePositionPull();
 };
 #endif

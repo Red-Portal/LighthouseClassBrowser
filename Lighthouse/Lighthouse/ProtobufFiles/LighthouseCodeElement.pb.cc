@@ -38,12 +38,11 @@ void protobuf_AssignDesc_LighthouseCodeElement_2eproto() {
       "LighthouseCodeElement.proto");
   GOOGLE_CHECK(file != NULL);
   CodeElement_descriptor_ = file->message_type(0);
-  static const int CodeElement_offsets_[8] = {
+  static const int CodeElement_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _data1_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _data2_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _type_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _isselected_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _isabstract_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _isstatic_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CodeElement, _child_),
@@ -93,15 +92,15 @@ void protobuf_AddDesc_LighthouseCodeElement_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\033LighthouseCodeElement.proto\022\026Lighthous"
-    "e.CodeElement\"\270\002\n\013CodeElement\022\r\n\005_name\030\001"
+    "e.CodeElement\"\302\002\n\013CodeElement\022\r\n\005_name\030\001"
     " \001(\t\022\016\n\006_data1\030\002 \001(\014\022\016\n\006_data2\030\003 \001(\014\022>\n\005"
     "_Type\030\004 \001(\0162/.Lighthouse.CodeElement.Cod"
-    "eElement.ElementType\022\023\n\013_isSelected\030\005 \001("
-    "\010\022\023\n\013_isAbstract\030\006 \001(\010\022\021\n\t_isStatic\030\007 \001("
-    "\010\0223\n\006_child\030\010 \003(\0132#.Lighthouse.CodeEleme"
-    "nt.CodeElement\"H\n\013ElementType\022\007\n\003TOP\020\000\022\r"
-    "\n\tNAMESPACE\020\001\022\t\n\005CLASS\020\002\022\n\n\006MEMBER\020\003\022\n\n\006"
-    "METHOD\020\004b\006proto3", 376);
+    "eElement.ElementType\022\023\n\013_isAbstract\030\006 \001("
+    "\010\022\021\n\t_isStatic\030\007 \001(\010\0223\n\006_child\030\010 \003(\0132#.L"
+    "ighthouse.CodeElement.CodeElement\"g\n\013Ele"
+    "mentType\022\007\n\003TOP\020\000\022\r\n\tNAMESPACE\020\001\022\t\n\005CLAS"
+    "S\020\002\022\n\n\006MEMBER\020\003\022\n\n\006METHOD\020\004\022\016\n\nCOLLECTIO"
+    "N\020\005\022\r\n\tEXCEPTION\020\006b\006proto3", 386);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "LighthouseCodeElement.proto", &protobuf_RegisterTypes);
   CodeElement::default_instance_ = new CodeElement();
@@ -129,6 +128,8 @@ bool CodeElement_ElementType_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
+    case 6:
       return true;
     default:
       return false;
@@ -141,6 +142,8 @@ const CodeElement_ElementType CodeElement::NAMESPACE;
 const CodeElement_ElementType CodeElement::CLASS;
 const CodeElement_ElementType CodeElement::MEMBER;
 const CodeElement_ElementType CodeElement::METHOD;
+const CodeElement_ElementType CodeElement::COLLECTION;
+const CodeElement_ElementType CodeElement::EXCEPTION;
 const CodeElement_ElementType CodeElement::ElementType_MIN;
 const CodeElement_ElementType CodeElement::ElementType_MAX;
 const int CodeElement::ElementType_ARRAYSIZE;
@@ -150,7 +153,6 @@ const int CodeElement::kNameFieldNumber;
 const int CodeElement::kData1FieldNumber;
 const int CodeElement::kData2FieldNumber;
 const int CodeElement::kTypeFieldNumber;
-const int CodeElement::kIsSelectedFieldNumber;
 const int CodeElement::kIsAbstractFieldNumber;
 const int CodeElement::kIsStaticFieldNumber;
 const int CodeElement::kChildFieldNumber;
@@ -182,7 +184,6 @@ void CodeElement::SharedCtor() {
   _data1_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _data2_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _type_ = 0;
-  _isselected_ = false;
   _isabstract_ = false;
   _isstatic_ = false;
 }
@@ -318,21 +319,6 @@ bool CodeElement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse__isSelected;
-        break;
-      }
-
-      // optional bool _isSelected = 5;
-      case 5: {
-        if (tag == 40) {
-         parse__isSelected:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &_isselected_)));
-
-        } else {
-          goto handle_unusual;
-        }
         if (input->ExpectTag(48)) goto parse__isAbstract;
         break;
       }
@@ -436,11 +422,6 @@ void CodeElement::SerializeWithCachedSizes(
       4, this->_type(), output);
   }
 
-  // optional bool _isSelected = 5;
-  if (this->_isselected() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(5, this->_isselected(), output);
-  }
-
   // optional bool _isAbstract = 6;
   if (this->_isabstract() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(6, this->_isabstract(), output);
@@ -494,11 +475,6 @@ void CodeElement::SerializeWithCachedSizes(
       4, this->_type(), target);
   }
 
-  // optional bool _isSelected = 5;
-  if (this->_isselected() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(5, this->_isselected(), target);
-  }
-
   // optional bool _isAbstract = 6;
   if (this->_isabstract() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(6, this->_isabstract(), target);
@@ -549,11 +525,6 @@ int CodeElement::ByteSize() const {
   if (this->_type() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->_type());
-  }
-
-  // optional bool _isSelected = 5;
-  if (this->_isselected() != 0) {
-    total_size += 1 + 1;
   }
 
   // optional bool _isAbstract = 6;
@@ -618,9 +589,6 @@ void CodeElement::MergeFrom(const CodeElement& from) {
   if (from._type() != 0) {
     set__type(from._type());
   }
-  if (from._isselected() != 0) {
-    set__isselected(from._isselected());
-  }
   if (from._isabstract() != 0) {
     set__isabstract(from._isabstract());
   }
@@ -657,7 +625,6 @@ void CodeElement::InternalSwap(CodeElement* other) {
   _data1_.Swap(&other->_data1_);
   _data2_.Swap(&other->_data2_);
   std::swap(_type_, other->_type_);
-  std::swap(_isselected_, other->_isselected_);
   std::swap(_isabstract_, other->_isabstract_);
   std::swap(_isstatic_, other->_isstatic_);
   _child_.UnsafeArenaSwap(&other->_child_);
@@ -820,20 +787,6 @@ void CodeElement::clear__type() {
   
   _type_ = value;
   // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._Type)
-}
-
-// optional bool _isSelected = 5;
-void CodeElement::clear__isselected() {
-  _isselected_ = false;
-}
- bool CodeElement::_isselected() const {
-  // @@protoc_insertion_point(field_get:Lighthouse.CodeElement.CodeElement._isSelected)
-  return _isselected_;
-}
- void CodeElement::set__isselected(bool value) {
-  
-  _isselected_ = value;
-  // @@protoc_insertion_point(field_set:Lighthouse.CodeElement.CodeElement._isSelected)
 }
 
 // optional bool _isAbstract = 6;

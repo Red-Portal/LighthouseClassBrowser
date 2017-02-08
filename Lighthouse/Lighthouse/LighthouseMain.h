@@ -7,16 +7,15 @@
 class LighthouseMain
 {
 private:
-	Lighthouse::State::State _previousState;
-	LighthouseTree _sourceTree;
 	
-	inline int findSelected(Lighthouse::State::State::Browser const&) const; //this returns the index of a 'isSelected -> true'
-	inline bool isStateUnchanged(Lighthouse::State::State::Browser const&, Lighthouse::State::State::Browser const&, int) const; // is the selected item a 'newly selected item'?
 public:
-	explicit LighthouseMain(Lighthouse::State::State&&); //should be initialized with 'initialState' message
 	explicit LighthouseMain() = default;
 
-	auto processEvent(Lighthouse::State::State&&)->std::tuple<int, std::string>;
-	std::string getMovePosition();
+	auto firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement)->std::tuple<Lighthouse::CodeElement::CodeElement>;
+	auto secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElement)->std::tuple<Lighthouse::CodeElement::CodeElement, Lighthouse::CodeElement::CodeElement>;
+	//auto thirdBrowserProcessEvent(Lighthouse::CodeElement::CodeElement);
+	//auto fourthBrowserProcessEvent(Lighthouse::CodeElement::CodeElement);
+
+	auto exceptionHandler(std::string)->Lighthouse::CodeElement::CodeElement;
 };
 #endif
