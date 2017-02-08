@@ -85,6 +85,27 @@ The `Static` button marks static elements with a different color so you can iden
 * In the Visual Studio version only C# is currently supported.
 
 ## Upcoming Features
-* Full C# implementation
-* Support for Vim
-* Support for C++ in Vim
+* Asyncronous Data Collection
+* C#, Visual Studio implementation
+* Java, IntelliJ implementation
+
+## Dependencies
+* [Swig](https://github.com/swig/swig), GPLv3
+* [Protobuf](https://github.com/google/protobuf), custom license
+
+
+
+
+   Copyright 2017 Red-Portal, jzi040941
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
