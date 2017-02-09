@@ -19,18 +19,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "LighthouseDictionary.h"
 
-auto& LighthouseDictionary::findElement(Lighthouse::CodeElement::CodeElement const& element)
+auto LighthouseDictionary::findElement(Lighthouse::CodeElement::CodeElement const& element)
+->Lighthouse::CodeElement::CodeElement&
 {
 	auto& key = element._name();
 
 	std::lock_guard<std::mutex> guard(_lock);
 
 	if (_elementsUnorderedMap.count(key) == 0)
+	{
 		_elementsUnorderedMap[key] = element;
+		return _elementsUnorderedMap[key];
+	}
 	else
 		return _elementsUnorderedMap[key];
 }
-void LighthouseDictionary::setElement(Lighthouse::CodeElement::CodeElement const& element)
+void LighthouseDictionary::setElement(Lighthouse::CodeElement::CodeElement element)
 {
 	std::lock_guard<std::mutex>	guard(_lock);
 	_elementsUnorderedMap[element._name()] = element;

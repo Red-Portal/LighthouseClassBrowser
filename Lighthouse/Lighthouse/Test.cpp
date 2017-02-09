@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gtest/gtest.h>
-#include <memory>
 #include "ProtobufFiles/LighthouseCodeElement.pb.h"
 #include "ProtobufFiles/LighthouseState.pb.h"
 #include "LighthouseInterface.h"
@@ -39,41 +38,107 @@ struct LighthouseDictionaryTest: testing::Test
 	LighthouseDictionary _dict;
 };
 
+auto parseFromString(std::string data)
+->Lighthouse::CodeElement::CodeElement
+{
+	Lighthouse::CodeElement::CodeElement element;
+	element.ParseFromString(data);
+
+	return element;
+}
+auto generateTestElement(std::string id, Lighthouse::CodeElement::CodeElement_ElementType type)
+->Lighthouse::CodeElement::CodeElement
+{
+	Lighthouse::CodeElement::CodeElement element;
+	element.set__name(id);
+	element.set__type(type);
+
+	return element;
+}
+void makeCollection(Lighthouse::CodeElement::CodeElement& parent , Lighthouse::CodeElement::CodeElement const& child)
+{
+	auto ptr = parent.add__child();
+	*ptr = child;
+}
+
 TEST_F(LighthouseInterfaceTest, FirstBrowserPushPullTest)
 {
-	_interface.firstBrowserDataPush();
-	_interface.firstBrowserDataPull();
-	EXPECT_EQ();
+	auto collection = generateTestElement("collection", Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION);
+	auto parent = generateTestElement("parent", Lighthouse::CodeElement::CodeElement_ElementType_TOP);
+	auto child = generateTestElement("child", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
+
+	makeCollection(parent, child);
+	makeCollection(collection, parent);
+
+
+	bool flag = _interface.firstBrowserDataPush(collection.SerializeAsString());
+
+	EXPECT_TRUE(flag);
+
+	auto resultBinary = _interface.firstBrowserDataPull();
+	auto result = parseFromString(resultBinary)._child(0);
+		
+	EXPECT_EQ(result._name(), child._name());
 }
 TEST_F(LighthouseInterfaceTest, SecondBrowserPushPullTest)
 {
-	_interface.secondBrowserDataPush();
-	_interface.secondBrowserDataPull_first();
-	_interface.secondBrowserDataPull_second();
-	EXPECT_EQ();
-	EXPECT_EQ();
+	auto classElement = generateTestElement("class", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
+	auto member = generateTestElement("member", Lighthouse::CodeElement::CodeElement_ElementType_MEMBER);
+	auto method = generateTestElement("method", Lighthouse::CodeElement::CodeElement_ElementType_METHOD);
+
+	makeCollection(classElement, member);
+	makeCollection(classElement, method);
+
+	auto flag = _interface.secondBrowserDataPush(classElement.SerializeAsString());
+
+	EXPECT_TRUE(flag);
+
+	auto first = _interface.secondBrowserDataPull_first();
+	auto second = _interface.secondBrowserDataPull_second();
+
+	auto resultFirst = parseFromString(first)._child(0);
+	auto resultSecond = parseFromString(second)._child(0);
+
+	EXPECT_EQ(resultFirst._name(), method._name());
+	EXPECT_EQ(resultFirst._name(), member._name());
 }
 TEST_F(LighthouseMainTest, FirstBrowserProcessTest)
 {
-	auto result = _mainModule.firstBrowserProcessEvent();
-	auto first = std::get<0>(result);
+	auto collection = generateTestElement("collection", Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION);
+	auto parent = generateTestElement("parent", Lighthouse::CodeElement::CodeElement_ElementType_TOP);
+	auto child = generateTestElement("child", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
 
-	EXPECT_EQ();
+	makeCollection(parent, child);
+	makeCollection(collection, parent);
+
+	auto result = _mainModule.firstBrowserProcessEvent(std::move(collection));
+	auto first = std::get<0>(result)._child(0);
+
+	EXPECT_EQ(first._name(), child._name());
 }
 TEST_F(LighthouseMainTest, SecondBrowserProcessTest)
 {
-	auto result = _mainModule.secondBrowserProcessEvent();
-	auto first = std::get<0>(result);
-	auto second = std::get<1>(result);
+	auto classElement = generateTestElement("class", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
+	auto member = generateTestElement("member", Lighthouse::CodeElement::CodeElement_ElementType_MEMBER);
+	auto method = generateTestElement("method", Lighthouse::CodeElement::CodeElement_ElementType_METHOD);
 
-	EXPECT_EQ();
-	EXPECT_EQ();
+	makeCollection(classElement, member);
+	makeCollection(classElement, method);
+
+	auto result = _mainModule.secondBrowserProcessEvent(std::move(classElement));
+	auto first = std::get<0>(result)._child(0);
+	auto second = std::get<1>(result)._child(1);
+
+	EXPECT_EQ(first._name(), method._name());
+	EXPECT_EQ(second._name(), member._name());
 }
 TEST_F(LighthouseDictionaryTest, DictionarySetFindTest)
 {
-	_dict.setElement();
-	auto result = _dict.findElement();
+	auto element = generateTestElement("test", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
 
-	EXPECT_EQ();
+	_dict.setElement(element);
+	auto result = _dict.findElement(element);
+
+	EXPECT_EQ(result._name(), element._name());
 }
 #endif

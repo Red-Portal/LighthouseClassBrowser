@@ -48,8 +48,8 @@ public:
 	LighthouseDictionary() = default;
 	~LighthouseDictionary() = default;
 
-	auto& findElement(Lighthouse::CodeElement::CodeElement const&);
-	void setElement(Lighthouse::CodeElement::CodeElement const&);
+	auto findElement(Lighthouse::CodeElement::CodeElement const&)->Lighthouse::CodeElement::CodeElement&;
+	void setElement(Lighthouse::CodeElement::CodeElement);
 };
 
 
