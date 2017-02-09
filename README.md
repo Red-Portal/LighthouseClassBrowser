@@ -92,6 +92,7 @@ The `Static` button marks static elements with a different color so you can iden
 ## Dependencies
 * [Swig](https://github.com/swig/swig), GPLv3
 * [Protobuf](https://github.com/google/protobuf), custom license
+* [gtest](https://github.com/google/googletest/tree/master/googletest), custom license
 
 
 	LighthouseClassBrowser, a smalltalk Class Browser style plugin module

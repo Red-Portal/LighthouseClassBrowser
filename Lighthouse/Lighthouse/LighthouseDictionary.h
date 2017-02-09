@@ -20,13 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef __LIGHTHOUSETREE__
 #define __LIGHTHOUSETREE__
-#include <string>
 #include <unordered_map>
 #include "ProtobufFiles/LighthouseCodeElement.pb.h"
-#include "ProtobufFiles/LighthouseState.pb.h"
 #include <mutex>
 
-//#define __TEST__ // THIS SHOULD BE UNDEFINED ON RELEASE!!
+#define __TEST__ // THIS SHOULD BE UNDEFINED ON RELEASE!!
 
 #ifdef __TEST__
 #include "TestHeader.h"
