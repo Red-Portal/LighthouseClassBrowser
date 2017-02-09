@@ -32,6 +32,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "TestHeader.h"
 #endif
 
+//this class is for updating the CodeElements asynchronously
+//the source analyzation tool will analyze the source,
+//make them into CodeElement protobuf messages, and push the into here
+
+//the main module will update it's data by switching the data in hand 
+//stored within the dictionary.
+
+//this operation should be able to be done asynchronously
+//thus this module is supposed to be thread safe
 class LighthouseDictionary
 {
 private:

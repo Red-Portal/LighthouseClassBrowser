@@ -26,9 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class LighthouseInterface
 {
 private:
+	// main processing unit
 	LighthouseMain _mainModule;
+	// Dictionary
 	LighthouseDictionary _dictionary;
 
+
+	/* serialized, stored return values, waiting for pull */
 	std::string _firstBrowserResult;
 	
 	std::string _secondBrowserResult_first;
@@ -42,14 +46,22 @@ private:
 public:
 	void updateElement_mtx(std::string const& );
 
+	// parse input data, send it to the main module for processing,
+	// serialize the return and store it for pulling
 	bool firstBrowserDataPush(std::string const& ); //push the new app state, pull the changed data state
+	// this is a getter for the return of 'firstBrowserDataPush'
 	std::string firstBrowserDataPull();
 
+	// parse input data, send it to the main module for processing,
+	// serialize the return and store it for pulling
 	bool secondBrowserDataPush(std::string const& );
+	// these are simple getters for the return of 'secondBrowserDataPush'
 	std::string secondBrowserDataPull_first();
 	std::string secondBrowserDataPull_second();
 	std::string secondBrowserMovePositionPull();
 
+
+	/* currently unused code */
 	//bool thirdBrowserDataPush(std::string);
 	//std::string thirdBrowserMovePositionPull();
 	//

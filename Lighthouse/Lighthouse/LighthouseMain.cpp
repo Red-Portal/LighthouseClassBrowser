@@ -20,6 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "LighthouseMain.h"
 
+//argument: CodeElement object of type 'collection' the collection should contain all the selected
+//sourcefiles(for C++, C#), packages(for Java)
+//return : CodeElement object of type 'collection' containing all the children classes of the selected elements
 auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&& element)
 ->std::tuple<Lighthouse::CodeElement::CodeElement>
 {
@@ -29,7 +32,7 @@ auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeEleme
 	if (element._type() != Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION)
 		return std::make_tuple(exceptionHandler("Wrong input Type"));
 
-	for (auto&& i : element._child()) // the input is a collection of sourcefiles
+	for (auto&& i : element._child())
 	{
 		if (i._type() != Lighthouse::CodeElement::CodeElement_ElementType_TOP)
 			return std::make_tuple(exceptionHandler("Wrong Child Element Type: should be a sourcefile/package"));
@@ -43,6 +46,10 @@ auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeEleme
 
 	return std::make_tuple(collection);
 }
+
+//argument: CodeElement object of type class. This is the 'selected' list element
+//return : A tuple of CodeElements type member variable and method.
+//The member variables and methods of the selected class
 auto LighthouseMain::secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&& element)
 ->std::tuple<Lighthouse::CodeElement::CodeElement, Lighthouse::CodeElement::CodeElement>
 {
@@ -72,15 +79,9 @@ auto LighthouseMain::secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElem
 
 	return std::make_tuple(methodCollection, memberCollection);
 }
-//auto LighthouseMain::thirdBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
-//{
-//	return	
-//}
-//auto LighthouseMain::fourthBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
-//{
-//	return 	
-//}
 
+// exception generator. Outputs an exceptiion type CodeElement object, using the input exceptionMessage
+// the exception message is stored in the 'name' section
 auto LighthouseMain::exceptionHandler(std::string exceptionMessage)
 ->Lighthouse::CodeElement::CodeElement
 {
@@ -91,3 +92,13 @@ auto LighthouseMain::exceptionHandler(std::string exceptionMessage)
 
 	return exception;
 }
+
+/* currently unused code */
+//auto LighthouseMain::thirdBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+//{
+//	return	
+//}
+//auto LighthouseMain::fourthBrowserProcessEvent(Lighthouse::CodeElement::CodeElement element)
+//{
+//	return 	
+//}

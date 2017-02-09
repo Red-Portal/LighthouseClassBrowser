@@ -22,17 +22,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __LIGHTHOUSEMAIN__
 #include "LighthouseDictionary.h"
 
+// this class is the main event processing unit.
+// it updates the received CodeElement using 'Dictionary' class
+// and outputs the child CodeElements according the 'set logic'
+// the 'set logic' is browser specific
 class LighthouseMain
 {
 private:
+	// this method generates 'exception' type CodeElement messages
 	auto exceptionHandler(std::string)->Lighthouse::CodeElement::CodeElement;
+
+
 public:
 	explicit LighthouseMain() = default;
 
+	//this method handles event from the first browser
 	auto firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&&)
 		->std::tuple<Lighthouse::CodeElement::CodeElement>;
+
+	//this method handles events from the second browser
 	auto secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&&)
 		->std::tuple<Lighthouse::CodeElement::CodeElement, Lighthouse::CodeElement::CodeElement>;
+
+
+	/* currently unused code */
 	//auto thirdBrowserProcessEvent(Lighthouse::CodeElement::CodeElement);
 	//auto fourthBrowserProcessEvent(Lighthouse::CodeElement::CodeElement);
 };
