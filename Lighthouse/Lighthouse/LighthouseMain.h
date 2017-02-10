@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef __LIGHTHOUSEMAIN__
 #define __LIGHTHOUSEMAIN__
-#include "LighthouseDictionary.h"
+#include "LighthouseHeader.h"
 
 // this class is the main event processing unit.
 // it updates the received CodeElement using 'Dictionary' class

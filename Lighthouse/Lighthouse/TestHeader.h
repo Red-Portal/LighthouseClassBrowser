@@ -21,9 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __TESTHEADER__
 #define __TESTHEADER__
 
-#define private public
-
 #include <gtest/gtest.h>
-#include "LighthouseInterface.h"
+#define private public
 
 #endif

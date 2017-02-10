@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ==========================================================================
 */
 
-#include "LighthouseInterface.h"
+#include "LighthouseHeader.h"
 
 #ifdef __TEST__
 /* class test fixtures*/
