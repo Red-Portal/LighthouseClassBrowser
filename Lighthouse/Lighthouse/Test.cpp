@@ -31,7 +31,12 @@ struct LighthouseInterfaceTest : testing::Test
 };
 struct LighthouseMainTest: testing::Test
 {
+	std::shared_ptr<LighthouseDictionary> _dictionary;
 	LighthouseMain _mainModule;
+
+	LighthouseMainTest() : _dictionary(std::make_shared<LighthouseDictionary>()), _mainModule(_dictionary)
+	{
+	}
 };
 struct LighthouseDictionaryTest: testing::Test
 {
@@ -57,7 +62,7 @@ auto generateTestElement(std::string id, Lighthouse::CodeElement::CodeElement_El
 }
 void makeCollection(Lighthouse::CodeElement::CodeElement& parent , Lighthouse::CodeElement::CodeElement const& child)
 {
-	auto ptr = parent.add__child();
+	auto* ptr = parent.add__child();
 	*ptr = child;
 }
 
@@ -140,5 +145,23 @@ TEST_F(LighthouseDictionaryTest, DictionarySetFindTest)
 	auto result = _dict.findElement(element);
 
 	EXPECT_EQ(result._name(), element._name());
+}
+TEST_F(LighthouseInterfaceTest, DictionarySetFindTest)
+{
+	auto element = generateTestElement("test", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
+	_interface.updateElement_mtx(element.SerializeAsString());
+	EXPECT_EQ(_interface._dictionary->_elementsUnorderedMap.size(), 1);
+	
+	auto secondElement = generateTestElement("secondTest", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
+	auto parent = generateTestElement("parent", Lighthouse::CodeElement::CodeElement_ElementType_TOP);
+	
+	makeCollection(parent, secondElement);
+	_interface.updateElement_mtx(parent.SerializeAsString());
+	
+	makeCollection(parent, element);
+	auto result = _interface._dictionary->findElement(parent);
+
+	EXPECT_EQ(result._child_size(), 1);
+	EXPECT_EQ(parent._child_size(), 2);
 }
 #endif

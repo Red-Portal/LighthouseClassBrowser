@@ -20,9 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "LighthouseMain.h"
 
-LighthouseMain::LighthouseMain(LighthouseDictionary& dict)
+LighthouseMain::LighthouseMain(std::shared_ptr<LighthouseDictionary> const& dict)
 {
-	_dictionary = std::make_shared<LighthouseDictionary>(dict);
+	_dictionary = dict;
 }
 
 //argument: CodeElement object of type 'collection' the collection should contain all the selected

@@ -3,6 +3,5 @@ d:\libraries\include\gtest\internal\gtest-internal.h : warning C4819: The file c
   Test.cpp
 d:\libraries\include\gtest\internal\gtest-internal.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
   Generating Code...
-  LINK : D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse\x64\Debug\Lighthouse.exe not found or not built by the last incremental link; performing full link
   Lighthouse.vcxproj -> D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse\x64\Debug\Lighthouse.exe
   Lighthouse.vcxproj -> D:\Documents\Visual Studio 2015\Projects\LighthouseClassBrowser\Lighthouse\x64\Debug\Lighthouse.pdb (Partial PDB)

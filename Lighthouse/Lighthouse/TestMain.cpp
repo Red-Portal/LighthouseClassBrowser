@@ -19,9 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gtest/gtest.h>
+#include "LighthouseInterface.h"
 
+#ifdef __TEST__
 int main(int argc, char** argv)
 {
-	testing::InitGoogleTest(&argc, argv);
+ 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
+#endif

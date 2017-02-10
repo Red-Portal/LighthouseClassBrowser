@@ -35,7 +35,7 @@ private:
 	auto exceptionHandler(std::string)->Lighthouse::CodeElement::CodeElement;
 
 public:
-	explicit LighthouseMain(LighthouseDictionary&);
+	explicit LighthouseMain(std::shared_ptr<LighthouseDictionary> const&);
 
 	//this method handles event from the first browser
 	auto firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&&)
