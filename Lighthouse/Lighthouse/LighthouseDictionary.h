@@ -51,6 +51,4 @@ public:
 	auto findElement(Lighthouse::CodeElement::CodeElement const&)->Lighthouse::CodeElement::CodeElement&;
 	void setElement(Lighthouse::CodeElement::CodeElement);
 };
-
-
 #endif

@@ -29,12 +29,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class LighthouseMain
 {
 private:
+	std::shared_ptr<LighthouseDictionary> _dictionary;
+
 	// this method generates 'exception' type CodeElement messages
 	auto exceptionHandler(std::string)->Lighthouse::CodeElement::CodeElement;
 
-
 public:
-	explicit LighthouseMain() = default;
+	explicit LighthouseMain(LighthouseDictionary&);
 
 	//this method handles event from the first browser
 	auto firstBrowserProcessEvent(Lighthouse::CodeElement::CodeElement&&)

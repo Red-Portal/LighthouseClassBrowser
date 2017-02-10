@@ -20,12 +20,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "LighthouseInterface.h"
 
+LighthouseInterface::LighthouseInterface() : _dictionary(std::make_shared<LighthouseDictionary>()), _mainModule(*_dictionary)
+{}
+
 void LighthouseInterface::updateElement_mtx(std::string const& update)
 {
 	Lighthouse::CodeElement::CodeElement element;
 	element.ParseFromString(update);
 	
-	_dictionary.setElement(std::move(element));
+	_dictionary->setElement(std::move(element));
 }
 
 bool LighthouseInterface::firstBrowserDataPush(std::string const& data)

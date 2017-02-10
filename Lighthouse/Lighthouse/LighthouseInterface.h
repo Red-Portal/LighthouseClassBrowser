@@ -26,10 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class LighthouseInterface
 {
 private:
+	// Dictionary
+	std::shared_ptr<LighthouseDictionary> _dictionary;
+
 	// main processing unit
 	LighthouseMain _mainModule;
-	// Dictionary
-	LighthouseDictionary _dictionary;
 
 
 	/* serialized, stored return values, waiting for pull */
@@ -44,6 +45,7 @@ private:
 	std::string _fourthBrowserMovePosition;*/
 
 public:
+	explicit LighthouseInterface();
 	void updateElement_mtx(std::string const& );
 
 	// parse input data, send it to the main module for processing,

@@ -20,6 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "LighthouseMain.h"
 
+LighthouseMain::LighthouseMain(LighthouseDictionary& dict)
+{
+	_dictionary = std::make_shared<LighthouseDictionary>(dict);
+}
+
 //argument: CodeElement object of type 'collection' the collection should contain all the selected
 //sourcefiles(for C++, C#), packages(for Java)
 //return : CodeElement object of type 'collection' containing all the children classes of the selected elements
@@ -32,7 +37,9 @@ auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeEleme
 	if (element._type() != Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION)
 		return std::make_tuple(exceptionHandler("Wrong input Type"));
 
-	for (auto&& i : element._child())
+	auto updatedElement = _dictionary->findElement(element);
+
+	for (auto&& i : updatedElement._child())
 	{
 		if (i._type() != Lighthouse::CodeElement::CodeElement_ElementType_TOP)
 			return std::make_tuple(exceptionHandler("Wrong Child Element Type: should be a sourcefile/package"));
@@ -61,7 +68,9 @@ auto LighthouseMain::secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElem
 	if (element._type() != Lighthouse::CodeElement::CodeElement_ElementType_CLASS)
 		return std::make_tuple(exceptionHandler("Wrong input Type"), Lighthouse::CodeElement::CodeElement{});
 
-	for (auto&& i : element._child()) // the input is a collection of sourcefiles
+	auto updatedElement = _dictionary->findElement(element);
+
+	for (auto&& i : updatedElement._child()) // the input is a collection of sourcefiles
 	{
 		if (i._type() == Lighthouse::CodeElement::CodeElement_ElementType_METHOD)
 		{
