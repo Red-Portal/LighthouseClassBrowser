@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef __LIGHTHOUSEINTERFACE__
 #define __LIGHTHOUSEINTERFACE__
-
 #include "LighthouseMain.h"
 
 class LighthouseInterface

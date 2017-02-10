@@ -23,4 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define private public
 
+#include <gtest/gtest.h>
+#include "LighthouseInterface.h"
+
 #endif

@@ -18,9 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ==========================================================================
 */
 
-#include <gtest/gtest.h>
-#include "ProtobufFiles/LighthouseCodeElement.pb.h"
-#include "ProtobufFiles/LighthouseState.pb.h"
 #include "LighthouseInterface.h"
 
 #ifdef __TEST__

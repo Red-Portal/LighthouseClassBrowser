@@ -129,6 +129,7 @@
     <ClCompile Include="TestMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LighthouseHeader.h" />
     <ClInclude Include="LighthouseInterface.h" />
     <ClInclude Include="LighthouseMain.h" />
     <ClInclude Include="LighthouseDictionary.h" />
