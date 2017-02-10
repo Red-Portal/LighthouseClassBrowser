@@ -105,7 +105,7 @@ TEST_F(LighthouseInterfaceTest, SecondBrowserPushPullTest)
 	auto resultSecond = parseFromString(second)._child(0);
 
 	EXPECT_EQ(resultFirst._name(), method._name());
-	EXPECT_EQ(resultFirst._name(), member._name());
+	EXPECT_EQ(resultSecond._name(), member._name());
 }
 TEST_F(LighthouseMainTest, FirstBrowserProcessTest)
 {
@@ -132,7 +132,7 @@ TEST_F(LighthouseMainTest, SecondBrowserProcessTest)
 
 	auto result = _mainModule.secondBrowserProcessEvent(std::move(classElement));
 	auto first = std::get<0>(result)._child(0);
-	auto second = std::get<1>(result)._child(1);
+	auto second = std::get<1>(result)._child(0);
 
 	EXPECT_EQ(first._name(), method._name());
 	EXPECT_EQ(second._name(), member._name());
