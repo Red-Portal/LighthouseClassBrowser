@@ -28,7 +28,7 @@ void LighthouseInterface::updateElement_mtx(std::string const& update)
 	Lighthouse::CodeElement::CodeElement element;
 	element.ParseFromString(update);
 	
-	_dictionary->setElement(std::move(element));
+	_dictionary->setElement_mtx(std::move(element));
 }
 
 bool LighthouseInterface::firstBrowserDataPush(std::string const& data)

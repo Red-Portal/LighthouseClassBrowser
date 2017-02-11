@@ -37,7 +37,7 @@ auto LighthouseMain::firstBrowserProcessEvent(Lighthouse::CodeElement::CodeEleme
 	if (element._type() != Lighthouse::CodeElement::CodeElement_ElementType_COLLECTION)
 		return std::make_tuple(exceptionHandler("Wrong input Type"));
 
-	auto updatedElement = _dictionary->findElement(element);
+	auto updatedElement = _dictionary->findElement_mtx(element);
 
 	for (auto&& i : updatedElement._child())
 	{
@@ -68,7 +68,7 @@ auto LighthouseMain::secondBrowserProcessEvent(Lighthouse::CodeElement::CodeElem
 	if (element._type() != Lighthouse::CodeElement::CodeElement_ElementType_CLASS)
 		return std::make_tuple(exceptionHandler("Wrong input Type"), Lighthouse::CodeElement::CodeElement{});
 
-	auto updatedElement = _dictionary->findElement(element);
+	auto updatedElement = _dictionary->findElement_mtx(element);
 
 	for (auto&& i : updatedElement._child()) // the input is a collection of sourcefiles
 	{

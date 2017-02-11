@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "LighthouseHeader.h"
 
-auto LighthouseDictionary::findElement(Lighthouse::CodeElement::CodeElement const& element)
+auto LighthouseDictionary::findElement_mtx(Lighthouse::CodeElement::CodeElement const& element)
 ->Lighthouse::CodeElement::CodeElement&
 {
 	auto& key = element._name();
@@ -34,7 +34,7 @@ auto LighthouseDictionary::findElement(Lighthouse::CodeElement::CodeElement cons
 	else
 		return _elementsUnorderedMap[key];
 }
-void LighthouseDictionary::setElement(Lighthouse::CodeElement::CodeElement element)
+void LighthouseDictionary::setElement_mtx(Lighthouse::CodeElement::CodeElement element)
 {
 	std::lock_guard<std::mutex>	guard(_lock);
 	_elementsUnorderedMap[element._name()] = element;

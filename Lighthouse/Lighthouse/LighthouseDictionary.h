@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef __LIGHTHOUSETREE__
 #define __LIGHTHOUSETREE__
-#include "LighthouseHeader.h"
 
 //this class is for updating the CodeElements asynchronously
 //the source analyzation tool will analyze the source,
@@ -40,7 +39,7 @@ public:
 	LighthouseDictionary() = default;
 	~LighthouseDictionary() = default;
 
-	auto findElement(Lighthouse::CodeElement::CodeElement const&)->Lighthouse::CodeElement::CodeElement&;
-	void setElement(Lighthouse::CodeElement::CodeElement);
+	auto findElement_mtx(Lighthouse::CodeElement::CodeElement const&)->Lighthouse::CodeElement::CodeElement&;
+	void setElement_mtx(Lighthouse::CodeElement::CodeElement);
 };
 #endif

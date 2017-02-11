@@ -38,10 +38,11 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -82,11 +83,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <Optimization>Full</Optimization>
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>D:\Libraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Libraries\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -125,6 +129,7 @@
     <ClCompile Include="LighthouseMain.cpp" />
     <ClCompile Include="ProtobufFiles\LighthouseCodeElement.pb.cc" />
     <ClCompile Include="ProtobufFiles\LighthouseState.pb.cc" />
+    <ClCompile Include="swig\LighthouseInterface_wrap.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestMain.cpp" />
   </ItemGroup>

@@ -16,6 +16,9 @@
     <Filter Include="Protobuf Files">
       <UniqueIdentifier>{f5a57740-29d2-4481-89ca-c6a818544e7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="swig">
+      <UniqueIdentifier>{e26ecf30-8c05-409c-ab18-78e92c65a706}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LighthouseMain.cpp">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="LighthouseDictionary.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="swig\LighthouseInterface_wrap.cpp">
+      <Filter>swig</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

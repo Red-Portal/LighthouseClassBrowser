@@ -138,8 +138,8 @@ TEST_F(LighthouseDictionaryTest, DictionarySetFindTest)
 {
 	auto element = generateTestElement("test", Lighthouse::CodeElement::CodeElement_ElementType_CLASS);
 
-	_dict.setElement(element);
-	auto result = _dict.findElement(element);
+	_dict.setElement_mtx(element);
+	auto result = _dict.findElement_mtx(element);
 
 	EXPECT_EQ(result._name(), element._name());
 }
@@ -156,7 +156,7 @@ TEST_F(LighthouseInterfaceTest, DictionarySetFindTest)
 	_interface.updateElement_mtx(parent.SerializeAsString());
 	
 	makeCollection(parent, element);
-	auto result = _interface._dictionary->findElement(parent);
+	auto result = _interface._dictionary->findElement_mtx(parent);
 
 	EXPECT_EQ(result._child_size(), 1);
 	EXPECT_EQ(parent._child_size(), 2);

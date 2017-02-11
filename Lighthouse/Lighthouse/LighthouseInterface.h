@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef __LIGHTHOUSEINTERFACE__
 #define __LIGHTHOUSEINTERFACE__
-#include "LighthouseHeader.h"
 
 class LighthouseInterface
 {
@@ -39,8 +38,8 @@ private:
 	std::string _secondBrowserResult_second;
 	std::string _secondBrowserMovePostion;
 
+	/*currently unused code*/
 	/*std::string _thirdBrowserMovePosition;
-
 	std::string _fourthBrowserMovePosition;*/
 
 public:
