@@ -29,6 +29,7 @@ If you do not intend to test the C++ module, you don't need gtest.
 
 ## Tests
 This folder contains files related to testing the C++ module.
+These files will only be included in the build if the ```__TEST__``` directive is defined.
 ```TestMain.cpp``` is the source file containing the main function.
 In order to use [gtest](https://github.com/goolge/googletest) you must have a main function.
 
