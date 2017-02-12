@@ -27,33 +27,27 @@ Refer the [docs](docs/) for further detail on how you can impelment Lighthouse C
 A Visual Studio, C# implementationo is provided.
 below are the features of the Visual Studio implementation.
 
-![ExampleImage]()
+![ExampleImage](Examples/ExampleImage.jpg)
 
 Lighthouse always shows you the the classes of the selected project items.
 It also shows you member methods, variables and properties of the selected class.
 
 ### Code Navigation
 
-![CodeNavigation]()
+![CodeNavigation](Examples/ExampleNavigation.gif)
 
 By selecting any of the Class, Method, Properties displayed, you can directly move to its position.
 
 ### Hide Abstract Elements
 
-![HideAbstractMembers]()
+![HideAbstractMembers](Examples/ExampleAbstraction.gif)
 
 By pressing `Abstract` button, encapsulated classes, methods, variables and properties are hidden from the browser.
 Using this button you can directly check the encapsualation structure of your code.
 
-### Show Parent of Derived Class
-
-![ShowDerivedParent]()
-
-Pressing the `Derived` button shows the parent class of the currently selected class in a different color.
-
 ### Show Only Static Elements
 
-![MarkStatic]()
+![MarkStatic](Examples/ExampleStatic.gif)
 
 The `Static` button only shows the static elements.
 So you can identify static elements at a glance.

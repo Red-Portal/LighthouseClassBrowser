@@ -185,7 +185,7 @@ filter the ones who are not an abstracted data type.
 below is pseudocode
 
 ```Csharp
-void update(CodeElement)//CodeElement types are the protobuf mesage types
+void update(CodeElement)//CodeElement types are the protobuf message types
 {
     // Other operations....
     List<CodeElement> result;
