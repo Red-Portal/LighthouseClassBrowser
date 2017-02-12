@@ -73,6 +73,7 @@ So you can identify static elements at a glance.
 * [gtest](https://github.com/google/googletest/tree/master/googletest), custom license
 
 
+```
     	                  LighthouseClassBrowser
                 Copyright (C) 2017  Red-Portal, jzi040941
 
@@ -88,3 +89,4 @@ So you can identify static elements at a glance.
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
