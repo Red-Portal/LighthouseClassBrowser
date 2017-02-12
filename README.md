@@ -9,18 +9,8 @@ The plugin module is a C++ implemented shared library file.
 Using [Swig](https://github.com/swig/swig), [Protobuf](https://github.com/google/protobuf) you can use the module to implement your own.
 Because of the dependencies, the module is only portable to platforms supported by both swig and protobuf.
 
-Refer the [docs](docs/) for further detail on how you can impelment Lighthouse Class Browser.
+Refer the [docs](docs/) for further detail on how you can implement Lighthouse Class Browser.
 
-
-- [Lighthouse Class Browser](#lighthouse-class-browser)
-    - [Implementation Example](#implementation-example)
-		- [Code Navigation](#code-navigation)
-		- [Hide Abstract Elements](#hide-abstract-elements)
-		- [Show Parent of Derived Class](#show-parent-of-derived-class)
-        - [Show Only Static Elements](#show-only-static-elements)
-    - [Current Version Info](#current-version-info)
-    - [Upcoming Features](#upcoming-features)
-	- [Dependencies](#dependencies)
 
 ## Implementation Example 
 
@@ -67,6 +57,7 @@ So you can identify static elements at a glance.
 * [gtest](https://github.com/google/googletest/tree/master/googletest), custom license
 
 
+## License
 ```
     	                  LighthouseClassBrowser
                 Copyright (C) 2017  Red-Portal, jzi040941
