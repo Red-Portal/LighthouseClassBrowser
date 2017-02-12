@@ -2,7 +2,7 @@
 %{
 #include <string>
 #include <memory>
-#include "LighthouseHeader.h"
+#include "../Headers/LighthouseHeader.h"
 %}
 %include "std_string.i"
-%include "LighthouseInterface.h"
+%include "../Headers/LighthouseInterface.h"
