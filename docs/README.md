@@ -7,8 +7,8 @@
 - [A tour on the Visual Studio implementation](Implementation)
 
 ## Basics
-Lighthouse is a C++ shared library that with the help of swig,
-you can port to many different platforms.
+Lighthouse is a C++ shared library that you, with the help of swig,
+can port to many different platforms.
 
 Lighthouse uses protobuf to communicate across platforms.
 And it uses swig for cross platform use of the C++ shared library.
