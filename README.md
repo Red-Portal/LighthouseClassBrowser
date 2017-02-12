@@ -14,7 +14,7 @@ Refer the [docs](docs/) for further detail on how you can implement Lighthouse C
 
 ## Implementation Example 
 
-A Visual Studio, C# implementationo is provided.
+A Visual Studio, C# implementation is provided.
 below are the features of the Visual Studio implementation.
 
 ![ExampleImage](Examples/ExampleImage.jpg)
