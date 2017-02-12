@@ -1,5 +1,6 @@
 # WHAT IS WHAT CONTAINING WHAT
 ### This Readme explains you what folder contains what that does what
+### Information on building the project are [here](../docs)
 
 ## Headers
 This folder contains the headers for the project.
