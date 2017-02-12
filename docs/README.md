@@ -1,7 +1,7 @@
 # Documentation
 
 ## Documents
-- [how to build this project](/Building)
+- [how to build this project](/Building/README.md)
 - [Tutorial on how to make your lighthouse implementation](/Tutorial)
 - [Guidelines on implementing lighthouse](/GuideLines)
 - [A tour on the Visual Studio implementation](/Implementation)
