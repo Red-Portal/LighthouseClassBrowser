@@ -1,0 +1,6 @@
+[submodule "Lighthouse/Submodules/swig"]
+	path = Lighthouse/Submodules/swig
+	url = https://github.com/swig/swig
+[submodule "Lighthouse/Submodules/protobuf"]
+	path = Lighthouse/Submodules/protobuf
+	url = https://github.com/google/protobuf.git

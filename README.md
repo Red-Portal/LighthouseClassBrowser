@@ -4,7 +4,6 @@ A [Pharo Smalltalk] (http://pharo.org/) Nautilus System Browser style class brow
 
 
 - [Lighthouse Class Browser](#lighthouse-class-browser)
-	- [Currently Supported IDE List](#currently-supported-ide-list)
 	- [Features](#features)
 		- [Code Navigation](#code-navigation)
 		- [Hide Abstract Elements](#hide-abstract-elements)
@@ -16,12 +15,7 @@ A [Pharo Smalltalk] (http://pharo.org/) Nautilus System Browser style class brow
 		- [Installation](#installation)
     - [Version Info](#version-info)
     - [Upcoming Features](#upcoming-features)
-
-
-## Currently Supported IDE List
-
-* `Visual Studio 2015`
-* `IntelliJ IDEA (ver 2016.2.5)`
+	- [Dependencies](#dependencies)
 
 ## Features
 
@@ -97,7 +91,6 @@ The `Static` button marks static elements with a different color so you can iden
 
 	LighthouseClassBrowser, a smalltalk Class Browser style plugin module
     Copyright (C) 2017  Red-Portal, jzi040941
-
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
