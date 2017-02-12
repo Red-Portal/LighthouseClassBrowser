@@ -27,6 +27,8 @@ Selecting any of the class elements of the ```Class Browser``` will display the 
 methods and member variables/instances inside the class
 on the ```Method Browser``` and ```Variabels and Properties Browser```.  
 
+interfaces, abstract classes should considered as classes.
+
 ### Method Browser
 Displays the member methods of the currently selected class.
 
@@ -75,6 +77,46 @@ Pulling: std::string -> swig translated Native data -> Protobuf Decoded Native d
 ```
 Thanks to protobuf, this process is not so expensive.
 
+```protobuf
+message CodeElement
+{
+	enum ElementType
+	{
+		TOP = 0;
+		NAMESPACE = 1;
+		CLASS = 2;
+		MEMBER = 3;
+		METHOD = 4;
+		COLLECTION = 5;
+		EXCEPTION = 6;
+	}
+	
+	string _name = 1;
+	bytes _data1 = 2;
+	bytes _data2 = 3;
+	ElementType _Type = 4;
+	bool _isAbstract = 6;
+	bool _isStatic = 7;
+	
+	repeated CodeElement _child = 8; //code element's members
+}
+```
+
+This is the protobuf message used in Lighthouse.
+The Type of the element is an enum.
+```COLLECTION``` type messages mean that the element is not actually an element
+but just a collaction(containers) of elements.
+
+```_name``` field must be unique for every element. It is suggested to use the 'fullname'
+of the element. Lighthouse distinguishes elements by their name. __THIS REQUIREMENT MIGHT CHANGE
+. THERE ARE FUTURE PLANS OF MAKING A NEW ID FIELD__.
+
+```_isAbstract``` or ```_isStatic``` is supposed to be used for implementing the buttons.  
+
+```_data1``` and ```_data2``` are slots for additional native implementation. Use these fields as you wish.
+
+remember, The ```_Type``` and ```_name``` filed are very important for lighthouse to work.
+Use them as recommended.
 
 ### Updating Source Elements
 Because Lighthouse is a plugin that should be used in development,
