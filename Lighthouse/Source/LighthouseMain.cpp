@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ==========================================================================
 */
 
-#include "LighthouseHeader.h"
+#include "../Headers/LighthouseHeader.h"
 
 LighthouseMain::LighthouseMain(std::shared_ptr<LighthouseDictionary> const& dict)
 {

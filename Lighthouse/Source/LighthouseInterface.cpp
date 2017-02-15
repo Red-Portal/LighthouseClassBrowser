@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ==========================================================================
 */ 
 
-#include "LighthouseHeader.h"
+#include "../Headers/LighthouseHeader.h"
 
 LighthouseInterface::LighthouseInterface() : _dictionary(std::make_shared<LighthouseDictionary>()), _mainModule(_dictionary)
 {}
