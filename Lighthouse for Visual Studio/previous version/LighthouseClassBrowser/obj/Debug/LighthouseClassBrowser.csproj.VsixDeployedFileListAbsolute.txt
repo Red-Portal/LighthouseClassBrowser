@@ -1,4 +1,0 @@
-C:\Users\RedPortal\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\김규래\LighthouseClassBrowser\1.0\\LighthouseClassBrowser.dll
-C:\Users\RedPortal\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\김규래\LighthouseClassBrowser\1.0\\LighthouseClassBrowser.pdb
-C:\Users\RedPortal\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\김규래\LighthouseClassBrowser\1.0\\LighthouseClassBrowser.pkgdef
-C:\Users\RedPortal\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\김규래\LighthouseClassBrowser\1.0\\extension.vsixmanifest
