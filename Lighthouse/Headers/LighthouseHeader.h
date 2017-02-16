@@ -17,7 +17,7 @@
 #include <tuple>
 #include <string>
 #include <memory>
-#include "../Lighthouse/protobuf/LighthouseCodeElement.pb.h"
+#include "../protobuf/LighthouseCodeElement.pb.h"
 #include "LighthouseDictionary.h"
 #include "LighthouseMain.h"
 #include "LighthouseInterface.h"

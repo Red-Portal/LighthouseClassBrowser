@@ -32,14 +32,14 @@ private:
 
 
 	/* serialized, stored return values, waiting for pull */
-	std::string _firstBrowserResult;
+	volatile std::string _firstBrowserResult;
 	
-	std::string _secondBrowserResult_first;
-	std::string _secondBrowserResult_second;
-	std::string _secondBrowserMovePostion;
+	volatile std::string _secondBrowserResult_first;
+	volatile std::string _secondBrowserResult_second;
 
 	/*currently unused code*/
 	/*std::string _thirdBrowserMovePosition;
+	std::string _secondBrowserMovePostion;
 	std::string _fourthBrowserMovePosition;*/
 
 public:
